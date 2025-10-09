@@ -1,0 +1,291 @@
+/* Business Case Cards - Stili dedicati */
+
+/* Card base */
+.bcase-card {
+    position: relative;
+    min-height: 520px;
+    border-radius: 32px;
+    overflow: hidden;
+    background-color: transparent;
+    width: 100%;
+    transition: transform 0.3s ease;
+}
+
+/* Varianti tema card */
+.bcase-card-eventi {
+    background: linear-gradient(129.54deg, rgba(72, 59, 78, 0.2) 0.39%, rgba(235, 93, 67, 0.2) 99.61%);
+    box-shadow: 0px 36px 157.4px -56px rgba(255, 77, 0, 0.50);
+}
+
+.bcase-card-virtuale {
+    background: linear-gradient(129.54deg, rgba(72, 59, 78, 0.2) 0.39%, rgba(213, 140, 188, 0.2) 99.61%);
+    box-shadow: 0px 36px 157.4px -56px rgba(234, 0, 255, 0.50);
+}
+
+/* Bordi con gradiente */
+.bcase-card-eventi::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    padding: 2px;
+    border-radius: 32px;
+    background: linear-gradient(360deg, #EB5D43 0%, rgba(0, 0, 0, 0) 50%);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+}
+
+.bcase-card-virtuale::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    padding: 2px;
+    border-radius: 32px;
+    background: linear-gradient(360deg, #D089E8 0%, rgba(208, 137, 232, 0) 50%);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+}
+
+/* Hover effect */
+.bcase-card:hover {
+    transform: translateY(-10px);
+}
+
+/* Contenitore immagine */
+.bcase-img-wrapper {
+    height: 260px;
+    overflow: hidden;
+}
+
+/* Aggiunta dei nuovi stili per le immagini cliccabili */
+.bcase-img-wrapper a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.bcase-img-wrapper a:hover .bcase-img {
+    transform: scale(1.05);
+}
+
+/* Aggiunta cursore per indicare elemento cliccabile */
+.bcase-img-wrapper a {
+    cursor: pointer;
+}
+
+
+.bcase-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 32px 32px 0 0;
+    transition: transform 0.3s ease;
+}
+
+.bcase-card:hover .bcase-img {
+    transform: scale(1.05);
+}
+
+/* Contenuto card */
+.bcase-content {
+    padding: 36px;
+    background: transparent;
+    position: relative;
+    height: calc(100% - 260px);
+    display: flex;
+    flex-direction: column;
+}
+
+.bcase-text-container {
+    flex-grow: 1;
+    margin-bottom: 80px;
+}
+
+/* Testi */
+.bcase-text {
+    font-size: 102%;
+    font-weight: 400;
+    line-height: 1.45;
+    margin-bottom: 1.3rem;
+    color: var(--text-light) !important;
+}
+
+.bcase-text-bold {
+    font-weight: bold;
+}
+
+.bcase-subtitle {
+    font-size: 95%;
+    font-weight: 300;
+}
+
+/* Bottone */
+.bcase-button-wrapper {
+    position: absolute;
+    bottom: 36px;
+    left: 36px;
+}
+
+.bcase-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: clamp(135px, 15vw, 184.98px);
+    height: clamp(40px, 5vw, 46.83px);
+    font-size: clamp(12px, 1.2vw, 14px);
+    padding: 0 clamp(15px, 2vw, 20px);
+    border-radius: 127px;
+    transition: all var(--transition-speed) ease;
+    text-decoration: none;
+}
+
+/* Varianti bottoni */
+.bcase-button-eventi {
+    border: 2px solid var(--eventi-border-button);
+    color: var(--text-light) !important;
+}
+
+.bcase-button-virtuale {
+    border: 2px solid var(--virtuale-border-button);
+    color: var(--text-light) !important;
+}
+
+.bcase-button:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+}
+
+/* Grid per Business Case Cards */
+.bcase-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    width: 100%;
+    max-width: 1600px; /* aumentata larghezza massima */
+    margin: 0 auto;
+    padding: 0 24px; /* allineato con il padding standard */
+}
+
+.bcase-grid-item {
+    min-width: 0; /* previene overflow */
+}
+
+/* Media Queries */
+@media (min-width: 1400px) {
+    .bcase-card {
+        min-height: 480px;
+    }
+
+    .bcase-img-wrapper {
+        height: 260px;
+    }
+
+    .bcase-button-wrapper {
+        bottom: 36px;
+        left: 36px;
+    }
+    .bcase-grid {
+        gap: 40px;
+        padding: 0 230px;
+    }
+    
+}
+
+@media (max-width: 1200px) {
+    .bcase-card {
+        min-height: 460px;
+    }
+
+    .bcase-img-wrapper {
+        height: 240px;
+    }
+
+    .bcase-button-wrapper {
+        bottom: 30px;
+        left: 30px;
+    }
+
+    .bcase-button {
+        min-width: 170px;
+        height: 44px;
+        font-size: 14px;
+    }
+    img[src*="Playstation"] {
+        object-position: right center;
+    }
+}
+
+@media (max-width: 991px) {
+    .bcase-card {
+        min-height: 440px;
+    }
+
+    .bcase-img-wrapper {
+        height: 220px;
+    }
+
+    .bcase-button-wrapper {
+        bottom: 25px;
+        left: 25px;
+    }
+
+    .bcase-button {
+        min-width: 160px;
+        height: 42px;
+        font-size: 13px;
+    }
+    .bcase-grid {
+        gap: 20px;
+        padding: 0 30px;
+    }
+    
+}
+
+@media (max-width: 768px) {
+    .bcase-card {
+        min-height: 420px;
+    }
+
+    .bcase-img-wrapper {
+        height: 200px;
+    }
+
+    .bcase-button-wrapper {
+        bottom: 20px;
+        left: 14px;
+    }
+
+    .bcase-button {
+        min-width: 150px;
+        height: 40px;
+        font-size: 13px;
+    }
+    .bcase-grid {
+        gap: 24px;
+        max-width: 100%;
+        padding: 0 0px;
+    }
+    .bcase-content{
+        padding-left: 14px;
+    }
+
+}
+
+/* Solo su mobile molto piccoli passiamo a una colonna */
+@media (max-width: 576px) {
+    .bcase-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+        padding: 0 0px;
+    }
+    .bcase-content{
+        padding-left: 14px;
+    }
+    .bcase-button-wrapper {
+        left: 14px;
+    }
+}

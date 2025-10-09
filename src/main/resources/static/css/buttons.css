@@ -1,0 +1,141 @@
+/* Button container */
+.hero-buttons {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+/* Buttons */
+.btn-custom {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0 clamp(20px, 3vw, 40px);
+    height: clamp(46px, 6vw, 62px);
+    border-radius: 127px;
+    font-size: clamp(14px, 2vw, 20px);
+    line-height: 1.2;
+    font-weight: 400;
+    transition: all var(--transition-speed) ease;
+    cursor: pointer;
+    min-width: min(231px, 100%);
+    width: auto;
+    border: 1px solid transparent;
+    text-decoration: none !important;
+}
+
+
+.btn-custom:hover,
+.btn-custom:focus,
+.btn-custom:active,
+.btn-custom:visited {
+    text-decoration: none !important;
+    color: inherit;
+}
+
+/* Buttons */
+.btn-custom_scopri {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0 clamp(20px, 3vw, 40px);
+    height: clamp(40px, 6vw, 62px);
+    border-radius: 127px;
+    font-size: clamp(14px, 2vw, 20px);
+    line-height: 1.2;
+    font-weight: 400;
+    transition: all var(--transition-speed) ease;
+    cursor: pointer;
+    min-width: min(20px, 20%);
+    width: auto;
+    border: 1px solid transparent;
+    text-decoration: none !important;
+}
+
+
+.btn-custom_scopri:hover,
+.btn-custom_scopri:focus,
+.btn-custom_scopri:active,
+.btn-custom_scopri:visited {
+    text-decoration: none !important;
+    color: inherit;
+}
+
+
+.btn-primary-custom {
+    background: linear-gradient(90deg, #582162 0%, #000000 100%);
+    border: 1px solid #F363DB;
+    color: var(--text-light) !important;
+}
+
+
+.btn-primary-custom:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(243, 99, 219, 0.3);
+}
+
+.btn-outline-custom {
+    border: 2px solid var(--button-border-blue);
+    color: var(--button-blue) !important;
+    background: transparent;
+}
+
+.btn-outline-custom:hover {
+    background: rgba(132, 230, 255, 0.1);
+    transform: translateY(-2px);
+}
+
+.btn-outline-custom-white {
+    border: 2px solid var(--button-border-white);
+    height: clamp(40px, 6vw, 58px);
+    color: var(--button-white) !important;
+    background: transparent;
+}
+
+.btn-outline-custom-white:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+}
+
+.showreel-button {
+    position: absolute;
+    bottom: 4%;
+    left: 40px;
+    z-index: 1;
+}
+
+@media (max-width: 539px) {
+    .showreel-button {
+        width: 50%;
+        max-width: 135px;
+        left: 15px !important;
+        bottom: 1.7% !important;
+    }
+    .hero-buttons{
+        margin-top: 31% !important;
+    }
+}
+
+@media screen and (min-width: 540px) and (max-width: 999px) {
+    .showreel-button{
+        width: 50%;
+        max-width: 135px;
+        left: 25px;
+        margin-bottom: 5%;
+    }
+    .btn-custom_scopri {
+        width: 50%;
+        max-width: 135px;
+    }
+}
+
+/* Card buttons */
+.card-custom .btn-outline-custom {
+    width: auto;
+    min-width: clamp(135px, 15vw, 184.98px);
+    height: clamp(40px, 5vw, 46.83px);
+    font-size: clamp(12px, 1.2vw, 14px);
+    padding: 0 clamp(15px, 2vw, 20px);
+}

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/header :: header}"></head>
+<body>
+
+<nav th:replace="~{fragments/navbar :: navbar('blog')}"></nav>
+
+<main class="main-content">
+    <!-- Hero Section -->
+    <section class="page-hero">
+        <div class="container">
+            <h1 class="display-4 fw-bold">Rassegna Stampa</h1>
+            <p class="lead">Le ultime notizie e articoli del settore</p>
+        </div>
+    </section>
+
+    <!-- Search Bar -->
+    <section class="search-section py-4 bg-light">
+        <div class="container">
+            <form th:action="@{/blog/search}" method="get" class="row g-3">
+                <div class="col-md-10">
+                    <input type="text" 
+                           class="form-control form-control-lg" 
+                           name="query" 
+                           th:value="${query}"
+                           placeholder="Cerca negli articoli...">
+                </div>
+                <div class="col-md-2">
+                    <button type="submit" class="btn btn-primary w-100 btn-lg">
+                        <i class="bi bi-search me-2"></i>Cerca
+                    </button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Blog Posts Grid -->
+    <section class="blog-grid py-5">
+        <div class="container">
+            <!-- No results message -->
+            <div th:if="${#lists.isEmpty(posts)}" class="text-center py-5">
+                <i class="bi bi-inbox display-1 text-muted"></i>
+                <h3 class="mt-3">Nessun articolo trovato</h3>
+                <p class="text-muted">Prova con una ricerca diversa</p>
+            </div>
+
+            <!-- Posts Grid -->
+            <div class="row g-4" th:unless="${#lists.isEmpty(posts)}">
+                <div class="col-md-6 col-lg-4" th:each="post : ${posts}">
+                    <div class="card blog-card h-100">
+                        <!-- Immagine -->
+                        <div class="card-img-wrapper" th:if="${post.hasImage()}">
+                            <img th:src="${post.imageUrl}" 
+                                 th:alt="${post.title}"
+                                 class="card-img-top">
+                        </div>
+                        <div class="card-img-wrapper placeholder-img" th:unless="${post.hasImage()}">
+                            <div class="placeholder-content">
+                                <i class="bi bi-newspaper"></i>
+                            </div>
+                        </div>
+
+                        <!-- Contenuto -->
+                        <div class="card-body d-flex flex-column">
+                            <!-- Fonte e Data -->
+                            <div class="post-meta mb-2">
+                                <span class="badge bg-secondary" th:if="${post.sourceName}" th:text="${post.sourceName}">Fonte</span>
+                                <span class="text-muted small ms-2">
+                                    <i class="bi bi-calendar3"></i>
+                                    <span th:text="${#temporals.format(post.publishedDate, 'dd/MM/yyyy')}">Data</span>
+                                </span>
+                            </div>
+
+                            <!-- Titolo -->
+                            <h5 class="card-title">
+                                <a th:href="@{/blog/{id}(id=${post.id})}" 
+                                   th:text="${post.title}"
+                                   class="text-decoration-none text-dark">
+                                    Titolo Post
+                                </a>
+                            </h5>
+
+                            <!-- Estratto -->
+                            <p class="card-text flex-grow-1" th:text="${post.getExcerpt(150)}">
+                                Estratto del contenuto...
+                            </p>
+
+                            <!-- Link -->
+                            <div class="mt-auto">
+                                <a th:href="@{/blog/{id}(id=${post.id})}" 
+                                   class="btn btn-outline-primary btn-sm">
+                                    Leggi di più <i class="bi bi-arrow-right ms-1"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pagination -->
+            <nav th:if="${totalPages > 1}" class="mt-5" aria-label="Blog pagination">
+                <ul class="pagination justify-content-center">
+                    <!-- Previous -->
+                    <li class="page-item" th:classappend="${currentPage == 0} ? 'disabled'">
+                        <a class="page-link" 
+                           th:href="@{/blog(page=${currentPage - 1}, size=${size})}"
+                           th:if="${currentPage > 0}">
+                            <i class="bi bi-chevron-left"></i> Precedente
+                        </a>
+                        <span class="page-link" th:if="${currentPage == 0}">
+                            <i class="bi bi-chevron-left"></i> Precedente
+                        </span>
+                    </li>
+
+                    <!-- Page Numbers -->
+                    <li class="page-item" 
+                        th:each="i : ${#numbers.sequence(0, totalPages - 1)}"
+                        th:if="${i >= currentPage - 2 && i <= currentPage + 2}"
+                        th:classappend="${i == currentPage} ? 'active'">
+                        <a class="page-link" 
+                           th:href="@{/blog(page=${i}, size=${size})}"
+                           th:text="${i + 1}">1</a>
+                    </li>
+
+                    <!-- Next -->
+                    <li class="page-item" th:classappend="${currentPage == totalPages - 1} ? 'disabled'">
+                        <a class="page-link" 
+                           th:href="@{/blog(page=${currentPage + 1}, size=${size})}"
+                           th:if="${currentPage < totalPages - 1}">
+                            Successivo <i class="bi bi-chevron-right"></i>
+                        </a>
+                        <span class="page-link" th:if="${currentPage == totalPages - 1}">
+                            Successivo <i class="bi bi-chevron-right"></i>
+                        </span>
+                    </li>
+                </ul>
+            </nav>
+
+            <!-- Results Info -->
+            <div class="text-center text-muted mt-3">
+                <small>
+                    Mostrando <span th:text="${posts.size()}">0</span> di 
+                    <span th:text="${totalItems}">0</span> articoli
+                </small>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer th:replace="~{fragments/footer :: footer}"></footer>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

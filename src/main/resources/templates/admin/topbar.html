@@ -1,0 +1,48 @@
+<nav th:fragment="topbar" class="admin-topbar">
+    <div class="topbar-left">
+        <button class="btn btn-link sidebar-toggle" id="sidebarToggle">
+            <i class="bi bi-list"></i>
+        </button>
+    </div>
+
+    <div class="topbar-right">
+        <div class="topbar-user">
+            <div class="dropdown">
+                <button class="btn btn-link dropdown-toggle" type="button" 
+                        id="userDropdown" data-bs-toggle="dropdown">
+                    <i class="bi bi-person-circle"></i>
+                    <span sec:authentication="name">Admin</span>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end">
+                    <li>
+                        <a class="dropdown-item" th:href="@{/}" target="_blank">
+                            <i class="bi bi-globe"></i> Visualizza Sito
+                        </a>
+                    </li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li>
+                        <form th:action="@{/admin/logout}" method="post" class="m-0">
+                            <button type="submit" class="dropdown-item">
+                                <i class="bi bi-box-arrow-right"></i> Logout
+                            </button>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const toggle = document.getElementById('sidebarToggle');
+        const sidebar = document.querySelector('.admin-sidebar');
+        const wrapper = document.querySelector('.admin-wrapper');
+        
+        if (toggle && sidebar) {
+            toggle.addEventListener('click', function() {
+                wrapper.classList.toggle('sidebar-collapsed');
+            });
+        }
+    });
+</script>

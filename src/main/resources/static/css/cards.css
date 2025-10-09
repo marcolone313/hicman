@@ -1,0 +1,227 @@
+/* Cards */
+.card-custom {
+    position: relative;
+    min-height: 520px;
+    border-radius: 32px;
+    border: 2px solid;
+    overflow: hidden;
+    background-color: transparent;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 100%;
+}
+
+/* Card specifica per la sezione valori */
+.card-custom.valori-card {
+    min-height: 220px;
+    /* Ancora più compatta per la sezione valori */
+    display: flex;
+    flex-direction: column;
+}
+
+.card-custom.valori-card .card-body {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-custom.valori-card .card-title {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+}
+
+.card-custom.valori-card .card-text {
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+.card-custom.valori-card .about-icons {
+    margin-bottom: 1rem;
+}
+
+.card-custom:hover {
+    transform: translateY(-10px);
+}
+
+.card-custom .card-img-wrapper {
+    height: 260px;
+    overflow: hidden;
+}
+
+.card-custom .card-img-top {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 32px 32px 0 0;
+    transition: transform 0.3s ease;
+}
+
+.card-custom:hover .card-img-top {
+    transform: scale(1.05);
+}
+
+.card-custom .card-body {
+    padding-top: 36px;
+    padding-bottom: 46px;
+    background: transparent;
+    position: relative;
+    height: calc(80% - 260px);
+    display: flex;
+    flex-direction: column;
+}
+
+.card-custom .card-text-container {
+    flex-grow: 1;
+    margin-bottom: 20%;
+}
+
+/* Stile di base per tutte le card */
+.card-custom .card-text {
+    font-size: clamp(12px, 1.5vw, 15px);
+    font-weight: 450;
+    line-height: 1.45;
+    margin-bottom: 1.3rem;
+    color: var(--text-light) !important;
+}
+
+/* Stili specifici per le card nella home page */
+#business-case .card-custom .card-text,
+#services-cards .card-custom .card-text {
+    font-size: clamp(14px, 1.8vw, 18px);
+    font-weight: 500;
+}
+
+/* Per il sottotitolo nelle business case cards */
+#business-case .card-custom .card-text:not(.fw-bold) {
+    font-size: clamp(12px, 1.6vw, 16px);
+    font-weight: 400;
+}
+
+.card-custom .card-button {
+    position: absolute;
+    bottom: 36px;
+    left: 36px;
+    width: auto;
+    margin-top: 0;
+}
+
+/* Card Variants 
+  .card-custom.eventi {
+    border-color: var(--eventi-border);
+    background: var(--card-gradient-eventi);
+    box-shadow: 0px 36px 157.4px -56px rgba(255, 77, 0, 0.26);
+  }*/
+.card-custom.eventi {
+    border: none;
+    /* Rimuoviamo il bordo standard */
+    position: relative;
+    /* Per il pseudo-elemento */
+    background: var(--card-gradient-eventi);
+    box-shadow: 0px 36px 157.4px -56px rgba(255, 77, 0, 0.50);
+}
+
+.card-custom.eventi::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    /* Copre tutto il perimetro della card */
+    padding: 2px;
+    /* Spessore del bordo */
+    border-radius: 32px;
+    /* Stesso border-radius della card */
+    background: var(--eventi-border);
+    -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+    /* Permette di cliccare attraverso il pseudo-elemento */
+}
+
+.card-custom.eventi .btn-outline-custom {
+    border-color: var(--eventi-border-button);
+    color: var(--text-light) !important;
+}
+
+.card-custom.virtuale {
+    border: none;
+    position: relative;
+    background: var(--card-gradient-virtuale);
+    box-shadow: 0px 36px 157.4px -56px rgba(234, 0, 255, 0.50);
+}
+
+.card-custom.virtuale::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    padding: 2px;
+    border-radius: 32px;
+    background: var(--virtuale-border);
+    -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+}
+
+.card-custom.virtuale .btn-outline-custom {
+    border-color: var(--virtuale-border-button);
+    color: var(--text-light) !important;
+}
+
+.card-custom.digitale {
+    border: none;
+    position: relative;
+    background: var(--card-gradient-digitale);
+    box-shadow: 0px 36px 157.4px -56px rgba(0, 255, 234, 0.50);
+}
+
+.card-custom.digitale::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    padding: 2px;
+    border-radius: 32px;
+    background: var(--digitale-border);
+    -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+}
+
+.card-custom.digitale .btn-outline-custom {
+    border-color: var(--digitale-border-button);
+    color: var(--text-light) !important;
+}
+
+.card-custom.hype {
+    border: none;
+    position: relative;
+    background: var(--card-gradient-hype);
+    box-shadow: 0px 36px 157.4px -56px rgba(242, 255, 0, 0.50);
+}
+
+.card-custom.hype::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    padding: 2px;
+    border-radius: 32px;
+    background: var(--hype-border);
+    -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+}
+
+.card-custom.hype .btn-outline-custom {
+    border-color: var(--hype-border-button);
+    color: var(--text-light) !important;
+}

@@ -1,0 +1,47 @@
+<footer th:fragment="footer" class="footer">
+    <div class="container">
+        <div class="row g-4">
+            <!-- Colonna Info -->
+            <div class="col-md-4">
+                <h5>Finance Site</h5>
+                <p class="text-muted">
+                    Soluzioni finanziarie innovative per il tuo business.
+                </p>
+            </div>
+            
+            <!-- Colonna Links -->
+            <div class="col-md-4">
+                <h5>Link Utili</h5>
+                <ul class="list-unstyled">
+                    <li><a th:href="@{/services}" class="footer-link">Servizi</a></li>
+                    <li><a th:href="@{/about}" class="footer-link">Chi Siamo</a></li>
+                    <li><a th:href="@{/blog}" class="footer-link">Rassegna Stampa</a></li>
+                    <li><a th:href="@{/contact}" class="footer-link">Contatti</a></li>
+                    <li><a th:href="@{/privacy}" class="footer-link">Privacy Policy</a></li>
+                </ul>
+            </div>
+            
+            <!-- Colonna Social -->
+            <div class="col-md-4">
+                <h5>Seguici</h5>
+                <div class="social-links">
+                    <a href="#" class="social-link" aria-label="LinkedIn">
+                        <i class="bi bi-linkedin"></i>
+                    </a>
+                    <a href="#" class="social-link" aria-label="Twitter">
+                        <i class="bi bi-twitter-x"></i>
+                    </a>
+                    <a href="#" class="social-link" aria-label="Facebook">
+                        <i class="bi bi-facebook"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <hr class="my-4">
+        
+        <div class="text-center">
+            <p class="mb-0">&copy; 2025 Finance Site. Tutti i diritti riservati.</p>
+        </div>
+    </div>
+</footer>

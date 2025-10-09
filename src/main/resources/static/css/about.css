@@ -1,0 +1,241 @@
+/* About Hero Section */
+.vh-70 {
+    height: 30vh;
+}
+
+.about-hero {
+    background: var(--gradient-primary);
+    padding-top: var(--navbar-height);
+    position: relative;
+    overflow: hidden;
+}
+
+.about-hero .hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--gradient-overlay);
+    opacity: 0;
+    z-index: 1;
+}
+
+/* Scroll Indicator */
+.scroll-indicator {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--text-light);
+    font-size: 2rem;
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
+        transform: translateY(0) translateX(-50%);
+    }
+
+    40% {
+        transform: translateY(-20px) translateX(-50%);
+    }
+
+    60% {
+        transform: translateY(-10px) translateX(-50%);
+    }
+}
+
+.about-icons {
+    color: var(--text-light) !important;
+}
+
+/* Stili specifici per la card nella sezione "La Nostra Storia" */
+.about-story-card.card-custom {
+    min-height: auto;
+    padding: 2rem;
+}
+
+.about-story-card.card-custom .card-body {
+    padding: 2rem;
+}
+
+.about-story-card.card-custom {
+    height: auto;
+    padding: 1rem;
+}
+
+.about-story-card.card-custom .card-body {
+    padding: 1.5rem;
+    height: auto;
+}
+
+.about-story-card.card-custom h2 {
+    font-size: 1.25rem;
+    line-height: 1.4;
+    font-weight: 500;
+}
+
+.about-story-card.card-custom h3 {
+    font-size: 1.25rem;
+    line-height: 1.5;
+    font-weight: 500;
+}
+
+.about-story-card.card-custom p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 0;  /* Rimuove lo spazio extra dopo l'ultimo paragrafo */
+}
+
+.text-justified {
+    text-align: justify;
+    -webkit-hyphens: auto;
+    -ms-hyphens: auto;
+    hyphens: auto;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+@media (max-width: 768px) {
+    .text-justified {
+        text-align: left;
+        hyphens: none;
+    }
+}
+
+/* Aggiunta dello spacing per migliorare la leggibilità */
+.text-justified h2,
+.text-justified h3,
+.text-justified p {
+    letter-spacing: 0.01em;
+    line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+    .about-story-card.card-custom {
+        padding: 0.75rem;
+    }
+    
+    .about-story-card.card-custom .card-body {
+        padding: 1rem;
+    }
+    
+    .about-story-card.card-custom h2 {
+        font-size: 1.5rem;
+    }
+    
+    .about-story-card.card-custom h3 {
+        font-size: 1.1rem;
+    }
+    
+    .about-story-card.card-custom p {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .about-story-card.card-custom {
+        padding: 1.5rem;
+    }
+    
+    .about-story-card.card-custom .card-body {
+        padding: 1.5rem;
+    }
+    
+    .about-story-card.card-custom h2 {
+        font-size: 1.5rem;
+    }
+    
+    .about-story-card.card-custom .card-text {
+        font-size: 1rem;
+    }
+}
+
+.custom-list {
+    color: var(--text-light);
+    list-style: none;
+    padding-left: 1.5rem;
+}
+
+.custom-list li {
+    position: relative;
+    margin-bottom: 1rem;
+    text-align: justify;
+    line-height: 1.6;
+}
+
+.custom-list li::before {
+    content: "•";
+    position: absolute;
+    left: -1.5rem;
+    color: var(--accent-pink);
+    font-size: 1.2em;
+}
+
+@media (max-width: 768px) {
+    .custom-list {
+        padding-left: 1rem;
+    }
+    
+    .custom-list li {
+        text-align: left;
+        margin-bottom: 1.5rem;
+    }
+    
+    .custom-list li::before {
+        left: -1rem;
+    }
+}
+
+/* Stili per l'immagine nella pagina About */
+.about-image-wrapper {
+    width: 100%;
+    border-radius: 32px;
+    overflow: hidden;
+    position: relative;
+}
+
+.about-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 32px;
+    transition: transform 0.3s ease;
+}
+
+/* Aggiunta un sottile overlay sul hover */
+.about-image-wrapper::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(129.54deg, rgba(0, 0, 0, 0) 0.39%, rgba(0, 0, 0, 0) 99.61%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border-radius: 32px;
+}
+
+.about-image-wrapper:hover::after {
+    opacity: 1;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .about-image-wrapper {
+        border-radius: 16px;
+    }
+    
+    .about-image {
+        border-radius: 16px;
+    }
+}

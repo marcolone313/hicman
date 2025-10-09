@@ -1,0 +1,17 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /private/
+
+# Impedisci l'accesso a pagine non necessarie ai crawler
+Disallow: /privacy
+Disallow: /terms
+
+# Permetti l'accesso alle pagine principali
+Allow: /index
+Allow: /about
+Allow: /contact
+Allow: /playstation
+
+# Sitemap
+Sitemap: https://oscinnovation.com/sitemap.xml

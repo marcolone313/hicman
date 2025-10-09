@@ -1,0 +1,46 @@
+/* Language Buttons Styles */
+.language-buttons {
+    padding: 0.5rem 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: center;
+}
+
+.language-link {
+    color: var(--text-light) !important;
+    font-weight: 500;
+    opacity: 0.7;
+    transition: all var(--transition-speed) ease;
+    text-decoration: none;
+    padding: 0.5rem 1rem !important;
+    font-size: 0.9rem;
+}
+
+.language-link:hover {
+    opacity: 1;
+}
+
+/* Dropdown styles for desktop */
+@media (min-width: 992px) {
+    .dropdown-menu {
+        background: var(--gradient-primary);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        min-width: 80px;
+    }
+
+    .dropdown-item {
+        color: var(--text-light);
+        transition: all var(--transition-speed) ease;
+        text-align: center;
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+    }
+
+    .dropdown-item:hover {
+        background: rgba(255, 255, 255, 0.1);
+        color: var(--text-light);
+    }
+    
+    .nav-item.dropdown .dropdown-toggle::after {
+        display: none;
+    }
+}

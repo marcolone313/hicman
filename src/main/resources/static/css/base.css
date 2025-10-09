@@ -1,0 +1,71 @@
+/* Fix per l'overflow orizzontale */
+html,
+body {
+    overflow-x: hidden;
+    width: 100%;
+    position: relative;
+}
+
+/* Reset e stili base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background: var(--gradient-primary);
+    color: var(--text-light);
+    line-height: 1.6;
+    overflow-x: hidden;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Section Titles */
+.section-title {
+    font-size: 32px;
+    line-height: 1.22;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+/* Divider */
+.line-divisoria {
+    width: 90%;
+    max-width: 1452px;
+    height: 3px;
+    background: var(--accent-pink);
+    margin: auto;
+    margin-top: 58px;
+}
+
+html, body {
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+}
+
+@supports (-webkit-touch-callout: none) {
+    body {
+        /* Fix per iOS */
+        -webkit-text-size-adjust: none;
+    }
+}
+
+/* Forza il ridimensionamento corretto su Surface */
+@supports (-ms-ime-align:auto) {
+    html {
+        -ms-text-size-adjust: none;
+    }
+}

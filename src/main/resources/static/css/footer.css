@@ -1,0 +1,86 @@
+/* Footer */
+.footer {
+    background-color: var(--dark-footer);
+    padding: 4rem 0 2rem;
+    margin-top: auto;
+}
+
+.footer h5 {
+    font-size: 1.25rem;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+}
+
+.footer p {
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 0.5rem;
+}
+
+.footer-link {
+    color: rgba(228, 18, 15, 255);
+    text-decoration: none;
+    transition: color var(--transition-speed) ease;
+    display: inline;
+    margin-bottom: 0.5rem;
+    font-size: 15px;
+}
+
+.footer-link:hover {
+    color: var(--text-light);
+}
+
+.social-links a {
+    color: var(--text-light);
+    font-size: 1.5rem;
+    transition: color var(--transition-speed) ease;
+    margin-right: 1rem;
+}
+
+.social-links a:hover {
+    color: var(--accent-pink);
+}
+
+.footer hr {
+    border-color: rgba(255, 255, 255, 0.1);
+    margin: 2rem 0;
+}
+
+/* Footer Social Links Styles */
+.footer .social-links {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 1rem;
+}
+
+.footer .social-links a {
+    color: var(--text-light);
+    font-size: 1.5rem;
+    transition: color var(--transition-speed) ease;
+}
+
+.footer .social-links a:hover {
+    color: var(--accent-pink);
+}
+
+/* Remove any margin/padding that might affect alignment */
+.footer h5 {
+    margin-bottom: 1rem;
+    text-align: left;
+}
+
+/* Make sure the container doesn't add unwanted spacing */
+.footer .col-md-4 {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+ul#menu li {
+    display:inline;
+    line-height: 5px;
+}
+
+.testo-copy{
+    font-size:11px;
+}

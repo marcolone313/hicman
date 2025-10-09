@@ -1,0 +1,138 @@
+/* Stili per la pagina Playstation */
+
+/* Hero Section */
+.pspage-hero {
+    background: var(--gradient-primary);
+    padding-top: var(--navbar-height);
+    position: relative;
+    overflow: hidden;
+    height: 50vh;
+}
+
+.vh-70-p {
+    height: 30Vh;
+}
+
+.pspage-hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--gradient-overlay);
+    opacity: 0;
+    z-index: 1;
+}
+
+/* Video Section */
+.video-section {
+    position: relative;
+}
+
+.video-wrapper {
+    position: relative;
+    border-radius: 32px;
+    padding: 2px;
+    background: linear-gradient(129.54deg, rgba(72, 59, 78, 0.2) 0.39%, rgba(235, 93, 67, 0.2) 99.61%);
+    box-shadow: 0px 36px 157.4px -56px rgba(255, 77, 0, 0.50);
+}
+
+.video-wrapper::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 32px;
+    padding: 2px;
+    background: linear-gradient(360deg, #EB5D43 0%, rgba(0, 0, 0, 0) 100%);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+}
+
+.video-inner {
+    position: relative;
+    border-radius: 30px;
+    overflow: hidden;
+    background: var(--gradient-primary);
+}
+
+.video-section video {
+    background-color: #000;
+    border-radius: 30px;
+}
+
+/* Content Section */
+.pspage-content {
+    color: var(--text-light);
+}
+
+.pspage-title {
+    font-size: 2rem;
+    font-weight: 300;
+    margin-bottom: 1.5rem;
+    color: var(--text-light);
+}
+
+.pspage-text {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+.pspage-logo {
+    max-width: 200px;
+    height: auto;
+    margin: 1rem 0;
+}
+
+.pspage-text-justified {
+    text-align: justify;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .pspage-hero {
+        height: 20vh;
+    }
+
+    .video-section {
+        padding: 2rem 0;
+    }
+    
+    .pspage-title {
+        font-size: 1.5rem;
+    }
+
+    .pspage-text {
+        font-size: 1rem;
+    }
+    
+    .pspage-text-justified {
+        text-align: left;
+    }
+
+    .pspage-logo {
+        max-width: 150px;
+    }
+    .vh-70-p {
+        height: 26Vh;
+    }
+}
+
+@media (max-width: 576px) {
+    .pspage-hero {
+        height: 15vh;
+    }
+
+    .pspage-title {
+        font-size: 1.25rem;
+    }
+    .vh-70-p {
+        height: 25Vh;
+    }
+}

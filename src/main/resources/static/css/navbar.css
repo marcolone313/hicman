@@ -1,0 +1,161 @@
+/* Navbar */
+.navbar {
+    transition: all var(--transition-speed) ease;
+    padding: 1rem 0;
+    z-index: 1030;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    height: var(--navbar-height);
+    background-color: transparent !important;
+    background-image: none !important;
+}
+
+.navbar::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--gradient-primary);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+}
+
+/* Aggiungi questa nuova classe che verrà applicata allo scroll */
+.navbar.navbar-scrolled::before {
+    opacity: 1;
+}
+
+/* Manteniamo il box-shadow sulla navbar stessa */
+.navbar.navbar-scrolled {
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* Animazione per il fade out */
+.navbar:not(.navbar-scrolled) {
+    animation: fadeOut 0.3s ease-out forwards;
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+        background: var(--gradient-primary) !important;
+    }
+
+    to {
+        opacity: 1;
+        background-color: transparent !important;
+        background-image: none !important;
+    }
+}
+
+/* Assicuriamoci che il contenuto della navbar rimanga sempre visibile */
+.navbar-brand,
+.navbar-nav,
+.nav-link {
+    opacity: 1 !important;
+}
+
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    padding-top: 0.5%;
+}
+
+.navbar-brand img {
+    height: 45px;
+    width: auto;
+}
+
+.nav-link {
+    position: relative;
+    color: var(--text-light) !important;
+    padding: 0.5rem 1rem;
+    transition: color var(--transition-speed) ease;
+    font-weight: 500;
+    line-height: 1.5; /* Aggiunto per uniformare l'altezza */
+    display: inline-flex; /* Cambiato da block a inline-flex */
+    align-items: center; /* Per centrare verticalmente */
+    height: 100%; /* Per occupare tutta l'altezza disponibile */
+}
+
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--text-light);
+    transition: width var(--transition-speed) ease;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+    width: 100%;
+}
+
+.navbar-toggler {
+    border: none;
+    padding: 0.5rem;
+    transition: transform 0.3s ease-in-out;
+    outline: none !important;
+}
+
+.navbar-toggler:focus {
+    box-shadow: none;
+}
+
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+    transition: all 0.3s ease-in-out;
+}
+
+.navbar-toggler:not(.collapsed) {
+    transform: rotate(180deg);
+}
+
+.navbar-toggler:not(.collapsed) .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M6 6L24 24M24 6L6 24'/%3e%3c/svg%3e") !important;
+    transform: rotate(180deg);
+}
+
+/* Aggiungere questi stili al tuo file navbar.css */
+
+.dropdown-menu {
+    background: var(--gradient-primary);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.dropdown-item {
+    color: var(--text-light);
+    transition: all var(--transition-speed) ease;
+}
+
+.dropdown-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-light);
+}
+
+.nav-item.dropdown .dropdown-toggle::after {
+    display: none;
+}
+
+.nav-item.dropdown .bi-globe {
+    font-size: 1.2rem;
+}

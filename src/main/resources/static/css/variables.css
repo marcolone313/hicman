@@ -1,0 +1,67 @@
+/* Variables */
+:root {
+    /* Colori di base */
+    /*--primary-color: #282942;
+    --primary-hover: #d5daf5;
+    --dark-bg: #121212;
+    --dark-footer: #000000;
+    --text-light: #ffffff;*/
+    /* Nuova Palette Colori */
+    --primary-color: #282942;        /* Header e elementi di rilievo */
+    --secondary-color: #d5daf5;      /* Sfondi leggeri */
+    --text-dark: #2e2e2e;           /* Testi principali */
+    --bg-light: #f5f6fb;            /* Sfondi contenuto */
+    --text-light: #ffffff;
+
+    /* Colori di supporto */
+    --accent-color: #4a4a6a;
+    --border-color: #e0e0e0;
+    --hover-color: #3a3a52;
+  
+    /*Animazioni*/
+    --animate-duration: 1s;
+    --animate-delay: 0.5s;
+    
+    /* Gradienti */
+    --gradient-primary: linear-gradient(90deg, #3B1853 0%, #000000 100%);
+    --gradient-overlay: linear-gradient(90deg, #3B1853 0%, rgba(0, 0, 0, 0) 100%);
+    
+    /* Colori specifici */
+    --accent-pink: #FFABF9;
+    --accent-purple: #75526F;
+    --button-blue: #84E6FF;
+    --button-border-blue: #89CBE8;
+    --button-white: #ffffff;
+    --button-border-white: #ffffff;
+    
+    /* Card colors */
+    --eventi-border-button: #EB5D43;
+    --virtuale-border-button: #D089E8;
+    --digitale-border-button: #9AD3D1;
+    --hype-border-button: #FFE9B3;
+    --eventi-border: linear-gradient(360deg, #EB5D43 0%, rgba(0, 0, 0, 0) 50%);
+    --virtuale-border: linear-gradient(360deg, #D089E8 0%, rgba(208, 137, 232, 0) 50%);
+    --digitale-border: linear-gradient(360deg, #9AD3D1 0%, rgba(154, 211, 209, 0) 50%);
+    --hype-border: linear-gradient(360deg, #FFE9B3 0%, rgba(255, 233, 179, 0) 50%);
+    
+    /* Card gradients */
+    --card-gradient-base: rgba(72, 59, 78, 0.2);
+    --card-gradient-eventi: linear-gradient(129.54deg, var(--card-gradient-base) 0.39%, rgba(235, 93, 67, 0.2) 99.61%);
+    --card-gradient-virtuale: linear-gradient(129.54deg, var(--card-gradient-base) 0.39%, rgba(213, 140, 188, 0.2) 99.61%);
+    --card-gradient-digitale: linear-gradient(129.54deg, var(--card-gradient-base) 0.39%, rgba(154, 211, 209, 0.2) 99.61%);
+    --card-gradient-hype: linear-gradient(129.54deg, var(--card-gradient-base) 0.39%, rgba(255, 233, 179, 0.2) 99.61%);
+    
+    /* Transitions */
+    --transition-speed: 0.3s;
+  
+    /* Layout */
+    /*--navbar-height: 80px;
+    --container-max-width: 1800px;
+    --section-spacing: 5rem;
+    --card-min-width: 300px;*/
+    /* Layout */
+    --navbar-height: 80px;
+    --container-max-width: 1400px;
+    --transition-speed: 0.3s;
+  }
+  

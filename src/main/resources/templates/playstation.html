@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments/header :: header}"></head>
+
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NBR825RZ" height="0" width="0"
+            style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <nav th:replace="~{fragments/navbar :: navbar('cases')}"></nav>
+
+    <main>
+        <!-- Hero Section with Title -->
+        <section class="pspage-hero vh-70-p d-flex align-items-center position-relative">
+            <div class="pspage-hero-overlay"></div>
+            <div class="container text-center position-relative z-1 pt-4">
+                <h1 class="display-3 fw-bold mb-4 animate__animated animate__fadeInUp"
+                    th:text="#{cases.playstation.hero.title}">PLAY HAS NO LIMITS!</h1>
+            </div>
+        </section>
+
+        <div class="line-divisoria"></div>
+
+        <!-- Video Section -->
+        <section class="py-5 video-section">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-12 col-md-10 col-lg-8">
+                        <div class="video-wrapper">
+                            <div class="video-inner">
+                                <div class="ratio ratio-16x9">
+                                    <video controls preload="metadata" poster="/images/Playstation_Cover.png">
+                                        <source th:src="@{/video/playstation.mp4}" type="video/mp4">
+                                        Il tuo browser non supporta il tag video.
+                                    </video>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Text Content Section -->
+        <section class="container-fluid py-3">
+            <div class="container-xxl px-4">
+                <div class="row justify-content-center">
+                    <div class="col-12 col-lg-8 animate__animated animate__fadeInUp">
+                        <div class="pspage-content pspage-text-justified">
+                            <div class="text-center mb-4">
+                                <h2 class="pspage-title mb-4" th:text="#{cases.playstation.subtitle}">MATCH THE SHAPES
+                                </h2>
+                                <img src="/images/playstation_icons.png" alt="PlayStation Icons" class="pspage-logo">
+                            </div>
+
+                            <p class="pspage-text mb-4" th:text="#{cases.playstation.intro}"></p>
+                            <p class="pspage-text mb-4" th:text="#{cases.playstation.description.p1}"></p>
+                            <p class="pspage-text mb-4" th:text="#{cases.playstation.description.p2}"></p>
+                            <p class="pspage-text mb-4" th:text="#{cases.playstation.description.p3}"></p>
+                            <p class="pspage-text" th:text="#{cases.playstation.description.p4}"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="container-fluid py-5">
+            <div class="container-xxl px-4 text-center">
+                <h3 class="section-title" th:text="#{cases.contact.title}">Vuoi saperne di più?</h3>
+                <a th:href="@{/contact}" class="btn-custom btn-outline-custom"
+                    th:text="#{cases.contact.button}">Contattaci Subito</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Google tag (gtag.js) 
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-3YGZB2BW4M"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-3YGZB2BW4M');
+    </script>-->
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17084339872">
+    </script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'AW-17084339872');
+    </script>
+
+
+    <footer th:replace="~{fragments/footer :: footer}"></footer>
+
+</body>
+
+</html>

@@ -1,0 +1,242 @@
+/* Form Styling */
+.form-floating>label {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.form-control,
+.form-select {
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background-color: transparent;
+    color: var(--text-light);
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--accent-pink);
+    box-shadow: 0 0 0 0.25rem rgba(255, 171, 249, 0.25);
+    background-color: transparent;
+    color: var(--text-light);
+}
+
+.form-select option {
+    background-color: var(--dark-bg);
+    color: var(--text-light);
+}
+
+/* Contact Info Icon Boxes */
+.icon-box {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    animation: pulse 2s infinite; /* Aggiunta animazione pulsazione */
+    cursor: pointer; /* Indica che è cliccabile */
+    transition: transform 0.3s ease; /* Aggiunge transizione hover */
+}
+
+.icon-box:hover {
+    transform: scale(1.1); /* Effetto hover */
+}
+
+.icon-box i {
+    color: var(--text-light);
+    font-size: 1.5rem;
+}
+
+.contact-info-text {
+    min-width: 0;
+    width: 100%;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    hyphens: auto;
+    text-align: left; /* Mantiene il testo allineato a sinistra */
+}
+
+/* Icon Box con pulsazione per WhatsApp */
+.icon-box-whatsapp {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    animation: pulse 2s infinite;
+}
+
+.icon-box-whatsapp i {
+    color: var(--text-light);
+    font-size: 1.5rem;
+}
+
+/* Animazione pulsazione WhatsApp */
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.3);
+        transform: scale(1);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(255, 255, 255, 0);
+        transform: scale(1.05);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+        transform: scale(1);
+    }
+}
+
+.contact-info-text-wha {
+    min-width: 200px;
+    padding: 9px 0;
+    margin-bottom: 1rem;
+    text-align: left; /* Mantiene il testo allineato a sinistra */
+}
+
+.contact-info-text-wha h5 {
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-light);
+}
+
+.contact-info-text h5 {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-light);
+}
+
+.contact-info-text p {
+    margin: 0;
+    line-height: 1.5;
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* Social Media Section */
+.social-section {
+    width: 100%;
+    margin-top: 3rem;
+    text-align: center;
+}
+
+.social-section h5 {
+    color: var(--text-light);
+    margin-bottom: 1.5rem;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.social-link {
+    color: var(--text-light);
+    font-size: 1.5rem;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.social-link:hover {
+    color: var(--accent-pink);
+    transform: translateY(-3px);
+}
+
+/* Contact Page Text Colors */
+.card-custom h2,
+.card-custom h3,
+.card-custom h4,
+.card-custom h5,
+.card-custom p,
+.card-custom .text-muted,
+.form-floating>.form-control::placeholder,
+.invalid-feedback,
+.card-custom .lead,
+.alert {
+    color: var(--text-light) !important;
+}
+
+/* Contact Info Icons */
+.icon-box i {
+    color: var(--text-light);
+}
+
+/* Info Items */
+.info-item {
+    width: fit-content;
+}
+
+/* Contact Info Section Styles */
+.contact-info-container {
+    width: 100%;
+    max-width: 350px; /* Limita il container invece degli item singoli */
+    margin: 0 auto; /* Centra il container */
+    padding: 2rem 1rem;
+}
+
+.contact-info-item {
+    display: grid;
+    grid-template-columns: 50px 1fr;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    width: 100%;
+}
+
+/* Stile specifico per numero di telefono, email e indirizzi */
+.contact-info-text p.contact-main-text {
+    font-size: 0.9rem;
+    font-weight: 400;
+    color: var(--text-light);
+    margin: 0;
+}
+
+/* Alert Customization */
+.alert {
+    border: none;
+    border-radius: 16px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    background: transparent;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+/* Success Alert */
+.alert-success {
+    background: rgba(154, 211, 209, 0.1) !important;
+    border: 1px solid var(--digitale-border-button);
+    color: var(--text-light) !important;
+}
+
+/* Error Alert */
+.alert-danger {
+    background: rgba(235, 93, 67, 0.1) !important;
+    border: 1px solid var(--eventi-border-button);
+    color: var(--text-light) !important;
+}
+
+/* Close button customization */
+.alert .btn-close {
+    opacity: 0.8;
+    filter: invert(1) grayscale(100%) brightness(200%);
+}
+
+.alert .btn-close:hover {
+    opacity: 1;
+}
+
+/* Honeypot field */
+.hpt-f {
+    position: absolute;
+    left: -9999px;
+    top: -9999px;
+    opacity: 0;
+    height: 0;
+    width: 0;
+    z-index: -1;
+    overflow: hidden;
+}

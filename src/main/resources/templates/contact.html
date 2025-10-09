@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments/header :: header}"></head>
+
+
+
+
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NBR825RZ" height="0" width="0"
+            style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <nav th:replace="~{fragments/navbar :: navbar('contact')}"></nav>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="about-hero vh-70 d-flex align-items-center position-relative">
+            <div class="hero-overlay"></div>
+            <div class="container text-center position-relative z-1 pt-3">
+                <h1 class="display-3 fw-bold animate__animated animate__fadeInUp" th:text="#{contact.hero.title}">
+                    Contattaci</h1>
+            </div>
+        </section>
+
+        <div class="line-divisoria"></div>
+
+        <!-- Contact Form Section -->
+        <section class="container-fluid py-5">
+            <div class="container-xxl px-4">
+                <div class="row g-4">
+                    <!-- Form Column -->
+                    <div class="col-lg-7 animate__animated animate__fadeInLeft">
+                        <div class="card card-custom eventi h-100">
+                            <div class="card-body p-4">
+                                <h2 class="h3 text-center text-white mb-4" th:text="#{contact.form.title}">Scrivici un
+                                    messaggio</h2>
+
+                                <!-- Alert Messages -->
+                                <div th:if="${successMessage}"
+                                    class="alert alert-success alert-dismissible fade show mb-4" role="alert">
+                                    <span id="contact-success" th:text="${successMessage}"></span>
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                        aria-label="Close"></button>
+                                </div>
+                                <script th:if="${successMessage}">
+                                    window.dataLayer = window.dataLayer || [];
+                                    window.dataLayer.push({
+                                        'event': 'contactFormSuccess'
+                                    });
+                                </script>
+
+                                <div th:if="${errorMessage}" class="alert alert-danger alert-dismissible fade show mb-4"
+                                    role="alert">
+                                    <span th:text="${errorMessage}"></span>
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                        aria-label="Close"></button>
+                                </div>
+
+                                <!-- Contact Form -->
+                                <form th:action="@{/contact}" th:object="${contact}" method="POST">
+                                    <div class="row g-3">
+                                        <!-- Nome -->
+                                        <div class="col-md-6">
+                                            <div class="form-floating">
+                                                <input type="text" class="form-control bg-transparent text-white"
+                                                    th:field="*{nome}"
+                                                    th:classappend="${#fields.hasErrors('nome')} ? 'is-invalid'"
+                                                    id="nome" placeholder="">
+                                                <label for="nome" th:text="#{contact.form.name}">Nome</label>
+                                                <div class="invalid-feedback" th:if="${#fields.hasErrors('nome')}"
+                                                    th:errors="*{nome}"></div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Cognome -->
+                                        <div class="col-md-6">
+                                            <div class="form-floating">
+                                                <input type="text" class="form-control bg-transparent text-white"
+                                                    th:field="*{cognome}"
+                                                    th:classappend="${#fields.hasErrors('cognome')} ? 'is-invalid'"
+                                                    id="cognome" placeholder="">
+                                                <label for="cognome" th:text="#{contact.form.surname}">Cognome</label>
+                                                <div class="invalid-feedback" th:if="${#fields.hasErrors('cognome')}"
+                                                    th:errors="*{cognome}"></div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Email -->
+                                        <div class="col-md-6">
+                                            <div class="form-floating">
+                                                <input type="email" class="form-control bg-transparent text-white"
+                                                    th:field="*{email}"
+                                                    th:classappend="${#fields.hasErrors('email')} ? 'is-invalid'"
+                                                    id="email" placeholder="">
+                                                <label for="email" th:text="#{contact.form.email}">Email</label>
+                                                <div class="invalid-feedback" th:if="${#fields.hasErrors('email')}"
+                                                    th:errors="*{email}"></div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Telefono -->
+                                        <div class="col-md-6">
+                                            <div class="form-floating">
+                                                <input type="tel" class="form-control bg-transparent text-white"
+                                                    th:field="*{telefono}" id="telefono" placeholder="" pattern="[0-9]+"
+                                                    oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+                                                    minlength="6" maxlength="15">
+                                                <label for="telefono" th:text="#{contact.form.phone}">Telefono
+                                                    (opzionale)</label>
+                                            </div>
+                                        </div>
+
+                                        <!-- Messaggio -->
+                                        <div class="col-12">
+                                            <div class="form-floating">
+                                                <textarea class="form-control bg-transparent text-white"
+                                                    th:field="*{messaggio}"
+                                                    th:classappend="${#fields.hasErrors('messaggio')} ? 'is-invalid'"
+                                                    id="messaggio" placeholder="" style="height: 120px"></textarea>
+                                                <label for="messaggio" text="#{contact.form.message}">Messaggio</label>
+                                                <div class="invalid-feedback" th:if="${#fields.hasErrors('messaggio')}"
+                                                    th:errors="*{messaggio}"></div>
+                                            </div>
+                                        </div>
+                                        <!-- Aggiungi questo all'interno del form -->
+                                        <div class="hpt-f">
+                                            <input type="text" name="website" id="website" tabindex="-1" autocomplete="off" />
+                                        </div>
+
+                                        <!-- Submit Button -->
+                                        <div class="col-12 text-center">
+                                            <button type="submit" class="btn-custom btn-outline-custom">
+                                                <i class="bi bi-send me-2"></i><span
+                                                    th:text="#{contact.form.button}">Invia Messaggio</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Contact Info Column -->
+                    <div class="col-lg-5 animate__animated animate__fadeInRight">
+                        <div class="card card-custom virtuale h-100">
+                            <div class="card-body p-0">
+                                <h3 class="h4 text-center text-white mb-4 pt-4" th:text="#{contact.info.title}">Informazioni</h3>
+                    
+                                <!--Whatsapp-->
+                                <div class="contact-info-container">
+                                    <div class="contact-info-item">
+                                        <div class="icon-box-whatsapp">
+                                            <a href="https://wa.me/+390687809358" class="social-link" target="_blank"
+                                                rel="noopener noreferrer" aria-label="Whatsapp">
+                                                <i class="bi bi-whatsapp fs-4"></i>
+                                            </a>
+                                        </div>
+                                        <div class="contact-info-text-wha">
+                                            <h5 class="text-white" th:text="#{contact.info.whatsapp}">Whatsapp</h5>
+                                        </div>
+                                    </div>
+                    
+                                    <!-- Phone -->
+                                    <div class="contact-info-item">
+                                        <div class="icon-box">
+                                            <a href="tel:+390687809358" class="social-link" aria-label="Telefono">
+                                                <i class="bi bi-telephone fs-3"></i>
+                                            </a>
+                                        </div>
+                                        <div class="contact-info-text">
+                                            <h5 class="text-white" th:text="#{contact.info.phone}">Telefono</h5>
+                                            <p class="card-text text-white contact-main-text">+39 06 87809358</p>
+                                        </div>
+                                    </div>
+                    
+                                    <!-- Email -->
+                                    <div class="contact-info-item">
+                                        <div class="icon-box">
+                                            <a href="mailto:info@oscinnovation.com" class="social-link" aria-label="Email">
+                                                <i class="bi bi-envelope fs-3"></i>
+                                            </a>
+                                        </div>
+                                        <div class="contact-info-text">
+                                            <h5 class="text-white" th:text="#{contact.info.email}">Email</h5>
+                                            <p class="card-text text-white contact-main-text">info@oscinnovation.com</p>
+                                        </div>
+                                    </div>
+                    
+                                    <!-- Location -->
+                                    <div class="contact-info-item">
+                                        <div class="icon-box">
+                                            <a href="https://www.google.com/maps/search/?api=1&query=Via+Vertumno+2c+Roma,+Italy"
+                                                class="social-link" target="_blank" rel="noopener noreferrer"
+                                                aria-label="Visualizza sedi su Maps">
+                                                <i class="bi bi-geo-alt fs-3"></i>
+                                            </a>
+                                        </div>
+                                        <div class="contact-info-text">
+                                            <h5 class="text-white" th:text="#{contact.info.locations}">Sedi</h5>
+                                            <p class="card-text text-white contact-main-text"
+                                                th:utext="${#strings.replace(#messages.msg('contact.info.address1'), '&#10;', '<br/>')}">
+                                                Via Vertumno, 2c</p>
+                                            <p class="card-text text-white contact-main-text"
+                                                th:utext="${#strings.replace(#messages.msg('contact.info.address2'), '&#10;', '<br/>')}">
+                                                Via Prenestina Nuova 307/a</p>
+                                            <p class="card-text text-white contact-main-text"
+                                                th:utext="${#strings.replace(#messages.msg('contact.info.address3'), '&#10;', '<br/>')}">
+                                                Galatro</p>
+                                        </div>
+                                    </div>
+                    
+                                    <!-- Social Media -->
+                                    <div class="social-section">
+                                        <h5 class="text-white mb-3" th:text="#{contact.info.social}">Seguici sui Social</h5>
+                                        <div class="social-links">
+                                            <a href="https://www.linkedin.com/company/oscinnovation/" class="social-link" target="_blank"
+                                                rel="noopener noreferrer" aria-label="LinkedIn">
+                                                <i class="bi bi-linkedin fs-4"></i>
+                                            </a>
+                                            <a href="https://x.com/InnovationOsc?t=tBAVu89e-pK7ldNy2Y87_A&s=08" class="social-link"
+                                                target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+                                                <i class="bi bi-twitter-x fs-4"></i>
+                                            </a>
+                                            <a href="https://www.facebook.com/OSCInnovation" class="social-link" target="_blank"
+                                                rel="noopener noreferrer" aria-label="Facebook">
+                                                <i class="bi bi-facebook fs-4"></i>
+                                            </a>
+                                            <a href="https://www.instagram.com/oscinnovation?igsh=MWZ4NTV6dnJzdXZ5ZA==" class="social-link"
+                                                target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                                                <i class="bi bi-instagram fs-4"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer th:replace="~{fragments/footer :: footer}"></footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const phoneInput = document.getElementById('telefono');
+
+            phoneInput.addEventListener('keypress', function (e) {
+                // Permette solo l'input di numeri
+                if (e.key < '0' || e.key > '9') {
+                    e.preventDefault();
+                }
+            });
+
+            phoneInput.addEventListener('paste', function (e) {
+                // Previene il paste di testo non numerico
+                e.preventDefault();
+                const pastedText = (e.clipboardData || window.clipboardData).getData('text');
+                if (/^\d+$/.test(pastedText)) {
+                    this.value = pastedText;
+                }
+            });
+        });
+    </script>
+
+    <!-- Google tag (gtag.js)
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-3YGZB2BW4M"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-3YGZB2BW4M');
+    </script>-->
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17084339872">
+    </script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'AW-17084339872');
+    </script>
+    <script th:if="${successMessage}">
+        gtag('event', 'conversion', {
+            'send_to': 'AW-17084339872/ubcDCJ3FmMgaEKCtudI_',
+            'value': 1.0,
+            'currency': 'EUR'
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,11 @@
+/* Layout Containers */
+.container-xxl {
+    max-width: var(--container-max-width);
+    margin: 0 auto;
+    padding: 0 2rem;
+    width: 100%;
+}
+
+.min-card-width {
+    min-width: var(--card-min-width);
+}
