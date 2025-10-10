@@ -1,241 +1,548 @@
-/* About Hero Section */
-.vh-70 {
-    height: 30vh;
-}
+/* ========================================
+   ABOUT PAGE STYLES - HICMAN CAPITAL
+   ======================================== */
 
-.about-hero {
-    background: var(--gradient-primary);
-    padding-top: var(--navbar-height);
+/* === HERO SECTION === */
+.about-hero-section {
+    min-height: 50vh;
+    background: linear-gradient(135deg, var(--finance-primary) 0%, var(--finance-accent) 100%);
     position: relative;
-    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 100px;
+    padding-bottom: 60px;
 }
 
-.about-hero .hero-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: var(--gradient-overlay);
-    opacity: 0;
-    z-index: 1;
+.hero-content-about {
+    position: relative;
+    z-index: 2;
+    color: var(--finance-white);
 }
 
-/* Scroll Indicator */
-.scroll-indicator {
-    position: absolute;
-    bottom: 40px;
-    left: 50%;
-    transform: translateX(-50%);
-    color: var(--text-light);
-    font-size: 2rem;
-    animation: bounce 2s infinite;
+.about-hero-title {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 700;
+    margin-bottom: 1rem;
+    letter-spacing: -0.02em;
 }
 
-@keyframes bounce {
-
-    0%,
-    20%,
-    50%,
-    80%,
-    100% {
-        transform: translateY(0) translateX(-50%);
-    }
-
-    40% {
-        transform: translateY(-20px) translateX(-50%);
-    }
-
-    60% {
-        transform: translateY(-10px) translateX(-50%);
-    }
+.about-hero-subtitle {
+    font-size: clamp(1.1rem, 2vw, 1.3rem);
+    font-weight: 300;
+    line-height: 1.6;
 }
 
-.about-icons {
-    color: var(--text-light) !important;
+/* === COMMON ELEMENTS === */
+.section-icon {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, var(--finance-secondary), var(--finance-light));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
 }
 
-/* Stili specifici per la card nella sezione "La Nostra Storia" */
-.about-story-card.card-custom {
-    min-height: auto;
-    padding: 2rem;
+.section-icon i {
+    font-size: 2.5rem;
+    color: var(--finance-primary);
 }
 
-.about-story-card.card-custom .card-body {
-    padding: 2rem;
+.about-section-title {
+    font-size: clamp(2rem, 4vw, 2.5rem);
+    font-weight: 700;
+    color: var(--finance-primary);
 }
 
-.about-story-card.card-custom {
-    height: auto;
-    padding: 1rem;
+.about-subtitle {
+    font-size: 1.2rem;
+    color: var(--finance-text);
+    opacity: 0.8;
 }
 
-.about-story-card.card-custom .card-body {
-    padding: 1.5rem;
-    height: auto;
+.about-lead-text {
+    font-size: 1.4rem;
+    line-height: 1.8;
+    color: var(--finance-primary);
+    font-weight: 600;
 }
 
-.about-story-card.card-custom h2 {
-    font-size: 1.25rem;
-    line-height: 1.4;
-    font-weight: 500;
-}
-
-.about-story-card.card-custom h3 {
-    font-size: 1.25rem;
-    line-height: 1.5;
-    font-weight: 500;
-}
-
-.about-story-card.card-custom p {
+.about-text {
     font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--finance-text);
+}
+
+/* === VISION SECTION === */
+.vision-section {
+    background-color: var(--finance-white);
+}
+
+.vision-content {
+    padding: 2rem;
+}
+
+/* === MISSION SECTION === */
+.mission-section {
+    background-color: var(--finance-bg);
+}
+
+.mission-highlights {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.highlight-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.25rem;
+    background: var(--finance-white);
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+.highlight-item:hover {
+    transform: translateX(8px);
+    box-shadow: 0 8px 25px rgba(40, 41, 66, 0.1);
+}
+
+.highlight-item i {
+    font-size: 1.5rem;
+    color: var(--finance-primary);
+    flex-shrink: 0;
+}
+
+.highlight-item span {
+    font-size: 1.1rem;
+    color: var(--finance-text);
+    font-weight: 500;
+}
+
+/* === VALUES SECTION === */
+.values-section {
+    background-color: var(--finance-white);
+}
+
+.value-card {
+    background: var(--finance-bg);
+    border-radius: 16px;
+    padding: 2.5rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.value-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--finance-primary);
+    box-shadow: 0 12px 30px rgba(40, 41, 66, 0.15);
+}
+
+.value-icon {
+    width: 70px;
+    height: 70px;
+    background: linear-gradient(135deg, var(--finance-primary), var(--finance-accent));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+}
+
+.value-icon i {
+    font-size: 2rem;
+    color: var(--finance-white);
+}
+
+.value-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--finance-primary);
+    margin-bottom: 1rem;
+}
+
+.value-text {
+    font-size: 1rem;
     line-height: 1.6;
-    margin-bottom: 0;  /* Rimuove lo spazio extra dopo l'ultimo paragrafo */
+    color: var(--finance-text);
+    margin: 0;
 }
 
-.text-justified {
-    text-align: justify;
-    -webkit-hyphens: auto;
-    -ms-hyphens: auto;
-    hyphens: auto;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+/* === ADVANTAGE SECTION === */
+.advantage-section {
+    background-color: var(--finance-bg);
 }
 
-@media (max-width: 768px) {
-    .text-justified {
-        text-align: left;
-        hyphens: none;
-    }
+.advantage-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 2rem;
+    padding: 2rem;
+    background: var(--finance-white);
+    border-radius: 16px;
+    margin-bottom: 2rem;
+    transition: all 0.3s ease;
 }
 
-/* Aggiunta dello spacing per migliorare la leggibilità */
-.text-justified h2,
-.text-justified h3,
-.text-justified p {
-    letter-spacing: 0.01em;
+.advantage-item:hover {
+    transform: translateX(10px);
+    box-shadow: 0 10px 30px rgba(40, 41, 66, 0.15);
+}
+
+.advantage-number {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, var(--finance-primary), var(--finance-accent));
+    color: var(--finance-white);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+.advantage-info {
+    flex: 1;
+}
+
+.advantage-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--finance-primary);
+    margin-bottom: 0.75rem;
+}
+
+.advantage-text {
+    font-size: 1rem;
     line-height: 1.6;
+    color: var(--finance-text);
+    margin: 0;
 }
 
-@media (max-width: 768px) {
-    .about-story-card.card-custom {
-        padding: 0.75rem;
+.advantage-highlight-box {
+    background: linear-gradient(135deg, var(--finance-primary), var(--finance-accent));
+    border-radius: 20px;
+    padding: 3rem;
+    color: var(--finance-white);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.highlight-icon {
+    width: 80px;
+    height: 80px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+
+.highlight-icon i {
+    font-size: 2.5rem;
+    color: var(--finance-white);
+}
+
+.highlight-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+}
+
+.highlight-text {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+}
+
+.highlight-description {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    opacity: 0.95;
+    margin: 0;
+}
+
+/* === NETWORK SECTION === */
+.network-section {
+    background-color: var(--finance-white);
+}
+
+.network-content-box {
+    background: var(--finance-bg);
+    border-radius: 20px;
+    padding: 3rem;
+}
+
+.network-lead-text {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: var(--finance-text);
+    text-align: center;
+}
+
+.partner-category {
+    background: var(--finance-white);
+    border-radius: 12px;
+    padding: 2rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    height: 100%;
+    border: 2px solid transparent;
+}
+
+.partner-category:hover {
+    transform: translateY(-8px);
+    border-color: var(--finance-primary);
+    box-shadow: 0 12px 30px rgba(40, 41, 66, 0.15);
+}
+
+.partner-icon {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, var(--finance-secondary), var(--finance-light));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+}
+
+.partner-icon i {
+    font-size: 1.8rem;
+    color: var(--finance-primary);
+}
+
+.partner-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--finance-primary);
+    margin-bottom: 0.75rem;
+}
+
+.partner-text {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--finance-text);
+    margin: 0;
+}
+
+/* === CTA SECTION === */
+.about-cta-section {
+    background: linear-gradient(135deg, var(--finance-primary) 0%, var(--finance-accent) 100%);
+    color: var(--finance-white);
+}
+
+.cta-title {
+    font-size: clamp(2rem, 4vw, 2.5rem);
+    font-weight: 700;
+    color: var(--finance-white);
+}
+
+.cta-text {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.cta-buttons {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 991px) {
+    .about-hero-section {
+        min-height: 40vh;
+        padding-top: 120px;
     }
-    
-    .about-story-card.card-custom .card-body {
-        padding: 1rem;
+
+    .section-icon {
+        width: 70px;
+        height: 70px;
     }
-    
-    .about-story-card.card-custom h2 {
+
+    .section-icon i {
+        font-size: 2rem;
+    }
+
+    .advantage-highlight-box {
+        margin-top: 2rem;
+    }
+
+    .network-content-box {
+        padding: 2rem;
+    }
+}
+
+@media (max-width: 767px) {
+    .about-hero-section {
+        min-height: 35vh;
+        padding-top: 100px;
+    }
+
+    .about-hero-title {
+        font-size: 2rem;
+    }
+
+    .about-hero-subtitle {
+        font-size: 1rem;
+    }
+
+    .section-icon {
+        width: 60px;
+        height: 60px;
+    }
+
+    .section-icon i {
+        font-size: 1.75rem;
+    }
+
+    .about-section-title {
+        font-size: 1.8rem;
+    }
+
+    .about-lead-text {
+        font-size: 1.2rem;
+    }
+
+    .about-text {
+        font-size: 1rem;
+    }
+
+    .value-card {
+        padding: 2rem;
+    }
+
+    .advantage-item {
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+        padding: 1.5rem;
+    }
+
+    .advantage-number {
+        width: 50px;
+        height: 50px;
+        font-size: 1.3rem;
+    }
+
+    .advantage-highlight-box {
+        padding: 2rem;
+    }
+
+    .highlight-icon {
+        width: 70px;
+        height: 70px;
+    }
+
+    .highlight-icon i {
+        font-size: 2rem;
+    }
+
+    .highlight-title {
         font-size: 1.5rem;
     }
-    
-    .about-story-card.card-custom h3 {
+
+    .highlight-text {
         font-size: 1.1rem;
     }
-    
-    .about-story-card.card-custom p {
-        font-size: 1rem;
+
+    .network-content-box {
+        padding: 1.5rem;
+    }
+
+    .network-lead-text {
+        font-size: 1.05rem;
+    }
+
+    .partner-category {
+        padding: 1.5rem;
+    }
+
+    .cta-title {
+        font-size: 1.8rem;
+    }
+
+    .cta-text {
+        font-size: 1.05rem;
+    }
+
+    .cta-buttons {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .cta-buttons .btn {
+        width: 100%;
+        max-width: 300px;
     }
 }
 
-@media (max-width: 768px) {
-    .about-story-card.card-custom {
-        padding: 1.5rem;
+@media (max-width: 575px) {
+    .about-hero-section {
+        min-height: 30vh;
+        padding-top: 80px;
     }
-    
-    .about-story-card.card-custom .card-body {
-        padding: 1.5rem;
+
+    .about-hero-title {
+        font-size: 1.75rem;
     }
-    
-    .about-story-card.card-custom h2 {
+
+    .section-icon {
+        width: 50px;
+        height: 50px;
+    }
+
+    .section-icon i {
         font-size: 1.5rem;
     }
-    
-    .about-story-card.card-custom .card-text {
-        font-size: 1rem;
+
+    .about-section-title {
+        font-size: 1.6rem;
     }
-}
 
-.custom-list {
-    color: var(--text-light);
-    list-style: none;
-    padding-left: 1.5rem;
-}
-
-.custom-list li {
-    position: relative;
-    margin-bottom: 1rem;
-    text-align: justify;
-    line-height: 1.6;
-}
-
-.custom-list li::before {
-    content: "•";
-    position: absolute;
-    left: -1.5rem;
-    color: var(--accent-pink);
-    font-size: 1.2em;
-}
-
-@media (max-width: 768px) {
-    .custom-list {
-        padding-left: 1rem;
+    .value-card {
+        padding: 1.5rem;
     }
-    
-    .custom-list li {
-        text-align: left;
-        margin-bottom: 1.5rem;
+
+    .value-icon {
+        width: 60px;
+        height: 60px;
     }
-    
-    .custom-list li::before {
-        left: -1rem;
+
+    .value-icon i {
+        font-size: 1.75rem;
     }
-}
 
-/* Stili per l'immagine nella pagina About */
-.about-image-wrapper {
-    width: 100%;
-    border-radius: 32px;
-    overflow: hidden;
-    position: relative;
-}
-
-.about-image {
-    width: 100%;
-    height: auto;
-    display: block;
-    border-radius: 32px;
-    transition: transform 0.3s ease;
-}
-
-/* Aggiunta un sottile overlay sul hover */
-.about-image-wrapper::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(129.54deg, rgba(0, 0, 0, 0) 0.39%, rgba(0, 0, 0, 0) 99.61%);
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    border-radius: 32px;
-}
-
-.about-image-wrapper:hover::after {
-    opacity: 1;
-}
-
-/* Media Queries */
-@media (max-width: 768px) {
-    .about-image-wrapper {
-        border-radius: 16px;
+    .value-title {
+        font-size: 1.3rem;
     }
-    
-    .about-image {
-        border-radius: 16px;
+
+    .advantage-highlight-box {
+        padding: 1.5rem;
+    }
+
+    .partner-icon {
+        width: 50px;
+        height: 50px;
+    }
+
+    .partner-icon i {
+        font-size: 1.5rem;
+    }
+
+    .partner-title {
+        font-size: 1.1rem;
     }
 }

@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments/header :: header}"></head>
+
+<body>
+    <!-- Navbar Fragment -->
+    <nav th:replace="~{fragments/navbar :: navbar('about')}"></nav>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="about-hero-section">
+            <div class="hero-overlay-finance"></div>
+            <div class="hero-content-about">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-10 text-center">
+                            <h1 class="about-hero-title animate__animated animate__fadeInUp">
+                                Chi Siamo
+                            </h1>
+                            <p class="about-hero-subtitle animate__animated animate__fadeInUp animate__delay-1s">
+                                Partner strategico per la crescita delle imprese
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Vision -->
+        <section class="vision-section py-5">
+            <div class="container py-5">
+                <div class="row justify-content-center">
+                    <div class="col-lg-10">
+                        <div class="vision-content text-center">
+                            <div class="section-icon mb-4">
+                                <i class="bi bi-eye"></i>
+                            </div>
+                            <h2 class="about-section-title mb-4">Vision</h2>
+                            <p class="about-lead-text">
+                                Crescita per le imprese, valore strategico per i partner, nuove opportunità per il territorio.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Mission -->
+        <section class="mission-section py-5">
+            <div class="container py-5">
+                <div class="row justify-content-center">
+                    <div class="col-lg-10">
+                        <div class="mission-content">
+                            <div class="row align-items-center">
+                                <div class="col-lg-6 mb-4 mb-lg-0">
+                                    <div class="section-icon mb-4">
+                                        <i class="bi bi-rocket-takeoff"></i>
+                                    </div>
+                                    <h2 class="about-section-title mb-4">Mission</h2>
+                                    <p class="about-text">
+                                        Mettiamo a disposizione dei nostri clienti la nostra consolidata esperienza, 
+                                        per trasformare esigenze complesse in obiettivi economici sostenibili, 
+                                        sia nel breve che nel lungo periodo.
+                                    </p>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="mission-highlights">
+                                        <div class="highlight-item">
+                                            <i class="bi bi-check-circle-fill"></i>
+                                            <span>Trasformazione di esigenze complesse</span>
+                                        </div>
+                                        <div class="highlight-item">
+                                            <i class="bi bi-check-circle-fill"></i>
+                                            <span>Obiettivi economici sostenibili</span>
+                                        </div>
+                                        <div class="highlight-item">
+                                            <i class="bi bi-check-circle-fill"></i>
+                                            <span>Visione di lungo periodo</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Valori -->
+        <section class="values-section py-5">
+            <div class="container py-5">
+                <div class="row justify-content-center mb-5">
+                    <div class="col-lg-10 text-center">
+                        <div class="section-icon mb-4">
+                            <i class="bi bi-gem"></i>
+                        </div>
+                        <h2 class="about-section-title mb-3">I Nostri Valori</h2>
+                        <p class="about-subtitle">
+                            I principi che guidano ogni nostra azione
+                        </p>
+                    </div>
+                </div>
+
+                <div class="row g-4">
+                    <!-- Etica -->
+                    <div class="col-lg-4 col-md-6">
+                        <div class="value-card h-100">
+                            <div class="value-icon">
+                                <i class="bi bi-shield-check"></i>
+                            </div>
+                            <h3 class="value-title">Etica</h3>
+                            <p class="value-text">
+                                Garantiamo trasparenza, correttezza e responsabilità in ogni operazione, 
+                                costruendo rapporti basati sulla fiducia reciproca.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Integrità -->
+                    <div class="col-lg-4 col-md-6">
+                        <div class="value-card h-100">
+                            <div class="value-icon">
+                                <i class="bi bi-hand-thumbs-up"></i>
+                            </div>
+                            <h3 class="value-title">Integrità</h3>
+                            <p class="value-text">
+                                Creiamo e manteniamo rapporti professionali di fiducia e successo a lungo termine, 
+                                con un approccio onesto e coerente.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Riservatezza -->
+                    <div class="col-lg-4 col-md-6">
+                        <div class="value-card h-100">
+                            <div class="value-icon">
+                                <i class="bi bi-lock"></i>
+                            </div>
+                            <h3 class="value-title">Riservatezza</h3>
+                            <p class="value-text">
+                                Proteggiamo e tuteliamo in modo rigoroso i nostri partner, garantendo 
+                                la massima discrezione in ogni fase della collaborazione.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Il Vantaggio -->
+        <section class="advantage-section py-5">
+            <div class="container py-5">
+                <div class="row justify-content-center mb-5">
+                    <div class="col-lg-10 text-center">
+                        <div class="section-icon mb-4">
+                            <i class="bi bi-trophy"></i>
+                        </div>
+                        <h2 class="about-section-title mb-3">Il Vantaggio di Lavorare con Noi</h2>
+                        <p class="about-subtitle">
+                            Cosa ci rende il partner ideale per la tua azienda
+                        </p>
+                    </div>
+                </div>
+
+                <div class="row g-4">
+                    <div class="col-lg-6">
+                        <div class="advantage-content">
+                            <div class="advantage-item">
+                                <div class="advantage-number">01</div>
+                                <div class="advantage-info">
+                                    <h3 class="advantage-title">Approccio Dinamico</h3>
+                                    <p class="advantage-text">
+                                        Siamo un partner strategico con un approccio dinamico e orientato al risultato, 
+                                        capace di adattarsi rapidamente alle esigenze di ogni situazione.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="advantage-item">
+                                <div class="advantage-number">02</div>
+                                <div class="advantage-info">
+                                    <h3 class="advantage-title">Esperienza Consolidata</h3>
+                                    <p class="advantage-text">
+                                        L'esperienza maturata ci consente di operare in contesti articolati e complessi, 
+                                        prestando attenzione alle esigenze del cliente.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="advantage-item">
+                                <div class="advantage-number">03</div>
+                                <div class="advantage-info">
+                                    <h3 class="advantage-title">Supporto Continuo</h3>
+                                    <p class="advantage-text">
+                                        Siamo in grado di aiutare il cliente in qualsiasi momento, 
+                                        anche quando la situazione appare irreversibile.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="advantage-highlight-box">
+                            <div class="highlight-icon">
+                                <i class="bi bi-lightbulb"></i>
+                            </div>
+                            <h3 class="highlight-title">La Nostra Filosofia</h3>
+                            <p class="highlight-text">
+                                <strong>Portiamo soluzioni dove gli altri vedono ostacoli.</strong>
+                            </p>
+                            <p class="highlight-description">
+                                Non ci limitiamo ad analizzare i problemi: identifichiamo opportunità 
+                                e creiamo percorsi concreti verso il successo, trasformando la complessità 
+                                in valore strategico per i nostri clienti.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Network & Partner -->
+        <section class="network-section py-5">
+            <div class="container py-5">
+                <div class="row justify-content-center mb-5">
+                    <div class="col-lg-10 text-center">
+                        <div class="section-icon mb-4">
+                            <i class="bi bi-diagram-3"></i>
+                        </div>
+                        <h2 class="about-section-title mb-3">Network & Partner</h2>
+                        <p class="about-subtitle">
+                            Un ecosistema di relazioni strategiche al servizio dei nostri clienti
+                        </p>
+                    </div>
+                </div>
+
+                <div class="row g-4 justify-content-center">
+                    <div class="col-lg-10">
+                        <div class="network-content-box">
+                            <p class="network-lead-text">
+                                Operiamo con le <strong>primarie banche italiane</strong>, con le più importanti 
+                                <strong>società del settore dell'investment banking</strong> e con i principali 
+                                <strong>fondi di private equity e debt</strong> per strutturare soluzioni 
+                                ad alto valore aggiunto a supporto dei nostri clienti.
+                            </p>
+
+                            <div class="row g-4 mt-4">
+                                <div class="col-md-4">
+                                    <div class="partner-category">
+                                        <div class="partner-icon">
+                                            <i class="bi bi-bank2"></i>
+                                        </div>
+                                        <h4 class="partner-title">Istituti Bancari</h4>
+                                        <p class="partner-text">
+                                            Partnership consolidate con le principali banche italiane
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class="partner-category">
+                                        <div class="partner-icon">
+                                            <i class="bi bi-building"></i>
+                                        </div>
+                                        <h4 class="partner-title">Investment Banking</h4>
+                                        <p class="partner-text">
+                                            Collaborazioni con le maggiori società di investment banking
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class="partner-category">
+                                        <div class="partner-icon">
+                                            <i class="bi bi-graph-up"></i>
+                                        </div>
+                                        <h4 class="partner-title">Fondi di Investimento</h4>
+                                        <p class="partner-text">
+                                            Accesso ai principali fondi di private equity e debt
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="about-cta-section py-5">
+            <div class="container py-5">
+                <div class="row justify-content-center text-center">
+                    <div class="col-lg-8">
+                        <h2 class="cta-title mb-4">Vuoi Conoscerci Meglio?</h2>
+                        <p class="cta-text mb-4">
+                            Contattaci per una consulenza e scopri come possiamo supportare 
+                            la tua azienda nel raggiungimento dei suoi obiettivi strategici.
+                        </p>
+                        <div class="cta-buttons">
+                            <a href="/#contact" class="btn btn-finance-primary btn-lg">
+                                Contattaci <i class="bi bi-arrow-right ms-2"></i>
+                            </a>
+                            <a href="/servizi" class="btn btn-finance-outline btn-lg">
+                                Scopri i Servizi
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer Fragment -->
+    <footer th:replace="~{fragments/footer :: footer}"></footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+</body>
+</html>
