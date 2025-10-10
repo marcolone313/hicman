@@ -19,6 +19,7 @@ import java.util.Optional;
 
 /**
  * Controller per la Rassegna Stampa e Dicono di Noi
+ * Gestisce le pagine pubbliche della sezione Press
  */
 @Controller
 public class PressController {
@@ -31,6 +32,12 @@ public class PressController {
 
     /**
      * Pagina principale Rassegna Stampa
+     * Lista paginata di tutti gli articoli pubblicati
+     * 
+     * @param page Numero della pagina (default: 0)
+     * @param size Elementi per pagina (default: 9)
+     * @param model Model per Thymeleaf
+     * @return Template rassegna-stampa.html
      */
     @GetMapping("/rassegna-stampa")
     public String rassegnaStampa(
@@ -38,9 +45,15 @@ public class PressController {
             @RequestParam(defaultValue = "9") int size,
             Model model) {
         
+        // Validazione parametri
+        if (page < 0) page = 0;
+        if (size < 1) size = 9;
+        if (size > 50) size = 50; // Max 50 items per page
+        
         Pageable pageable = PageRequest.of(page, size);
         Page<BlogPost> blogPage = blogService.getPublishedPosts(pageable);
         
+        // Aggiungi attributi al model
         model.addAttribute("posts", blogPage.getContent());
         model.addAttribute("currentPage", page);
         model.addAttribute("totalPages", blogPage.getTotalPages());
@@ -52,19 +65,25 @@ public class PressController {
 
     /**
      * Dettaglio singolo articolo
+     * 
+     * @param id ID dell'articolo
+     * @param model Model per Thymeleaf
+     * @return Template press-detail.html o redirect se non trovato
      */
     @GetMapping("/rassegna-stampa/{id}")
     public String viewArticle(@PathVariable Long id, Model model) {
-        Optional<BlogPost> post = blogService.getPublishedPostById(id);
+        Optional<BlogPost> postOpt = blogService.getPublishedPostById(id);
         
-        if (post.isEmpty()) {
+        if (postOpt.isEmpty()) {
+            // Articolo non trovato o non pubblicato
             return "redirect:/rassegna-stampa";
         }
         
-        model.addAttribute("post", post.get());
-        model.addAttribute("pageTitle", post.get().getTitle() + " - Hicman Capital Partner");
+        BlogPost post = postOpt.get();
+        model.addAttribute("post", post);
+        model.addAttribute("pageTitle", post.getTitle() + " - Hicman Capital Partner");
         
-        // Post correlati (ultimi 3 post escluso quello corrente)
+        // Carica articoli correlati (ultimi 3 post escluso quello corrente)
         List<BlogPost> relatedPosts = blogService.getLatestPublishedPosts(4)
             .stream()
             .filter(p -> !p.getId().equals(id))
@@ -76,15 +95,48 @@ public class PressController {
     }
 
     /**
-     * Pagina "Dicono di Noi" con testimonial
+     * Redirect da /blog/{id} a /rassegna-stampa/{id} per compatibilità
+     */
+    @GetMapping("/blog/{id}")
+    public String blogDetailRedirect(@PathVariable Long id) {
+        return "redirect:/rassegna-stampa/" + id;
+    }
+
+    /**
+     * Pagina "Dicono di Noi" - Testimonials
+     * Lista di tutte le testimonianze pubblicate
+     * 
+     * @param model Model per Thymeleaf
+     * @return Template dicono-di-noi.html
      */
     @GetMapping("/dicono-di-noi")
     public String diconoDiNoi(Model model) {
-        List<Testimonial> testimonials = testimonialService.getPublishedTestimonials();
+        // Carica tutte le testimonianze pubblicate (ordinate per data desc)
+        List<Testimonial> testimonials = testimonialService.getAllPublishedTestimonials();
         
         model.addAttribute("testimonials", testimonials);
         model.addAttribute("pageTitle", "Hicman Capital Partner - Dicono di Noi");
         
         return "dicono-di-noi";
+    }
+
+    /**
+     * Dettaglio singola testimonianza (opzionale, se serve una pagina dedicata)
+     * Altrimenti le testimonianze sono mostrate tutte in una singola pagina
+     */
+    @GetMapping("/dicono-di-noi/{id}")
+    public String viewTestimonial(@PathVariable Long id, Model model) {
+        Optional<Testimonial> testimonialOpt = testimonialService.getPublishedTestimonialById(id);
+        
+        if (testimonialOpt.isEmpty()) {
+            return "redirect:/dicono-di-noi";
+        }
+        
+        model.addAttribute("testimonial", testimonialOpt.get());
+        model.addAttribute("pageTitle", "Testimonianza - Hicman Capital Partner");
+        
+        // Se vuoi una pagina dettaglio dedicata, crea testimonial-detail.html
+        // Altrimenti redirect alla lista
+        return "redirect:/dicono-di-noi";
     }
 }

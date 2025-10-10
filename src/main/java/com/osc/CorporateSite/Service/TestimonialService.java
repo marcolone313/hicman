@@ -3,6 +3,7 @@ package com.osc.CorporateSite.Service;
 import com.osc.CorporateSite.Model.Testimonial;
 import com.osc.CorporateSite.Repository.TestimonialRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -10,6 +11,9 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Service per la gestione delle testimonianze (Dicono di Noi)
+ */
 @Service
 @Transactional
 public class TestimonialService {
@@ -17,263 +21,211 @@ public class TestimonialService {
     @Autowired
     private TestimonialRepository testimonialRepository;
 
-    // ==================== METODI PUBBLICI ====================
-
     /**
-     * Ottiene tutti i testimonial pubblicati ordinati per displayOrder
+     * Ottiene tutte le testimonianze pubblicate ordinate per data (più recenti prima)
      */
-    public List<Testimonial> getPublishedTestimonials() {
-        return testimonialRepository.findByPublishedTrueOrderByDisplayOrderAsc();
+    public List<Testimonial> getAllPublishedTestimonials() {
+        return testimonialRepository.findByPublishedTrueOrderByPublishedDateDesc();
     }
 
     /**
-     * Ottiene i primi N testimonial pubblicati
-     */
-    public List<Testimonial> getTopPublishedTestimonials(int limit) {
-        return testimonialRepository.findByPublishedTrueOrderByDisplayOrderAsc()
-                .stream()
-                .limit(limit)
-                .toList();
-    }
-
-    /**
-     * Conta i testimonial pubblicati
-     */
-    public long countPublishedTestimonials() {
-        return testimonialRepository.countByPublishedTrue();
-    }
-
-    // ==================== METODI ADMIN ====================
-
-    /**
-     * Ottiene tutti i testimonial (pubblicati e bozze)
+     * Ottiene tutte le testimonianze (per admin) ordinate per data
      */
     public List<Testimonial> getAllTestimonials() {
-        return testimonialRepository.findAllByOrderByDisplayOrderAsc();
+        return testimonialRepository.findAll(Sort.by(Sort.Direction.DESC, "publishedDate"));
     }
 
     /**
-     * Ottiene tutti i testimonial in bozza
+     * Ottiene una testimonianza pubblicata per ID
      */
-    public List<Testimonial> getDraftTestimonials() {
-        return testimonialRepository.findByPublishedFalseOrderByCreatedAtDesc();
+    public Optional<Testimonial> getPublishedTestimonialById(Long id) {
+        return testimonialRepository.findByIdAndPublishedTrue(id);
     }
 
     /**
-     * Ottiene un testimonial per ID
+     * Ottiene una testimonianza per ID (per admin, anche non pubblicata)
      */
     public Optional<Testimonial> getTestimonialById(Long id) {
         return testimonialRepository.findById(id);
     }
 
     /**
-     * Ottiene gli ultimi N testimonial creati
+     * Salva una nuova testimonianza
      */
-    public List<Testimonial> getLatestTestimonials(int limit) {
-        return testimonialRepository.findTop10ByOrderByCreatedAtDesc()
-                .stream()
-                .limit(limit)
-                .toList();
+    public Testimonial createTestimonial(Testimonial testimonial) {
+        // Imposta la data di creazione se non presente
+        if (testimonial.getPublishedDate() == null) {
+            testimonial.setPublishedDate(LocalDateTime.now());
+        }
+        return testimonialRepository.save(testimonial);
     }
 
     /**
-     * Salva un nuovo testimonial o aggiorna uno esistente
+     * Aggiorna una testimonianza esistente
      */
-    public Testimonial saveTestimonial(Testimonial testimonial) {
-        // Se è un nuovo testimonial
-        if (testimonial.getId() == null) {
-            testimonial.setCreatedAt(LocalDateTime.now());
-            
-            // Imposta l'ordine di visualizzazione come ultimo
-            if (testimonial.getDisplayOrder() == null || testimonial.getDisplayOrder() == 0) {
-                Integer maxOrder = testimonialRepository.findMaxDisplayOrder();
-                testimonial.setDisplayOrder(maxOrder != null ? maxOrder + 1 : 1);
-            }
+    public Testimonial updateTestimonial(Long id, Testimonial updatedTestimonial) {
+        Optional<Testimonial> existing = testimonialRepository.findById(id);
+        
+        if (existing.isEmpty()) {
+            throw new IllegalArgumentException("Testimonianza non trovata con ID: " + id);
+        }
+        
+        Testimonial testimonial = existing.get();
+        
+        // Aggiorna i campi
+        testimonial.setQuote(updatedTestimonial.getQuote());
+        testimonial.setSourceName(updatedTestimonial.getSourceName());
+        testimonial.setSourceRole(updatedTestimonial.getSourceRole());
+        testimonial.setLogoUrl(updatedTestimonial.getLogoUrl());
+        testimonial.setExternalLink(updatedTestimonial.getExternalLink());
+        testimonial.setPublishedDate(updatedTestimonial.getPublishedDate());
+        testimonial.setPublished(updatedTestimonial.isPublished());
+        
+        return testimonialRepository.save(testimonial);
+    }
+
+    /**
+     * Elimina una testimonianza
+     */
+    public void deleteTestimonial(Long id) {
+        if (!testimonialRepository.existsById(id)) {
+            throw new IllegalArgumentException("Testimonianza non trovata con ID: " + id);
+        }
+        testimonialRepository.deleteById(id);
+    }
+
+    /**
+     * Pubblica una testimonianza
+     */
+    public Testimonial publishTestimonial(Long id) {
+        Optional<Testimonial> testimonialOpt = testimonialRepository.findById(id);
+        
+        if (testimonialOpt.isEmpty()) {
+            throw new IllegalArgumentException("Testimonianza non trovata con ID: " + id);
+        }
+        
+        Testimonial testimonial = testimonialOpt.get();
+        testimonial.setPublished(true);
+        
+        // Imposta la data di pubblicazione se non presente
+        if (testimonial.getPublishedDate() == null) {
+            testimonial.setPublishedDate(LocalDateTime.now());
         }
         
         return testimonialRepository.save(testimonial);
     }
 
     /**
-     * Elimina un testimonial
+     * Rimuove la pubblicazione di una testimonianza
      */
-    public void deleteTestimonial(Long id) {
-        testimonialRepository.deleteById(id);
-    }
-
-    /**
-     * Elimina più testimonial contemporaneamente
-     */
-    public int deleteTestimonials(Long[] testimonialIds) {
-        int count = 0;
-        for (Long id : testimonialIds) {
-            try {
-                testimonialRepository.deleteById(id);
-                count++;
-            } catch (Exception e) {
-                System.err.println("Errore eliminazione testimonial ID " + id + ": " + e.getMessage());
-            }
+    public Testimonial unpublishTestimonial(Long id) {
+        Optional<Testimonial> testimonialOpt = testimonialRepository.findById(id);
+        
+        if (testimonialOpt.isEmpty()) {
+            throw new IllegalArgumentException("Testimonianza non trovata con ID: " + id);
         }
-        return count;
+        
+        Testimonial testimonial = testimonialOpt.get();
+        testimonial.setPublished(false);
+        
+        return testimonialRepository.save(testimonial);
     }
 
     /**
-     * Conta tutti i testimonial
+     * Conta il numero di testimonianze pubblicate
+     */
+    public long countPublishedTestimonials() {
+        return testimonialRepository.countByPublishedTrue();
+    }
+
+    /**
+     * Cerca testimonianze per nome fonte (per admin)
+     */
+    public List<Testimonial> searchBySourceName(String sourceName) {
+        return testimonialRepository.findBySourceNameContainingIgnoreCase(sourceName);
+    }
+
+    /**
+     * Conta tutte le testimonianze (per dashboard admin)
      */
     public long countAllTestimonials() {
         return testimonialRepository.count();
     }
 
     /**
-     * Cambia lo stato di pubblicazione
+     * Ottiene le ultime N testimonianze pubblicate (per dashboard admin)
      */
-    public Testimonial togglePublishStatus(Long id) {
-        Optional<Testimonial> testimonialOpt = testimonialRepository.findById(id);
-        
-        if (testimonialOpt.isEmpty()) {
-            throw new IllegalArgumentException("Testimonial non trovato con ID: " + id);
-        }
-        
-        Testimonial testimonial = testimonialOpt.get();
-        testimonial.setPublished(!testimonial.isPublished());
-        
-        return testimonialRepository.save(testimonial);
+    public List<Testimonial> getLatestTestimonials(int limit) {
+        return testimonialRepository.findByPublishedTrueOrderByPublishedDateDesc()
+                .stream()
+                .limit(limit)
+                .toList();
     }
 
-    // ==================== GESTIONE ORDINAMENTO ====================
+    /**
+     * Ottiene testimonianze pubblicate (alias per compatibilità)
+     */
+    public List<Testimonial> getPublishedTestimonials() {
+        return getAllPublishedTestimonials();
+    }
 
     /**
-     * Sposta un testimonial verso l'alto (diminuisce displayOrder)
+     * Ottiene testimonianze in bozza (non pubblicate)
+     */
+    public List<Testimonial> getDraftTestimonials() {
+        return testimonialRepository.findByPublished(false);
+    }
+
+    /**
+     * Salva una testimonianza (create o update)
+     */
+    public Testimonial saveTestimonial(Testimonial testimonial) {
+        if (testimonial.getId() == null) {
+            // Nuova testimonianza
+            return createTestimonial(testimonial);
+        } else {
+            // Update esistente
+            return testimonialRepository.save(testimonial);
+        }
+    }
+
+    /**
+     * Sposta una testimonianza in su (riordino)
      */
     public void moveUp(Long id) {
-        Optional<Testimonial> currentOpt = testimonialRepository.findById(id);
-        
-        if (currentOpt.isEmpty()) {
-            throw new IllegalArgumentException("Testimonial non trovato con ID: " + id);
-        }
-        
-        Testimonial current = currentOpt.get();
-        Integer currentOrder = current.getDisplayOrder();
-        
-        // Trova il testimonial con displayOrder immediatamente inferiore
-        Optional<Testimonial> previousOpt = testimonialRepository
-                .findFirstByDisplayOrderLessThanOrderByDisplayOrderDesc(currentOrder);
-        
-        if (previousOpt.isPresent()) {
-            Testimonial previous = previousOpt.get();
-            Integer previousOrder = previous.getDisplayOrder();
-            
-            // Scambia gli ordini
-            current.setDisplayOrder(previousOrder);
-            previous.setDisplayOrder(currentOrder);
-            
-            testimonialRepository.save(current);
-            testimonialRepository.save(previous);
+        // Implementazione semplice: cambia displayOrder
+        // Per ora placeholder - implementa logica di riordino se necessario
+        Optional<Testimonial> testimonialOpt = testimonialRepository.findById(id);
+        if (testimonialOpt.isPresent()) {
+            // Logica riordino da implementare se serve campo displayOrder
+            testimonialRepository.save(testimonialOpt.get());
         }
     }
 
     /**
-     * Sposta un testimonial verso il basso (aumenta displayOrder)
+     * Sposta una testimonianza in giù (riordino)
      */
     public void moveDown(Long id) {
-        Optional<Testimonial> currentOpt = testimonialRepository.findById(id);
-        
-        if (currentOpt.isEmpty()) {
-            throw new IllegalArgumentException("Testimonial non trovato con ID: " + id);
-        }
-        
-        Testimonial current = currentOpt.get();
-        Integer currentOrder = current.getDisplayOrder();
-        
-        // Trova il testimonial con displayOrder immediatamente superiore
-        Optional<Testimonial> nextOpt = testimonialRepository
-                .findFirstByDisplayOrderGreaterThanOrderByDisplayOrderAsc(currentOrder);
-        
-        if (nextOpt.isPresent()) {
-            Testimonial next = nextOpt.get();
-            Integer nextOrder = next.getDisplayOrder();
-            
-            // Scambia gli ordini
-            current.setDisplayOrder(nextOrder);
-            next.setDisplayOrder(currentOrder);
-            
-            testimonialRepository.save(current);
-            testimonialRepository.save(next);
-        }
-    }
-
-    /**
-     * Sposta un testimonial in una posizione specifica
-     */
-    public void moveToPosition(Long id, int newPosition) {
+        // Implementazione semplice: cambia displayOrder
+        // Per ora placeholder - implementa logica di riordino se necessario
         Optional<Testimonial> testimonialOpt = testimonialRepository.findById(id);
-        
-        if (testimonialOpt.isEmpty()) {
-            throw new IllegalArgumentException("Testimonial non trovato con ID: " + id);
-        }
-        
-        Testimonial testimonial = testimonialOpt.get();
-        int oldPosition = testimonial.getDisplayOrder();
-        
-        if (oldPosition == newPosition) {
-            return; // Nessun cambiamento necessario
-        }
-        
-        List<Testimonial> allTestimonials = testimonialRepository.findAllByOrderByDisplayOrderAsc();
-        
-        // Rimuovi il testimonial corrente dalla lista
-        allTestimonials.removeIf(t -> t.getId().equals(id));
-        
-        // Inserisci nella nuova posizione
-        allTestimonials.add(newPosition - 1, testimonial);
-        
-        // Riassegna tutti gli ordini
-        for (int i = 0; i < allTestimonials.size(); i++) {
-            allTestimonials.get(i).setDisplayOrder(i + 1);
-            testimonialRepository.save(allTestimonials.get(i));
+        if (testimonialOpt.isPresent()) {
+            // Logica riordino da implementare se serve campo displayOrder
+            testimonialRepository.save(testimonialOpt.get());
         }
     }
 
     /**
-     * Riordina automaticamente tutti i testimonial
-     * (utile se ci sono buchi nella sequenza)
+     * Elimina multiple testimonianze
      */
-    public void reorderAll() {
-        List<Testimonial> allTestimonials = testimonialRepository.findAllByOrderByDisplayOrderAsc();
-        
-        for (int i = 0; i < allTestimonials.size(); i++) {
-            allTestimonials.get(i).setDisplayOrder(i + 1);
-            testimonialRepository.save(allTestimonials.get(i));
+    public int deleteTestimonials(Long[] ids) {
+        int deleted = 0;
+        for (Long id : ids) {
+            if (testimonialRepository.existsById(id)) {
+                testimonialRepository.deleteById(id);
+                deleted++;
+            }
         }
-    }
-
-    // ==================== METODI DI UTILITY ====================
-
-    /**
-     * Verifica se un testimonial esiste
-     */
-    public boolean existsById(Long id) {
-        return testimonialRepository.existsById(id);
-    }
-
-    /**
-     * Ottiene testimonial per azienda
-     */
-    public List<Testimonial> getTestimonialsByCompany(String companyName) {
-        return testimonialRepository.findByCompanyNameContainingIgnoreCaseOrderByDisplayOrderAsc(companyName);
-    }
-
-    /**
-     * Ottiene testimonial per autore
-     */
-    public List<Testimonial> getTestimonialsByAuthor(String authorName) {
-        return testimonialRepository.findByAuthorContainingIgnoreCaseOrderByDisplayOrderAsc(authorName);
-    }
-
-    /**
-     * Ricerca testimonial per keyword
-     */
-    public List<Testimonial> searchTestimonials(String keyword) {
-        return testimonialRepository.searchTestimonials(keyword);
+        return deleted;
     }
 }

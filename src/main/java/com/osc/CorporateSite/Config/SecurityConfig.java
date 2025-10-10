@@ -12,6 +12,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
+import org.springframework.security.web.csrf.CsrfTokenRequestAttributeHandler;
 
 @Configuration
 @EnableWebSecurity
@@ -25,6 +27,10 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        // CSRF Token Handler configurato correttamente
+        CsrfTokenRequestAttributeHandler requestHandler = new CsrfTokenRequestAttributeHandler();
+        requestHandler.setCsrfRequestAttributeName(null);
+
         http
             .authorizeHttpRequests(auth -> auth
                 // Permetti accesso pubblico
@@ -34,18 +40,25 @@ public class SecurityConfig {
                     "/services",
                     "/services/**",
                     "/contact",
-                    "/blog/**",
-                    "/press",
-                    "/testimonials",
+                    "/rassegna-stampa",
+                    "/rassegna-stampa/**",
+                    "/dicono-di-noi",
+                    "/dicono-di-noi/**",
                     "/css/**",
                     "/js/**",
                     "/images/**",
                     "/uploads/**",
-                    "/error"
+                    "/error",
+                    "/favicon.ico"
                 ).permitAll()
                 // Richiedi autenticazione per /admin
                 .requestMatchers("/admin/**").authenticated()
                 .anyRequest().permitAll()
+            )
+            // Configurazione CSRF migliorata
+            .csrf(csrf -> csrf
+                .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
+                .csrfTokenRequestHandler(requestHandler)
             )
             .formLogin(form -> form
                 .loginPage("/admin/login")
@@ -58,7 +71,7 @@ public class SecurityConfig {
                 .logoutUrl("/admin/logout")
                 .logoutSuccessUrl("/admin/login?logout=true")
                 .invalidateHttpSession(true)
-                .deleteCookies("JSESSIONID")
+                .deleteCookies("JSESSIONID", "XSRF-TOKEN")
                 .permitAll()
             )
             .sessionManagement(session -> session
