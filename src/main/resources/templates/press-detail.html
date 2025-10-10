@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments/header :: header}"></head>
+
+<body>
+    <!-- Navbar Fragment -->
+    <nav th:replace="~{fragments/navbar :: navbar('press')}"></nav>
+
+    <main>
+        <!-- Breadcrumb -->
+        <section class="breadcrumb-section">
+            <div class="container py-3">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb mb-0">
+                        <li class="breadcrumb-item"><a href="/">Home</a></li>
+                        <li class="breadcrumb-item"><a href="/rassegna-stampa">Rassegna Stampa</a></li>
+                        <li class="breadcrumb-item active" th:text="${post.title}">Articolo</li>
+                    </ol>
+                </nav>
+            </div>
+        </section>
+
+        <!-- Article Content -->
+        <article class="article-detail-section py-5">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <!-- Article Header -->
+                        <header class="article-header mb-5">
+                            <!-- Meta -->
+                            <div class="article-meta mb-3">
+                                <span class="meta-source" th:if="${post.sourceName}">
+                                    <i class="bi bi-building me-2"></i>
+                                    <span th:text="${post.sourceName}">Fonte</span>
+                                </span>
+                                <span class="meta-date">
+                                    <i class="bi bi-calendar3 me-2"></i>
+                                    <span th:text="${#temporals.format(post.publishedDate, 'dd MMMM yyyy')}">Data</span>
+                                </span>
+                            </div>
+
+                            <!-- Title -->
+                            <h1 class="article-title" th:text="${post.title}">
+                                Titolo dell'Articolo
+                            </h1>
+
+                            <!-- Featured Image -->
+                            <div class="article-image mt-4" th:if="${post.hasImage()}">
+                                <img th:src="@{${post.imageUrl}}" 
+                                     th:alt="${post.title}"
+                                     class="img-fluid">
+                            </div>
+                        </header>
+
+                        <!-- Article Body -->
+                        <div class="article-body">
+                            <div class="article-content" th:utext="${post.content}">
+                                <p>Contenuto dell'articolo...</p>
+                            </div>
+
+                            <!-- External Link -->
+                            <div class="article-source mt-5" th:if="${post.hasExternalLink()}">
+                                <div class="source-box">
+                                    <i class="bi bi-link-45deg me-2"></i>
+                                    <span>Leggi l'articolo completo su:</span>
+                                    <a th:href="${post.externalLink}" 
+                                       target="_blank" 
+                                       rel="noopener noreferrer"
+                                       class="source-link">
+                                        <span th:text="${post.sourceName} ?: 'fonte originale'">fonte</span>
+                                        <i class="bi bi-box-arrow-up-right ms-2"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Share Section -->
+                        <div class="article-share mt-5">
+                            <h4 class="share-title">Condividi questo articolo</h4>
+                            <div class="share-buttons">
+                                <a href="#" class="share-btn share-linkedin" title="Condividi su LinkedIn">
+                                    <i class="bi bi-linkedin"></i>
+                                </a>
+                                <a href="#" class="share-btn share-twitter" title="Condividi su Twitter">
+                                    <i class="bi bi-twitter"></i>
+                                </a>
+                                <a href="#" class="share-btn share-facebook" title="Condividi su Facebook">
+                                    <i class="bi bi-facebook"></i>
+                                </a>
+                                <a href="#" class="share-btn share-email" title="Invia via email">
+                                    <i class="bi bi-envelope"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Back Button -->
+                        <div class="article-navigation mt-5">
+                            <a href="/rassegna-stampa" class="btn btn-finance-outline">
+                                <i class="bi bi-arrow-left me-2"></i> Torna alla Rassegna Stampa
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Related Posts -->
+                <div class="related-posts-section mt-5" th:if="${!#lists.isEmpty(relatedPosts)}">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-10">
+                            <h3 class="related-title text-center mb-4">Articoli Correlati</h3>
+                            
+                            <div class="row g-4">
+                                <div class="col-md-4" th:each="related : ${relatedPosts}">
+                                    <article class="related-card">
+                                        <!-- Image -->
+                                        <div class="related-image" th:if="${related.hasImage()}">
+                                            <a th:href="@{/rassegna-stampa/{id}(id=${related.id})}">
+                                                <img th:src="@{${related.imageUrl}}" 
+                                                     th:alt="${related.title}"
+                                                     loading="lazy">
+                                            </a>
+                                        </div>
+                                        
+                                        <!-- Content -->
+                                        <div class="related-content">
+                                            <h4 class="related-card-title">
+                                                <a th:href="@{/rassegna-stampa/{id}(id=${related.id})}" 
+                                                   th:text="${related.title}">
+                                                    Titolo articolo correlato
+                                                </a>
+                                            </h4>
+                                            <p class="related-excerpt" th:text="${related.getExcerpt(80)}">
+                                                Breve estratto...
+                                            </p>
+                                        </div>
+                                    </article>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <!-- Footer Fragment -->
+    <footer th:replace="~{fragments/footer :: footer}"></footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Share functionality -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const shareButtons = {
+                linkedin: document.querySelector('.share-linkedin'),
+                twitter: document.querySelector('.share-twitter'),
+                facebook: document.querySelector('.share-facebook'),
+                email: document.querySelector('.share-email')
+            };
+
+            const pageUrl = encodeURIComponent(window.location.href);
+            const pageTitle = encodeURIComponent(document.querySelector('.article-title').textContent);
+
+            if (shareButtons.linkedin) {
+                shareButtons.linkedin.href = `https://www.linkedin.com/sharing/share-offsite/?url=${pageUrl}`;
+            }
+
+            if (shareButtons.twitter) {
+                shareButtons.twitter.href = `https://twitter.com/intent/tweet?url=${pageUrl}&text=${pageTitle}`;
+            }
+
+            if (shareButtons.facebook) {
+                shareButtons.facebook.href = `https://www.facebook.com/sharer/sharer.php?u=${pageUrl}`;
+            }
+
+            if (shareButtons.email) {
+                shareButtons.email.href = `mailto:?subject=${pageTitle}&body=${pageUrl}`;
+            }
+        });
+    </script>
+</body>
+</html>
