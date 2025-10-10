@@ -1,203 +1,217 @@
 <!DOCTYPE html>
-<html lang="it" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="~{fragments/header :: header}"></head>
-<link rel="stylesheet" th:href="@{/css/admin.css}">
-<body class="admin-body">
+<html xmlns:th="http://www.thymeleaf.org" lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestione Dicono di Noi - Hicman Capital Partner</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" th:href="@{/css/admin.css}">
+</head>
+<body>
+    <div class="admin-wrapper">
+        <!-- Sidebar -->
+        <aside class="admin-sidebar" id="adminSidebar">
+            <div class="admin-sidebar-header">
+                <h3>Hicman Capital</h3>
+                <small>Admin Panel</small>
+            </div>
+            
+            <nav class="admin-nav">
+                <a href="/admin" class="admin-nav-item">
+                    <i class="bi bi-speedometer2"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="/admin/blog" class="admin-nav-item">
+                    <i class="bi bi-newspaper"></i>
+                    <span>Rassegna Stampa</span>
+                </a>
+                <a href="/admin/testimonials" class="admin-nav-item active">
+                    <i class="bi bi-chat-quote"></i>
+                    <span>Dicono di Noi</span>
+                    <span class="badge" th:text="${testimonials.size()}">0</span>
+                </a>
+                <a href="/" class="admin-nav-item" target="_blank">
+                    <i class="bi bi-box-arrow-up-right"></i>
+                    <span>Visualizza Sito</span>
+                </a>
+                <a href="/logout" class="admin-nav-item">
+                    <i class="bi bi-box-arrow-right"></i>
+                    <span>Logout</span>
+                </a>
+            </nav>
+        </aside>
 
-<div class="admin-wrapper">
-    <!-- Sidebar -->
-    <aside th:replace="~{admin/fragments/sidebar :: sidebar('testimonials')}"></aside>
-
-    <!-- Main Content -->
-    <main class="admin-main">
-        <!-- Topbar -->
-        <nav th:replace="~{admin/fragments/topbar :: topbar}"></nav>
-
-        <!-- Content Area -->
-        <div class="admin-content">
-            <div class="container-fluid">
+        <!-- Main Content -->
+        <main class="admin-content">
+            <!-- Header -->
+            <header class="admin-header">
+                <button class="mobile-menu-toggle" onclick="toggleSidebar()">
+                    <i class="bi bi-list"></i>
+                </button>
                 
-                <!-- Page Header -->
-                <div class="page-header mb-4">
-                    <div class="row align-items-center">
-                        <div class="col">
-                            <h1 class="h3 mb-1">
-                                <i class="bi bi-chat-quote me-2"></i>
-                                Gestione Testimonial
-                            </h1>
-                            <p class="text-muted mb-0">Gestisci le testimonianze e recensioni</p>
-                        </div>
-                        <div class="col-auto">
-                            <a th:href="@{/admin/testimonials/new}" class="btn btn-primary">
-                                <i class="bi bi-plus-circle me-2"></i>
-                                Nuovo Testimonial
-                            </a>
-                        </div>
-                    </div>
+                <div class="admin-header-title">
+                    <h1>Gestione Testimonianze</h1>
                 </div>
+                
+                <div class="admin-header-actions">
+                    <a href="/admin/testimonials/new" class="btn btn-primary">
+                        <i class="bi bi-plus-circle"></i> Nuova Testimonianza
+                    </a>
+                </div>
+            </header>
 
-                <!-- Success Alert -->
-                <div th:if="${successMessage}" 
-                     class="alert alert-success alert-dismissible fade show" 
-                     role="alert">
-                    <i class="bi bi-check-circle-fill me-2"></i>
+            <!-- Main Content Area -->
+            <div class="admin-main">
+                <!-- Success/Error Messages -->
+                <div class="alert alert-success" th:if="${successMessage}">
+                    <i class="bi bi-check-circle-fill"></i>
                     <span th:text="${successMessage}"></span>
-                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                 </div>
 
-                <!-- Error Alert -->
-                <div th:if="${errorMessage}" 
-                     class="alert alert-danger alert-dismissible fade show" 
-                     role="alert">
-                    <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                <div class="alert alert-danger" th:if="${errorMessage}">
+                    <i class="bi bi-exclamation-triangle-fill"></i>
                     <span th:text="${errorMessage}"></span>
-                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                 </div>
 
-                <!-- Filters -->
-                <div class="admin-card mb-4">
-                    <div class="card-body">
-                        <div class="row g-3 align-items-end">
-                            <!-- Status Filter -->
-                            <div class="col-md-6">
-                                <label class="form-label fw-semibold mb-2">
-                                    <i class="bi bi-funnel me-1"></i>
-                                    Filtra per stato
-                                </label>
-                                <div class="btn-group w-100" role="group">
-                                    <a th:href="@{/admin/testimonials}" 
-                                       class="btn btn-outline-secondary"
-                                       th:classappend="${status == null} ? 'active' : ''">
-                                        <i class="bi bi-collection me-1"></i>
-                                        Tutti (<span th:text="${testimonials.size()}">0</span>)
-                                    </a>
-                                    <a th:href="@{/admin/testimonials(status='published')}" 
-                                       class="btn btn-outline-secondary"
-                                       th:classappend="${status == 'published'} ? 'active' : ''">
-                                        <i class="bi bi-check-circle me-1"></i>
-                                        Pubblicati
-                                    </a>
-                                    <a th:href="@{/admin/testimonials(status='draft')}" 
-                                       class="btn btn-outline-secondary"
-                                       th:classappend="${status == 'draft'} ? 'active' : ''">
-                                        <i class="bi bi-pencil me-1"></i>
-                                        Bozze
-                                    </a>
-                                </div>
+                <!-- Table Wrapper -->
+                <div class="admin-table-wrapper">
+                    <!-- Table Header with Actions -->
+                    <div class="admin-table-header">
+                        <h2>
+                            <i class="bi bi-chat-quote"></i> Testimonianze
+                            <small class="text-muted ms-2" th:text="'(' + ${testimonials.size()} + ' totali)'"></small>
+                        </h2>
+                        
+                        <div class="admin-table-actions">
+                            <!-- Search -->
+                            <div class="admin-search">
+                                <i class="bi bi-search"></i>
+                                <input type="text" 
+                                       id="searchInput" 
+                                       placeholder="Cerca testimonianze..."
+                                       onkeyup="searchTable()">
                             </div>
                             
-                            <!-- Search -->
-                            <div class="col-md-6">
-                                <label class="form-label fw-semibold mb-2">
-                                    <i class="bi bi-search me-1"></i>
-                                    Cerca
-                                </label>
-                                <form th:action="@{/admin/testimonials}" method="get" class="d-flex gap-2">
-                                    <input type="hidden" name="status" th:value="${status}">
-                                    <input type="text" 
-                                           class="form-control" 
-                                           name="search" 
-                                           th:value="${search}"
-                                           placeholder="Cerca per autore, azienda o contenuto...">
-                                    <button type="submit" class="btn btn-primary">
-                                        <i class="bi bi-search"></i>
-                                    </button>
-                                    <a th:if="${search}" 
-                                       th:href="@{/admin/testimonials(status=${status})}" 
-                                       class="btn btn-outline-secondary"
-                                       title="Cancella ricerca">
-                                        <i class="bi bi-x-lg"></i>
-                                    </a>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Testimonials List -->
-                <div class="admin-card">
-                    <!-- Empty State -->
-                    <div th:if="${#lists.isEmpty(testimonials)}" class="card-body text-center py-5">
-                        <div class="empty-state">
-                            <i class="bi bi-chat-quote-fill display-1 text-muted mb-3"></i>
-                            <h5 class="mb-2">Nessun testimonial trovato</h5>
-                            <p class="text-muted mb-4">
-                                <span th:if="${search}">
-                                    Nessun risultato per "<span th:text="${search}"></span>"
-                                </span>
-                                <span th:unless="${search}">
-                                    Crea il tuo primo testimonial per iniziare
-                                </span>
-                            </p>
-                            <a th:href="@{/admin/testimonials/new}" class="btn btn-primary">
-                                <i class="bi bi-plus-circle me-2"></i>
-                                Crea Nuovo Testimonial
-                            </a>
+                            <!-- Filter by Status -->
+                            <select class="form-control" 
+                                    style="width: auto; min-width: 150px;"
+                                    onchange="filterByStatus(this.value)">
+                                <option value="">Tutti gli stati</option>
+                                <option value="published" th:selected="${status == 'published'}">Pubblicate</option>
+                                <option value="draft" th:selected="${status == 'draft'}">Bozze</option>
+                            </select>
+                            
+                            <!-- Bulk Actions -->
+                            <button class="btn btn-outline" 
+                                    onclick="deleteSelected()"
+                                    id="bulkDeleteBtn"
+                                    style="display: none;">
+                                <i class="bi bi-trash"></i> Elimina Selezionate
+                            </button>
                         </div>
                     </div>
 
-                    <!-- Testimonials Grid -->
-                    <div th:unless="${#lists.isEmpty(testimonials)}" class="testimonials-grid">
-                        <div class="row g-4 p-4">
-                            <div class="col-md-6 col-xl-4" th:each="testimonial : ${testimonials}">
-                                <div class="testimonial-admin-card">
-                                    <!-- Card Header -->
-                                    <div class="testimonial-admin-header">
-                                        <div class="d-flex justify-content-between align-items-start">
-                                            <div class="flex-grow-1">
-                                                <h6 class="mb-1 fw-bold" th:text="${testimonial.author}">
-                                                    Nome Autore
-                                                </h6>
-                                                <p class="text-muted small mb-0" th:if="${testimonial.authorRole}">
-                                                    <span th:text="${testimonial.authorRole}">Ruolo</span>
-                                                    <span th:if="${testimonial.companyName}">
-                                                        at <strong th:text="${testimonial.companyName}">Azienda</strong>
-                                                    </span>
-                                                </p>
-                                                <p class="text-muted small mb-0" 
-                                                   th:if="${!testimonial.authorRole && testimonial.companyName}">
-                                                    <strong th:text="${testimonial.companyName}">Azienda</strong>
-                                                </p>
+                    <!-- Table -->
+                    <div class="table-responsive" th:if="${testimonials != null and !testimonials.isEmpty()}">
+                        <form id="bulkForm" method="post">
+                            <table class="admin-table" id="testimonialsTable">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 40px;">
+                                            <input type="checkbox" 
+                                                   id="selectAll" 
+                                                   onchange="toggleSelectAll(this)">
+                                        </th>
+                                        <th style="width: 80px;">Logo</th>
+                                        <th>Citazione</th>
+                                        <th style="width: 180px;">Fonte</th>
+                                        <th style="width: 120px;">Data</th>
+                                        <th style="width: 100px;">Stato</th>
+                                        <th style="width: 250px;">Azioni</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr th:each="testimonial : ${testimonials}">
+                                        <!-- Checkbox -->
+                                        <td>
+                                            <input type="checkbox" 
+                                                   name="testimonialIds" 
+                                                   th:value="${testimonial.id}"
+                                                   class="testimonial-checkbox"
+                                                   onchange="updateBulkActions()">
+                                        </td>
+                                        
+                                        <!-- Logo -->
+                                        <td>
+                                            <img th:if="${testimonial.logoUrl != null and !testimonial.logoUrl.isEmpty()}" 
+                                                 th:src="${testimonial.logoUrl}" 
+                                                 alt="Logo fonte"
+                                                 class="table-image"
+                                                 style="object-fit: contain; background: #fff; padding: 4px;">
+                                            <div th:unless="${testimonial.logoUrl != null and !testimonial.logoUrl.isEmpty()}"
+                                                 class="table-image"
+                                                 style="background: #e9ecef; display: flex; align-items: center; justify-content: center;">
+                                                <i class="bi bi-building" style="color: #adb5bd;"></i>
                                             </div>
-                                            <div class="text-end">
-                                                <span class="badge rounded-pill mb-2" 
-                                                      th:classappend="${testimonial.published} ? 'bg-success' : 'bg-warning text-dark'">
-                                                    <i th:class="${testimonial.published} ? 'bi bi-check-circle' : 'bi bi-pencil'"></i>
+                                        </td>
+                                        
+                                        <!-- Quote -->
+                                        <td>
+                                            <div class="table-title" style="font-style: italic;">
+                                                <i class="bi bi-quote"></i>
+                                                <span th:text="${#strings.abbreviate(testimonial.quote, 80)}">
+                                                    Citazione breve...
                                                 </span>
-                                                <div class="badge bg-secondary rounded-pill">
-                                                    #<span th:text="${testimonial.displayOrder}">1</span>
-                                                </div>
                                             </div>
-                                        </div>
-                                    </div>
-
-                                    <!-- Card Body -->
-                                    <div class="testimonial-admin-body">
-                                        <div class="quote-icon-small mb-2">
-                                            <i class="bi bi-quote text-muted"></i>
-                                        </div>
-                                        <p class="testimonial-content mb-0" th:text="${testimonial.content}">
-                                            Contenuto della testimonianza che può essere più lungo...
-                                        </p>
-                                    </div>
-
-                                    <!-- Card Footer -->
-                                    <div class="testimonial-admin-footer">
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <small class="text-muted">
-                                                <i class="bi bi-clock me-1"></i>
-                                                <span th:text="${#temporals.format(testimonial.createdAt, 'dd/MM/yyyy')}">
-                                                    Data
-                                                </span>
-                                            </small>
-                                            
-                                            <div class="btn-group btn-group-sm" role="group">
+                                        </td>
+                                        
+                                        <!-- Source -->
+                                        <td>
+                                            <div class="fw-bold" th:text="${testimonial.sourceName}">Nome Fonte</div>
+                                            <div class="table-meta" th:text="${testimonial.sourceRole}">Ruolo</div>
+                                            <div class="table-meta" th:if="${testimonial.externalLink != null}">
+                                                <a th:href="${testimonial.externalLink}" 
+                                                   target="_blank"
+                                                   style="font-size: 0.75rem;">
+                                                    <i class="bi bi-box-arrow-up-right"></i> Link
+                                                </a>
+                                            </div>
+                                        </td>
+                                        
+                                        <!-- Date -->
+                                        <td>
+                                            <div th:text="${#temporals.format(testimonial.publishedDate, 'dd/MM/yyyy')}">
+                                                01/01/2024
+                                            </div>
+                                            <div class="table-meta" 
+                                                 th:text="${#temporals.format(testimonial.publishedDate, 'HH:mm')}">
+                                                12:00
+                                            </div>
+                                        </td>
+                                        
+                                        <!-- Status -->
+                                        <td>
+                                            <span class="status-badge" 
+                                                  th:classappend="${testimonial.published} ? 'published' : 'draft'"
+                                                  th:text="${testimonial.published} ? 'Pubblicata' : 'Bozza'">
+                                                Pubblicata
+                                            </span>
+                                        </td>
+                                        
+                                        <!-- Actions -->
+                                        <td>
+                                            <div class="table-actions">
                                                 <!-- Move Up -->
                                                 <form th:action="@{/admin/testimonials/move-up/{id}(id=${testimonial.id})}" 
                                                       method="post" 
-                                                      class="d-inline">
+                                                      style="display: inline;">
                                                     <button type="submit" 
-                                                            class="btn btn-outline-secondary"
+                                                            class="table-btn table-btn-primary"
                                                             title="Sposta su">
                                                         <i class="bi bi-arrow-up"></i>
                                                     </button>
@@ -206,9 +220,9 @@
                                                 <!-- Move Down -->
                                                 <form th:action="@{/admin/testimonials/move-down/{id}(id=${testimonial.id})}" 
                                                       method="post" 
-                                                      class="d-inline">
+                                                      style="display: inline;">
                                                     <button type="submit" 
-                                                            class="btn btn-outline-secondary"
+                                                            class="table-btn table-btn-primary"
                                                             title="Sposta giù">
                                                         <i class="bi bi-arrow-down"></i>
                                                     </button>
@@ -216,7 +230,7 @@
                                                 
                                                 <!-- Edit -->
                                                 <a th:href="@{/admin/testimonials/edit/{id}(id=${testimonial.id})}" 
-                                                   class="btn btn-outline-primary"
+                                                   class="table-btn table-btn-primary"
                                                    title="Modifica">
                                                     <i class="bi bi-pencil"></i>
                                                 </a>
@@ -224,238 +238,167 @@
                                                 <!-- Toggle Publish -->
                                                 <form th:action="@{/admin/testimonials/toggle-publish/{id}(id=${testimonial.id})}" 
                                                       method="post" 
-                                                      class="d-inline">
+                                                      style="display: inline;">
                                                     <button type="submit" 
-                                                            class="btn"
-                                                            th:classappend="${testimonial.published} ? 'btn-outline-warning' : 'btn-outline-success'"
-                                                            th:title="${testimonial.published} ? 'Nascondi' : 'Pubblica'">
-                                                        <i th:class="${testimonial.published} ? 'bi bi-eye-slash' : 'bi bi-check-circle'"></i>
+                                                            class="table-btn"
+                                                            th:classappend="${testimonial.published} ? 'table-btn-warning' : 'table-btn-success'"
+                                                            th:title="${testimonial.published} ? 'Rimuovi pubblicazione' : 'Pubblica'">
+                                                        <i class="bi" 
+                                                           th:classappend="${testimonial.published} ? 'bi-eye-slash' : 'bi-check-circle'"></i>
                                                     </button>
                                                 </form>
                                                 
                                                 <!-- Delete -->
-                                                <button type="button" 
-                                                        class="btn btn-outline-danger"
-                                                        th:onclick="'confirmDelete(' + ${testimonial.id} + ', \'' + ${testimonial.author} + '\')'"
-                                                        title="Elimina">
-                                                    <i class="bi bi-trash"></i>
-                                                </button>
+                                                <form th:action="@{/admin/testimonials/delete/{id}(id=${testimonial.id})}" 
+                                                      method="post" 
+                                                      style="display: inline;"
+                                                      onsubmit="return confirm('Sei sicuro di voler eliminare questa testimonianza?');">
+                                                    <button type="submit" 
+                                                            class="table-btn table-btn-danger"
+                                                            title="Elimina">
+                                                        <i class="bi bi-trash"></i>
+                                                    </button>
+                                                </form>
                                             </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </form>
                     </div>
 
-                    <!-- Footer Info -->
-                    <div th:unless="${#lists.isEmpty(testimonials)}" class="card-footer bg-light">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="text-muted small">
-                                Totale: <strong th:text="${testimonials.size()}">0</strong> testimonial
-                            </div>
-                            <div>
-                                <button type="button" 
-                                        class="btn btn-sm btn-outline-secondary"
-                                        data-bs-toggle="modal"
-                                        data-bs-target="#bulkDeleteModal"
-                                        th:if="${testimonials.size() > 0}">
-                                    <i class="bi bi-trash me-1"></i>
-                                    Elimina Multipli
-                                </button>
-                            </div>
-                        </div>
+                    <!-- Empty State -->
+                    <div th:unless="${testimonials != null and !testimonials.isEmpty()}" class="empty-state">
+                        <i class="bi bi-chat-quote"></i>
+                        <h3>Nessuna testimonianza trovata</h3>
+                        <p th:if="${status != null}">
+                            Prova a cambiare i filtri o crea una nuova testimonianza
+                        </p>
+                        <p th:unless="${status != null}">
+                            Inizia aggiungendo la prima testimonianza "Dicono di Noi"
+                        </p>
+                        <a href="/admin/testimonials/new" class="btn btn-primary">
+                            <i class="bi bi-plus-circle"></i> Aggiungi Testimonianza
+                        </a>
                     </div>
                 </div>
-
             </div>
-        </div>
-    </main>
-</div>
-
-<!-- Delete Confirmation Modal -->
-<div class="modal fade" id="deleteModal" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header border-0 pb-0">
-                <h5 class="modal-title">
-                    <i class="bi bi-exclamation-triangle text-danger me-2"></i>
-                    Conferma Eliminazione
-                </h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-            </div>
-            <div class="modal-body">
-                <p class="mb-2">Sei sicuro di voler eliminare questo testimonial?</p>
-                <p class="mb-0"><strong id="deleteTestimonialAuthor"></strong></p>
-                <div class="alert alert-warning mt-3 mb-0">
-                    <small>
-                        <i class="bi bi-info-circle me-1"></i>
-                        Questa azione non può essere annullata.
-                    </small>
-                </div>
-            </div>
-            <div class="modal-footer border-0">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                    <i class="bi bi-x-circle me-1"></i>
-                    Annulla
-                </button>
-                <form id="deleteForm" method="post">
-                    <button type="submit" class="btn btn-danger">
-                        <i class="bi bi-trash me-1"></i>
-                        Elimina Definitivamente
-                    </button>
-                </form>
-            </div>
-        </div>
+        </main>
     </div>
-</div>
 
-<!-- Bulk Delete Modal -->
-<div class="modal fade" id="bulkDeleteModal" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header border-0 pb-0">
-                <h5 class="modal-title">
-                    <i class="bi bi-exclamation-triangle text-danger me-2"></i>
-                    Elimina Testimonial Selezionati
-                </h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-            </div>
-            <div class="modal-body">
-                <p>Seleziona i testimonial da eliminare:</p>
-                <div class="testimonial-select-list" style="max-height: 300px; overflow-y: auto;">
-                    <div class="form-check mb-2" th:each="testimonial : ${testimonials}">
-                        <input class="form-check-input bulk-delete-checkbox" 
-                               type="checkbox" 
-                               th:value="${testimonial.id}"
-                               th:id="'bulk-' + ${testimonial.id}">
-                        <label class="form-check-label" th:for="'bulk-' + ${testimonial.id}">
-                            <strong th:text="${testimonial.author}">Autore</strong>
-                            <span class="text-muted" th:if="${testimonial.companyName}">
-                                - <span th:text="${testimonial.companyName}">Azienda</span>
-                            </span>
-                        </label>
-                    </div>
-                </div>
-                <div class="alert alert-warning mt-3 mb-0">
-                    <small>
-                        <i class="bi bi-info-circle me-1"></i>
-                        Questa azione non può essere annullata.
-                    </small>
-                </div>
-            </div>
-            <div class="modal-footer border-0">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                    Annulla
-                </button>
-                <form th:action="@{/admin/testimonials/delete-multiple}" method="post" id="bulkDeleteForm">
-                    <input type="hidden" name="testimonialIds" id="bulkDeleteIds">
-                    <button type="submit" class="btn btn-danger" id="bulkDeleteSubmit" disabled>
-                        <i class="bi bi-trash me-1"></i>
-                        Elimina <span id="bulkDeleteCount">0</span> Selezionati
-                    </button>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Scripts -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    const deleteModal = new bootstrap.Modal(document.getElementById('deleteModal'));
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     
-    // Single delete confirmation
-    window.confirmDelete = function(testimonialId, authorName) {
-        document.getElementById('deleteTestimonialAuthor').textContent = authorName;
-        document.getElementById('deleteForm').action = '/admin/testimonials/delete/' + testimonialId;
-        deleteModal.show();
-    };
+    <!-- Custom JS -->
+    <script>
+        // Mobile sidebar toggle
+        function toggleSidebar() {
+            const sidebar = document.getElementById('adminSidebar');
+            sidebar.classList.toggle('show');
+        }
 
-    // Bulk delete functionality
-    const bulkCheckboxes = document.querySelectorAll('.bulk-delete-checkbox');
-    const bulkDeleteCount = document.getElementById('bulkDeleteCount');
-    const bulkDeleteSubmit = document.getElementById('bulkDeleteSubmit');
-    const bulkDeleteIds = document.getElementById('bulkDeleteIds');
+        // Search functionality
+        function searchTable() {
+            const input = document.getElementById('searchInput');
+            const filter = input.value.toLowerCase();
+            const table = document.getElementById('testimonialsTable');
+            const rows = table.getElementsByTagName('tr');
+            
+            for (let i = 1; i < rows.length; i++) {
+                const quoteCell = rows[i].cells[2]; // Quote column
+                const sourceCell = rows[i].cells[3]; // Source column
+                
+                if (quoteCell && sourceCell) {
+                    const quoteText = quoteCell.textContent || quoteCell.innerText;
+                    const sourceText = sourceCell.textContent || sourceCell.innerText;
+                    
+                    if (quoteText.toLowerCase().indexOf(filter) > -1 || 
+                        sourceText.toLowerCase().indexOf(filter) > -1) {
+                        rows[i].style.display = '';
+                    } else {
+                        rows[i].style.display = 'none';
+                    }
+                }
+            }
+        }
 
-    function updateBulkDelete() {
-        const selectedIds = Array.from(bulkCheckboxes)
-            .filter(cb => cb.checked)
-            .map(cb => cb.value);
-        
-        const count = selectedIds.length;
-        bulkDeleteCount.textContent = count;
-        bulkDeleteSubmit.disabled = count === 0;
-        bulkDeleteIds.value = selectedIds.join(',');
-    }
+        // Filter by status
+        function filterByStatus(status) {
+            const currentUrl = new URL(window.location.href);
+            if (status) {
+                currentUrl.searchParams.set('status', status);
+            } else {
+                currentUrl.searchParams.delete('status');
+            }
+            window.location.href = currentUrl.toString();
+        }
 
-    bulkCheckboxes.forEach(checkbox => {
-        checkbox.addEventListener('change', updateBulkDelete);
-    });
+        // Select all checkboxes
+        function toggleSelectAll(checkbox) {
+            const checkboxes = document.getElementsByClassName('testimonial-checkbox');
+            for (let i = 0; i < checkboxes.length; i++) {
+                checkboxes[i].checked = checkbox.checked;
+            }
+            updateBulkActions();
+        }
 
-    // Auto-hide alerts
-    const alerts = document.querySelectorAll('.alert:not(.alert-warning)');
-    alerts.forEach(alert => {
-        setTimeout(() => {
-            const bsAlert = new bootstrap.Alert(alert);
-            bsAlert.close();
-        }, 5000);
-    });
-});
-</script>
+        // Update bulk actions button visibility
+        function updateBulkActions() {
+            const checkboxes = document.getElementsByClassName('testimonial-checkbox');
+            const bulkBtn = document.getElementById('bulkDeleteBtn');
+            let anyChecked = false;
+            
+            for (let i = 0; i < checkboxes.length; i++) {
+                if (checkboxes[i].checked) {
+                    anyChecked = true;
+                    break;
+                }
+            }
+            
+            bulkBtn.style.display = anyChecked ? 'inline-flex' : 'none';
+        }
 
-<style>
-/* Testimonial Admin Card Styles */
-.testimonial-admin-card {
-    background: white;
-    border: 1px solid #e0e0e0;
-    border-radius: 12px;
-    overflow: hidden;
-    transition: all 0.3s ease;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-}
+        // Delete selected testimonials
+        function deleteSelected() {
+            const checkboxes = document.querySelectorAll('.testimonial-checkbox:checked');
+            
+            if (checkboxes.length === 0) {
+                alert('Seleziona almeno una testimonianza da eliminare');
+                return;
+            }
+            
+            if (!confirm(`Sei sicuro di voler eliminare ${checkboxes.length} testimonianza/e?`)) {
+                return;
+            }
+            
+            const form = document.getElementById('bulkForm');
+            form.action = '/admin/testimonials/delete-multiple';
+            form.submit();
+        }
 
-.testimonial-admin-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-}
+        // Auto-hide alerts
+        document.addEventListener('DOMContentLoaded', function() {
+            const alerts = document.querySelectorAll('.alert');
+            alerts.forEach(alert => {
+                setTimeout(() => {
+                    alert.style.opacity = '0';
+                    setTimeout(() => alert.remove(), 300);
+                }, 5000);
+            });
+        });
 
-.testimonial-admin-header {
-    padding: 1.25rem;
-    background: var(--bg-light);
-    border-bottom: 1px solid #e0e0e0;
-}
-
-.testimonial-admin-body {
-    padding: 1.25rem;
-    flex-grow: 1;
-}
-
-.testimonial-content {
-    font-size: 0.95rem;
-    line-height: 1.6;
-    color: var(--text-dark);
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-}
-
-.testimonial-admin-footer {
-    padding: 1rem 1.25rem;
-    background: var(--bg-light);
-    border-top: 1px solid #e0e0e0;
-}
-
-.quote-icon-small i {
-    font-size: 2rem;
-    opacity: 0.15;
-}
-</style>
-
+        // Close mobile sidebar when clicking outside
+        document.addEventListener('click', function(event) {
+            const sidebar = document.getElementById('adminSidebar');
+            const toggle = document.querySelector('.mobile-menu-toggle');
+            
+            if (window.innerWidth <= 768 && 
+                sidebar.classList.contains('show') && 
+                !sidebar.contains(event.target) && 
+                !toggle.contains(event.target)) {
+                sidebar.classList.remove('show');
+            }
+        });
+    </script>
 </body>
 </html>
