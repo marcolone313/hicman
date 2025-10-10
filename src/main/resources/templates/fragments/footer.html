@@ -1,47 +1,98 @@
-<footer th:fragment="footer" class="footer">
-    <div class="container">
-        <div class="row g-4">
-            <!-- Colonna Info -->
-            <div class="col-md-4">
-                <h5>Finance Site</h5>
-                <p class="text-muted">
-                    Soluzioni finanziarie innovative per il tuo business.
-                </p>
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body>
+    <!-- Footer Fragment -->
+    <footer th:fragment="footer" class="footer-finance">
+        <div class="container py-5">
+            <div class="row g-4">
+                <!-- Logo e Descrizione -->
+                <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+                    <div class="footer-brand mb-3">
+                        <h3 class="footer-logo">HICMAN</h3>
+                        <p class="footer-logo-subtitle">CAPITAL PARTNER</p>
+                    </div>
+                    <p class="footer-description">
+                        Boutique finanziaria indipendente specializzata in finanza strutturata e speciale.
+                    </p>
+                    <p class="footer-address">
+                        <i class="bi bi-geo-alt me-2"></i>
+                        <span th:text="#{footer.address}">Roma, Italia</span>
+                    </p>
+                </div>
+
+                <!-- Link Utili -->
+                <div class="col-lg-2 col-md-6 mb-4 mb-lg-0">
+                    <h5 class="footer-title">Menu</h5>
+                    <ul class="footer-links">
+                        <li><a href="/" th:text="#{navbar.home}">Home</a></li>
+                        <li><a href="/servizi" th:text="#{navbar.services}">Servizi</a></li>
+                        <li><a href="/chi-siamo" th:text="#{navbar.about}">Chi Siamo</a></li>
+                        <li><a href="/rassegna-stampa" th:text="#{navbar.press}">Rassegna Stampa</a></li>
+                        <li><a href="#contact" th:text="#{navbar.contact}">Contatti</a></li>
+                    </ul>
+                </div>
+
+                <!-- Servizi -->
+                <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+                    <h5 class="footer-title" th:text="#{navbar.services}">Servizi</h5>
+                    <ul class="footer-links">
+                        <li><a href="/servizi#finanza-strutturata">Finanza Strutturata</a></li>
+                        <li><a href="/servizi#finanza-speciale">Finanza Speciale</a></li>
+                        <li><a href="/servizi#asset-alternativi">Asset Alternativi</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contatti e Social -->
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="footer-title">Contatti</h5>
+                    <ul class="footer-contact">
+                        <li>
+                            <i class="bi bi-envelope me-2"></i>
+                            <a href="mailto:info@hicman.com">info@hicman.com</a>
+                        </li>
+                        <li>
+                            <i class="bi bi-telephone me-2"></i>
+                            <a href="tel:+390612345678">+39 06 1234 5678</a>
+                        </li>
+                    </ul>
+
+                    <!-- Social Links -->
+                    <div class="footer-social mt-4">
+                        <h6 class="footer-social-title" th:text="#{footer.followUs}">Seguici</h6>
+                        <div class="social-links">
+                            <a href="#" class="social-link" aria-label="LinkedIn">
+                                <i class="bi bi-linkedin"></i>
+                            </a>
+                            <a href="#" class="social-link" aria-label="Twitter">
+                                <i class="bi bi-twitter"></i>
+                            </a>
+                            <a href="#" class="social-link" aria-label="Facebook">
+                                <i class="bi bi-facebook"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
-            
-            <!-- Colonna Links -->
-            <div class="col-md-4">
-                <h5>Link Utili</h5>
-                <ul class="list-unstyled">
-                    <li><a th:href="@{/services}" class="footer-link">Servizi</a></li>
-                    <li><a th:href="@{/about}" class="footer-link">Chi Siamo</a></li>
-                    <li><a th:href="@{/blog}" class="footer-link">Rassegna Stampa</a></li>
-                    <li><a th:href="@{/contact}" class="footer-link">Contatti</a></li>
-                    <li><a th:href="@{/privacy}" class="footer-link">Privacy Policy</a></li>
-                </ul>
-            </div>
-            
-            <!-- Colonna Social -->
-            <div class="col-md-4">
-                <h5>Seguici</h5>
-                <div class="social-links">
-                    <a href="#" class="social-link" aria-label="LinkedIn">
-                        <i class="bi bi-linkedin"></i>
-                    </a>
-                    <a href="#" class="social-link" aria-label="Twitter">
-                        <i class="bi bi-twitter-x"></i>
-                    </a>
-                    <a href="#" class="social-link" aria-label="Facebook">
-                        <i class="bi bi-facebook"></i>
-                    </a>
+
+            <!-- Footer Bottom -->
+            <div class="footer-bottom mt-5 pt-4">
+                <div class="row align-items-center">
+                    <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                        <p class="footer-copyright mb-0" th:text="#{footer.copyright}">
+                            © 2025 Hicman Capital Partner. Tutti i diritti riservati.
+                        </p>
+                    </div>
+                    <div class="col-md-6 text-center text-md-end">
+                        <ul class="footer-legal">
+                            <li><a href="/privacy" th:text="#{footer.privacyPolicy}">Privacy Policy</a></li>
+                            <li><a href="/terms" th:text="#{footer.terms}">Termini e Condizioni</a></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
-        
-        <hr class="my-4">
-        
-        <div class="text-center">
-            <p class="mb-0">&copy; 2025 Finance Site. Tutti i diritti riservati.</p>
-        </div>
-    </div>
-</footer>
+    </footer>
+</body>
+
+</html>

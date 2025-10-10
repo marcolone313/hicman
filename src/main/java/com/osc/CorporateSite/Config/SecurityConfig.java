@@ -1,5 +1,6 @@
 package com.osc.CorporateSite.Config;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -16,24 +17,33 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 public class SecurityConfig {
 
+    @Value("${admin.username}")
+    private String adminUsername;
+
+    @Value("${admin.password}")
+    private String adminPassword;
+
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
             .authorizeHttpRequests(auth -> auth
-                // Permetti accesso pubblico a queste risorse
+                // Permetti accesso pubblico
                 .requestMatchers(
                     "/",
                     "/about",
                     "/services",
+                    "/services/**",
                     "/contact",
                     "/blog/**",
+                    "/press",
+                    "/testimonials",
                     "/css/**",
                     "/js/**",
                     "/images/**",
                     "/uploads/**",
                     "/error"
                 ).permitAll()
-                // Richiedi autenticazione per tutto sotto /admin
+                // Richiedi autenticazione per /admin
                 .requestMatchers("/admin/**").authenticated()
                 .anyRequest().permitAll()
             )
@@ -54,9 +64,6 @@ public class SecurityConfig {
             .sessionManagement(session -> session
                 .maximumSessions(1)
                 .maxSessionsPreventsLogin(false)
-            )
-            .csrf(csrf -> csrf
-                .ignoringRequestMatchers("/api/**") // Se aggiungi API REST
             );
 
         return http.build();
@@ -69,14 +76,9 @@ public class SecurityConfig {
 
     @Bean
     public UserDetailsService userDetailsService() {
-        // IMPORTANTE: Cambia username e password in produzione!
-        // Per generare una password bcrypt: 
-        // https://bcrypt-generator.com/
-        
         UserDetails admin = User.builder()
-            .username("admin")
-            // Password: "admin123" (CAMBIALA!)
-            .password(passwordEncoder().encode("admin123"))
+            .username(adminUsername)
+            .password(passwordEncoder().encode(adminPassword))
             .roles("ADMIN")
             .build();
 

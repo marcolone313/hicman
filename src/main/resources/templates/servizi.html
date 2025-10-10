@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments/header :: header}"></head>
+
+<body>
+    <!-- Navbar Fragment -->
+    <nav th:replace="~{fragments/navbar :: navbar('services')}"></nav>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="services-hero-section">
+            <div class="hero-overlay-finance"></div>
+            <div class="hero-content-services">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-10 text-center">
+                            <h1 class="services-hero-title animate__animated animate__fadeInUp">
+                                I Nostri Servizi
+                            </h1>
+                            <p class="services-hero-subtitle animate__animated animate__fadeInUp animate__delay-1s">
+                                Soluzioni su misura per ogni esigenza finanziaria
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Finanza Strutturata -->
+        <section id="finanza-strutturata" class="service-detail-section py-5">
+            <div class="container py-5">
+                <div class="row align-items-center mb-5">
+                    <div class="col-lg-6 mb-4 mb-lg-0">
+                        <div class="service-icon-large mb-4">
+                            <i class="bi bi-building"></i>
+                        </div>
+                        <h2 class="service-detail-title">Finanza Strutturata</h2>
+                        <p class="service-detail-lead">
+                            Supportiamo le aziende nella pianificazione e nell'esecuzione di operazioni complesse, 
+                            in grado di garantire l'apporto di nuovi capitali per sostenere progetti innovativi 
+                            in fase di crescita, espansione o trasformazione strategica.
+                        </p>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="service-stats-box">
+                            <div class="stat-item-large">
+                                <div class="stat-label">Contesto</div>
+                                <div class="stat-value">Ordinario e Strategico</div>
+                            </div>
+                            <div class="stat-item-large">
+                                <div class="stat-label">Complessità</div>
+                                <div class="stat-value">Elevata</div>
+                            </div>
+                            <div class="stat-item-large">
+                                <div class="stat-label">Finalità</div>
+                                <div class="stat-value">Crescita ed Espansione</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="service-content-box">
+                            <h3 class="service-subtitle">Obiettivo</h3>
+                            <p class="service-text">
+                                Ottimizzare la struttura del capitale investito, isolando i relativi rischi.
+                            </p>
+
+                            <h3 class="service-subtitle mt-4">Ambito di Intervento</h3>
+                            <p class="service-text">
+                                <strong>Accesso a capitali privati e istituzionali</strong>
+                            </p>
+
+                            <div class="service-features mt-4">
+                                <div class="row g-4">
+                                    <div class="col-md-4">
+                                        <div class="feature-card">
+                                            <div class="feature-icon">
+                                                <i class="bi bi-graph-up"></i>
+                                            </div>
+                                            <h4 class="feature-title">Crescita</h4>
+                                            <p class="feature-text">
+                                                Strutture finanziarie per progetti di espansione e sviluppo aziendale
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="feature-card">
+                                            <div class="feature-icon">
+                                                <i class="bi bi-shield-check"></i>
+                                            </div>
+                                            <h4 class="feature-title">Ottimizzazione</h4>
+                                            <p class="feature-text">
+                                                Gestione ottimale del capitale con isolamento dei rischi finanziari
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="feature-card">
+                                            <div class="feature-icon">
+                                                <i class="bi bi-people"></i>
+                                            </div>
+                                            <h4 class="feature-title">Partnership</h4>
+                                            <p class="feature-text">
+                                                Accesso a network di investitori privati e istituzionali qualificati
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Divider -->
+        <div class="service-divider"></div>
+
+        <!-- Finanza Speciale -->
+        <section id="finanza-speciale" class="service-detail-section py-5">
+            <div class="container py-5">
+                <div class="row align-items-center mb-5">
+                    <div class="col-lg-6 order-lg-2 mb-4 mb-lg-0">
+                        <div class="service-icon-large mb-4">
+                            <i class="bi bi-shield-check"></i>
+                        </div>
+                        <h2 class="service-detail-title">Finanza Speciale</h2>
+                        <p class="service-detail-lead">
+                            In contesti straordinari o di tensione finanziaria, come crisi aziendali, processi di 
+                            ristrutturazione del debito o situazioni ad alto rischio, progettiamo interventi 
+                            finalizzati a garantire continuità operativa, rilancio industriale e riequilibrio finanziario.
+                        </p>
+                    </div>
+                    <div class="col-lg-6 order-lg-1">
+                        <div class="service-stats-box">
+                            <div class="stat-item-large">
+                                <div class="stat-label">Contesto</div>
+                                <div class="stat-value">Straordinario e di Crisi</div>
+                            </div>
+                            <div class="stat-item-large">
+                                <div class="stat-label">Complessità</div>
+                                <div class="stat-value">Elevata con Vincoli Temporali</div>
+                            </div>
+                            <div class="stat-item-large">
+                                <div class="stat-label">Finalità</div>
+                                <div class="stat-value">Risanamento e Rilancio</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="service-content-box">
+                            <h3 class="service-subtitle">Obiettivo</h3>
+                            <p class="service-text">
+                                Consentire l'accesso a nuova finanza in situazioni straordinarie e complesse, in tempi rapidi.
+                            </p>
+
+                            <h3 class="service-subtitle mt-4">Ambito di Intervento</h3>
+                            <p class="service-text">
+                                <strong>Ristrutturazione del debito, aumenti di capitale, ricapitalizzazione</strong>
+                            </p>
+
+                            <div class="crisis-timeline mt-5">
+                                <h3 class="service-subtitle mb-4">Come Gestiamo lo Stato di Crisi</h3>
+                                <p class="service-text mb-4">
+                                    Preferiamo, se possibile, gestire le criticità in anticipo ma siamo strutturati 
+                                    per intervenire, in modo efficace, in qualsiasi fase e circostanza.
+                                </p>
+                                <p class="crisis-quote">
+                                    <strong>Dove c'è complessità portiamo visione, metodo e direzione.</strong>
+                                </p>
+
+                                <div class="crisis-stages mt-4">
+                                    <div class="stage-item">
+                                        <div class="stage-number">1</div>
+                                        <div class="stage-content">
+                                            <h4 class="stage-title">Declino</h4>
+                                            <p class="stage-text">Identificazione precoce dei segnali di difficoltà</p>
+                                        </div>
+                                    </div>
+                                    <div class="stage-item">
+                                        <div class="stage-number">2</div>
+                                        <div class="stage-content">
+                                            <h4 class="stage-title">Crisi</h4>
+                                            <p class="stage-text">Interventi mirati per stabilizzare la situazione</p>
+                                        </div>
+                                    </div>
+                                    <div class="stage-item">
+                                        <div class="stage-number">3</div>
+                                        <div class="stage-content">
+                                            <h4 class="stage-title">Insolvenza</h4>
+                                            <p class="stage-text">Gestione strategica del processo di ristrutturazione</p>
+                                        </div>
+                                    </div>
+                                    <div class="stage-item">
+                                        <div class="stage-number">4</div>
+                                        <div class="stage-content">
+                                            <h4 class="stage-title">Dissesto</h4>
+                                            <p class="stage-text">Recupero e rilancio anche in situazioni estreme</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="highlight-box mt-4">
+                                    <i class="bi bi-shield-fill-check me-3"></i>
+                                    <p class="mb-0">
+                                        <strong>Salvaguardiamo l'integrità dell'azienda, i suoi asset strategici e il capitale umano.</strong>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Divider -->
+        <div class="service-divider"></div>
+
+        <!-- Asset Alternativi -->
+        <section id="asset-alternativi" class="service-detail-section py-5">
+            <div class="container py-5">
+                <div class="row align-items-center mb-5">
+                    <div class="col-lg-6 mb-4 mb-lg-0">
+                        <div class="service-icon-large mb-4">
+                            <i class="bi bi-graph-up-arrow"></i>
+                        </div>
+                        <h2 class="service-detail-title">Asset Alternativi</h2>
+                        <p class="service-detail-lead">
+                            Da sempre attenti alle politiche ambientali, favoriamo e sosteniamo investimenti in 
+                            asset alternativi, identificando progetti immobiliari sostenibili, orientati al 
+                            recupero e alla rigenerazione urbana, in grado di garantire ritorno economico, crescita e posizionamento.
+                        </p>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="service-stats-box">
+                            <div class="stat-item-large">
+                                <div class="stat-label">Focus</div>
+                                <div class="stat-value">Progetti Sostenibili</div>
+                            </div>
+                            <div class="stat-item-large">
+                                <div class="stat-label">Settore</div>
+                                <div class="stat-value">Real Estate ESG</div>
+                            </div>
+                            <div class="stat-item-large">
+                                <div class="stat-label">Obiettivo</div>
+                                <div class="stat-value">Valore e Impatto</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="service-content-box">
+                            <h3 class="service-subtitle">Ambito di Intervento</h3>
+                            <p class="service-text">
+                                <strong>Origination, Investment Structuring & Execution, Club Deal</strong>
+                            </p>
+
+                            <div class="service-features mt-5">
+                                <div class="row g-4">
+                                    <div class="col-md-4">
+                                        <div class="feature-card">
+                                            <div class="feature-icon">
+                                                <i class="bi bi-building-add"></i>
+                                            </div>
+                                            <h4 class="feature-title">Origination</h4>
+                                            <p class="feature-text">
+                                                Identificazione e selezione di opportunità immobiliari ad alto potenziale
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="feature-card">
+                                            <div class="feature-icon">
+                                                <i class="bi bi-diagram-3"></i>
+                                            </div>
+                                            <h4 class="feature-title">Structuring</h4>
+                                            <p class="feature-text">
+                                                Strutturazione finanziaria ottimale per massimizzare il rendimento
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="feature-card">
+                                            <div class="feature-icon">
+                                                <i class="bi bi-people-fill"></i>
+                                            </div>
+                                            <h4 class="feature-title">Club Deal</h4>
+                                            <p class="feature-text">
+                                                Co-investimento con partner selezionati per progetti di valore
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="esg-section mt-5">
+                                <h3 class="service-subtitle">Sostenibilità e Impatto</h3>
+                                <div class="row g-4 mt-3">
+                                    <div class="col-md-6">
+                                        <div class="esg-card">
+                                            <i class="bi bi-leaf esg-icon"></i>
+                                            <h4 class="esg-title">Recupero Urbano</h4>
+                                            <p class="esg-text">
+                                                Rigenerazione di aree urbane con focus sulla sostenibilità ambientale
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="esg-card">
+                                            <i class="bi bi-graph-up esg-icon"></i>
+                                            <h4 class="esg-title">Ritorno Economico</h4>
+                                            <p class="esg-text">
+                                                Investimenti che coniugano impatto sociale e performance finanziaria
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="services-cta-section py-5">
+            <div class="container py-5">
+                <div class="row justify-content-center text-center">
+                    <div class="col-lg-8">
+                        <h2 class="cta-title mb-4">Vuoi Approfondire i Nostri Servizi?</h2>
+                        <p class="cta-text mb-4">
+                            Contattaci per una consulenza personalizzata e scopri come possiamo supportare 
+                            la tua azienda nel raggiungimento degli obiettivi strategici.
+                        </p>
+                        <div class="cta-buttons">
+                            <a href="/#contact" class="btn btn-finance-primary btn-lg">
+                                Contattaci <i class="bi bi-arrow-right ms-2"></i>
+                            </a>
+                            <a href="/chi-siamo" class="btn btn-finance-outline btn-lg">
+                                Scopri Chi Siamo
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer Fragment -->
+    <footer th:replace="~{fragments/footer :: footer}"></footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Smooth scroll per anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offset = 100;
+                    const targetPosition = target.offsetTop - offset;
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Highlight active section in navbar on scroll
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('.service-detail-section');
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (scrollY >= sectionTop - 150) {
+                    current = section.getAttribute('id');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

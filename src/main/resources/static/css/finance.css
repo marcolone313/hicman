@@ -1,0 +1,748 @@
+/* ========================================
+   HICMAN CAPITAL PARTNER - FINANCE STYLES
+   ======================================== */
+
+/* === VARIABILI COLORI === */
+:root {
+    /* Palette Principale */
+    --finance-primary: #282942;        /* Header e elementi di rilievo */
+    --finance-secondary: #d5daf5;      /* Sfondi leggeri */
+    --finance-text: #2e2e2e;           /* Testi e dettagli */
+    --finance-bg: #f5f6fb;             /* Sfondi principali */
+    
+    /* Colori Aggiuntivi */
+    --finance-white: #ffffff;
+    --finance-accent: #4a4d7c;         /* Hover states */
+    --finance-light: #e8eaf6;
+    --finance-border: #d0d4e4;
+    
+    /* Typography */
+    --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --font-heading: 'Playfair Display', Georgia, serif;
+}
+
+/* === TYPOGRAPHY === */
+body {
+    font-family: var(--font-primary);
+    color: var(--finance-text);
+    background-color: var(--finance-bg);
+    line-height: 1.7;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    color: var(--finance-primary);
+}
+
+/* === HERO SECTION === */
+.hero-section-finance {
+    min-height: 100vh;
+    background: linear-gradient(135deg, var(--finance-primary) 0%, var(--finance-accent) 100%);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 80px;
+    overflow: hidden;
+}
+
+.hero-section-finance::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 20% 30%, rgba(213, 218, 245, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(213, 218, 245, 0.08) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.hero-overlay-finance {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(180deg, transparent 0%, rgba(40, 41, 66, 0.3) 100%);
+    z-index: 1;
+}
+
+.hero-content-finance {
+    position: relative;
+    z-index: 2;
+    color: var(--finance-white);
+    padding: 2rem 1rem;
+}
+
+.hero-title-finance {
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+}
+
+.hero-subtitle-finance {
+    font-size: clamp(1.1rem, 2vw, 1.4rem);
+    font-weight: 300;
+    margin-bottom: 2.5rem;
+    line-height: 1.6;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.hero-buttons-finance {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* Scroll Indicator */
+.scroll-indicator-finance {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--finance-white);
+    font-size: 2rem;
+    animation: bounce-finance 2s infinite;
+    z-index: 2;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+}
+
+.scroll-indicator-finance:hover {
+    opacity: 1;
+}
+
+@keyframes bounce-finance {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateX(-50%) translateY(0);
+    }
+    40% {
+        transform: translateX(-50%) translateY(-20px);
+    }
+    60% {
+        transform: translateX(-50%) translateY(-10px);
+    }
+}
+
+/* === BUTTONS === */
+.btn-finance-primary {
+    background-color: var(--finance-white);
+    color: var(--finance-primary);
+    border: 2px solid var(--finance-white);
+    padding: 14px 32px;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-finance-primary:hover {
+    background-color: transparent;
+    color: var(--finance-white);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.btn-finance-secondary {
+    background-color: transparent;
+    color: var(--finance-white);
+    border: 2px solid var(--finance-white);
+    padding: 14px 32px;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-finance-secondary:hover {
+    background-color: var(--finance-white);
+    color: var(--finance-primary);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.btn-finance-outline {
+    background-color: transparent;
+    color: var(--finance-primary);
+    border: 2px solid var(--finance-primary);
+    padding: 12px 28px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-finance-outline:hover {
+    background-color: var(--finance-primary);
+    color: var(--finance-white);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(40, 41, 66, 0.2);
+}
+
+/* === SECTION TITLES === */
+.section-title-finance {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    color: var(--finance-primary);
+    margin-bottom: 1rem;
+    position: relative;
+    padding-bottom: 1rem;
+}
+
+.section-title-finance::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--finance-primary), var(--finance-accent));
+    border-radius: 2px;
+}
+
+/* === INTRO SECTION === */
+.intro-section {
+    background-color: var(--finance-white);
+}
+
+.intro-content {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.intro-text {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+    color: var(--finance-text);
+}
+
+/* === SERVICES HIGHLIGHTS === */
+.services-highlights-section {
+    background-color: var(--finance-bg);
+}
+
+.service-card {
+    background: var(--finance-white);
+    border-radius: 16px;
+    padding: 2.5rem;
+    transition: all 0.4s ease;
+    box-shadow: 0 4px 20px rgba(40, 41, 66, 0.08);
+    border: 1px solid var(--finance-border);
+    position: relative;
+    overflow: hidden;
+}
+
+.service-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--finance-primary), var(--finance-accent));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+}
+
+.service-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 40px rgba(40, 41, 66, 0.15);
+    border-color: var(--finance-primary);
+}
+
+.service-card:hover::before {
+    transform: scaleX(1);
+}
+
+.service-icon {
+    width: 70px;
+    height: 70px;
+    background: linear-gradient(135deg, var(--finance-secondary), var(--finance-light));
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.service-icon i {
+    font-size: 2rem;
+    color: var(--finance-primary);
+}
+
+.service-card:hover .service-icon {
+    background: linear-gradient(135deg, var(--finance-primary), var(--finance-accent));
+}
+
+.service-card:hover .service-icon i {
+    color: var(--finance-white);
+}
+
+.service-card-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--finance-primary);
+    margin-bottom: 1rem;
+}
+
+.service-card-text {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--finance-text);
+    margin-bottom: 1.5rem;
+}
+
+.service-details {
+    background-color: var(--finance-bg);
+    border-radius: 8px;
+    padding: 1.25rem;
+    margin-bottom: 1.5rem;
+}
+
+.service-detail-item {
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+    color: var(--finance-text);
+}
+
+.service-detail-item:last-child {
+    margin-bottom: 0;
+}
+
+.service-detail-item strong {
+    color: var(--finance-primary);
+}
+
+/* === VALUE PROPOSITION === */
+.value-proposition-section {
+    background-color: var(--finance-white);
+}
+
+.value-text {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 1.25rem;
+    color: var(--finance-text);
+}
+
+.value-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.stat-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+    padding: 1.5rem;
+    background: var(--finance-bg);
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+.stat-item:hover {
+    transform: translateX(8px);
+    background: var(--finance-secondary);
+}
+
+.stat-icon {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, var(--finance-primary), var(--finance-accent));
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.stat-icon i {
+    font-size: 1.8rem;
+    color: var(--finance-white);
+}
+
+.stat-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--finance-primary);
+    margin-bottom: 0.5rem;
+}
+
+.stat-text {
+    font-size: 0.95rem;
+    color: var(--finance-text);
+    margin: 0;
+    line-height: 1.5;
+}
+
+/* === CONTACT SECTION === */
+.contact-section-finance {
+    background: linear-gradient(135deg, var(--finance-primary) 0%, var(--finance-accent) 100%);
+    color: var(--finance-white);
+}
+
+.contact-section-finance .section-title-finance {
+    color: var(--finance-white);
+}
+
+.contact-section-finance .section-title-finance::after {
+    background: linear-gradient(90deg, var(--finance-white), var(--finance-secondary));
+}
+
+.contact-form-wrapper {
+    background: var(--finance-white);
+    border-radius: 16px;
+    padding: 3rem;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+}
+
+.contact-form-wrapper h3 {
+    color: var(--finance-primary);
+    margin-bottom: 2rem;
+}
+
+.contact-form-finance .form-control {
+    border: 2px solid var(--finance-border);
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background-color: var(--finance-bg);
+}
+
+.contact-form-finance .form-control:focus {
+    border-color: var(--finance-primary);
+    box-shadow: 0 0 0 0.2rem rgba(40, 41, 66, 0.15);
+    background-color: var(--finance-white);
+}
+
+.contact-form-finance .form-floating > label {
+    color: var(--finance-text);
+}
+
+.contact-form-finance .form-check-label {
+    color: var(--finance-text);
+    font-size: 0.9rem;
+}
+
+.contact-form-finance .form-check-label a {
+    color: var(--finance-primary);
+    text-decoration: underline;
+    font-weight: 600;
+}
+
+.contact-form-finance .form-check-label a:hover {
+    color: var(--finance-accent);
+}
+
+.contact-form-finance .btn-finance-primary {
+    padding: 16px 48px;
+    font-size: 1.1rem;
+}
+
+/* Contact Info Box */
+.contact-info-box {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    padding: 2.5rem;
+    color: var(--finance-white);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    height: 100%;
+}
+
+.contact-info-box h4 {
+    color: var(--finance-white);
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    font-weight: 700;
+}
+
+.contact-info-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.25rem;
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.contact-info-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.contact-info-item i {
+    font-size: 1.5rem;
+    color: var(--finance-secondary);
+    margin-top: 0.25rem;
+    flex-shrink: 0;
+}
+
+.contact-info-item strong {
+    display: block;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.contact-info-item p {
+    margin: 0;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+.contact-info-item a {
+    color: var(--finance-white);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.contact-info-item a:hover {
+    color: var(--finance-secondary);
+}
+
+/* === ALERTS === */
+.alert {
+    border-radius: 8px;
+    border: none;
+    padding: 1rem 1.5rem;
+}
+
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.alert-danger {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 991px) {
+    .hero-section-finance {
+        min-height: 80vh;
+        padding-top: 100px;
+    }
+
+    .hero-title-finance {
+        font-size: 2.5rem;
+    }
+
+    .hero-subtitle-finance {
+        font-size: 1.1rem;
+    }
+
+    .hero-buttons-finance {
+        gap: 1rem;
+    }
+
+    .section-title-finance {
+        font-size: 2rem;
+    }
+
+    .value-stats {
+        margin-top: 2rem;
+    }
+
+    .contact-form-wrapper {
+        padding: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    .contact-info-box {
+        margin-top: 2rem;
+    }
+}
+
+@media (max-width: 767px) {
+    .hero-section-finance {
+        min-height: 70vh;
+    }
+
+    .hero-title-finance {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+    }
+
+    .hero-subtitle-finance {
+        font-size: 1rem;
+        margin-bottom: 2rem;
+    }
+
+    .hero-buttons-finance {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .hero-buttons-finance a {
+        width: 100%;
+        max-width: 280px;
+        text-align: center;
+    }
+
+    .section-title-finance {
+        font-size: 1.75rem;
+    }
+
+    .service-card {
+        padding: 2rem;
+    }
+
+    .service-card-title {
+        font-size: 1.3rem;
+    }
+
+    .intro-text {
+        font-size: 1.05rem;
+    }
+
+    .value-text {
+        font-size: 1rem;
+    }
+
+    .stat-item {
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+    }
+
+    .contact-form-wrapper {
+        padding: 1.5rem;
+    }
+
+    .contact-info-box {
+        padding: 2rem;
+    }
+
+    .scroll-indicator-finance {
+        bottom: 20px;
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 575px) {
+    .hero-section-finance {
+        min-height: 65vh;
+        padding-top: 80px;
+    }
+
+    .hero-title-finance {
+        font-size: 1.75rem;
+    }
+
+    .hero-subtitle-finance {
+        font-size: 0.95rem;
+    }
+
+    .btn-finance-primary,
+    .btn-finance-secondary {
+        padding: 12px 24px;
+        font-size: 0.9rem;
+    }
+
+    .section-title-finance {
+        font-size: 1.5rem;
+    }
+
+    .service-card {
+        padding: 1.5rem;
+    }
+
+    .service-icon {
+        width: 60px;
+        height: 60px;
+    }
+
+    .service-icon i {
+        font-size: 1.75rem;
+    }
+
+    .stat-icon {
+        width: 50px;
+        height: 50px;
+    }
+
+    .stat-icon i {
+        font-size: 1.5rem;
+    }
+
+    .contact-form-wrapper {
+        padding: 1.25rem;
+    }
+}
+
+/* === ANIMATIONS === */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate__animated {
+    animation-duration: 1s;
+    animation-fill-mode: both;
+}
+
+.animate__fadeInUp {
+    animation-name: fadeInUp;
+}
+
+.animate__delay-1s {
+    animation-delay: 0.3s;
+}
+
+.animate__delay-2s {
+    animation-delay: 0.6s;
+}
+
+/* === UTILITIES === */
+.text-gradient {
+    background: linear-gradient(135deg, var(--finance-primary), var(--finance-accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Smooth Scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Selection Color */
+::selection {
+    background-color: var(--finance-primary);
+    color: var(--finance-white);
+}
+
+::-moz-selection {
+    background-color: var(--finance-primary);
+    color: var(--finance-white);
+}
