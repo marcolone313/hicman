@@ -75,6 +75,12 @@ public class Testimonial {
      */
     @Column(nullable = false)
     private LocalDateTime updatedAt;
+    /**
+     * Ordine di visualizzazione (per riordinare le testimonianze)
+     */
+    @Column(name = "display_order")
+    private int displayOrder = 0;
+
 
     // ========== CONSTRUCTORS ==========
 
@@ -132,6 +138,14 @@ public class Testimonial {
 
     public Long getId() {
         return id;
+    }
+
+        public int getDisplayOrder() {
+        return displayOrder;
+    }
+
+    public void setDisplayOrder(int displayOrder) {
+        this.displayOrder = displayOrder;
     }
 
     public void setId(Long id) {
