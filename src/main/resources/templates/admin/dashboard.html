@@ -1,243 +1,320 @@
 <!DOCTYPE html>
-<html lang="it" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="~{fragments/header :: header}"></head>
-<link rel="stylesheet" th:href="@{/css/admin.css}">
-<body class="admin-body">
+<html xmlns:th="http://www.thymeleaf.org" lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Admin - Hicman Capital Partner</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" th:href="@{/css/admin.css}">
+</head>
+<body>
+    <div class="admin-wrapper">
+        <!-- Sidebar -->
+        <aside class="admin-sidebar" id="adminSidebar">
+            <div class="admin-sidebar-header">
+                <h3>Hicman Capital</h3>
+                <small>Admin Panel</small>
+            </div>
+            
+            <nav class="admin-nav">
+                <a href="/admin" class="admin-nav-item active">
+                    <i class="bi bi-speedometer2"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="/admin/blog" class="admin-nav-item">
+                    <i class="bi bi-newspaper"></i>
+                    <span>Rassegna Stampa</span>
+                    <span class="badge" th:text="${totalPosts}">0</span>
+                </a>
+                <a href="/admin/testimonials" class="admin-nav-item">
+                    <i class="bi bi-chat-quote"></i>
+                    <span>Dicono di Noi</span>
+                    <span class="badge" th:text="${totalTestimonials}">0</span>
+                </a>
+                <a href="/" class="admin-nav-item" target="_blank">
+                    <i class="bi bi-box-arrow-up-right"></i>
+                    <span>Visualizza Sito</span>
+                </a>
+                <a href="/logout" class="admin-nav-item">
+                    <i class="bi bi-box-arrow-right"></i>
+                    <span>Logout</span>
+                </a>
+            </nav>
+        </aside>
 
-<div class="admin-wrapper">
-    <!-- Sidebar -->
-    <aside th:replace="~{admin/fragments/sidebar :: sidebar('dashboard')}"></aside>
+        <!-- Main Content -->
+        <main class="admin-content">
+            <!-- Header -->
+            <header class="admin-header">
+                <button class="mobile-menu-toggle" onclick="toggleSidebar()">
+                    <i class="bi bi-list"></i>
+                </button>
+                
+                <div class="admin-header-title">
+                    <h1>Dashboard</h1>
+                </div>
+                
+                <div class="admin-header-actions">
+                    <div class="admin-user-info">
+                        <div class="admin-user-avatar">A</div>
+                        <div>
+                            <div class="admin-user-name">Admin</div>
+                        </div>
+                    </div>
+                </div>
+            </header>
 
-    <!-- Main Content -->
-    <main class="admin-main">
-        <!-- Top Bar -->
-        <nav th:replace="~{admin/fragments/topbar :: topbar}"></nav>
+            <!-- Main Content Area -->
+            <div class="admin-main">
+                <!-- Success Message -->
+                <div class="alert alert-success" th:if="${successMessage}">
+                    <i class="bi bi-check-circle-fill"></i>
+                    <span th:text="${successMessage}"></span>
+                </div>
 
-        <!-- Content -->
-        <div class="admin-content">
-            <div class="container-fluid">
-                <!-- Page Header -->
-                <div class="page-header mb-4">
-                    <h1 class="h3 mb-0">Dashboard</h1>
-                    <p class="text-muted">Panoramica generale del sito</p>
+                <!-- Error Message -->
+                <div class="alert alert-danger" th:if="${errorMessage}">
+                    <i class="bi bi-exclamation-triangle-fill"></i>
+                    <span th:text="${errorMessage}"></span>
                 </div>
 
                 <!-- Stats Cards -->
-                <div class="row g-4 mb-4">
-                    <!-- Total Posts -->
-                    <div class="col-md-3">
-                        <div class="stats-card">
-                            <div class="stats-icon bg-primary">
-                                <i class="bi bi-file-text"></i>
+                <div class="stats-grid">
+                    <!-- Total Articles -->
+                    <div class="stat-card">
+                        <div class="stat-card-header">
+                            <div>
+                                <div class="stat-card-value" th:text="${totalPosts}">0</div>
+                                <div class="stat-card-label">Articoli Totali</div>
                             </div>
-                            <div class="stats-content">
-                                <h3 th:text="${totalPosts}">0</h3>
-                                <p class="text-muted mb-0">Totale Post</p>
+                            <div class="stat-card-icon primary">
+                                <i class="bi bi-newspaper"></i>
                             </div>
+                        </div>
+                        <div class="stat-card-footer">
+                            <i class="bi bi-arrow-up"></i>
+                            <span th:text="${publishedPosts} + ' pubblicati'">0 pubblicati</span>
                         </div>
                     </div>
 
-                    <!-- Published Posts -->
-                    <div class="col-md-3">
-                        <div class="stats-card">
-                            <div class="stats-icon bg-success">
-                                <i class="bi bi-check-circle"></i>
+                    <!-- Total Testimonials -->
+                    <div class="stat-card">
+                        <div class="stat-card-header">
+                            <div>
+                                <div class="stat-card-value" th:text="${totalTestimonials}">0</div>
+                                <div class="stat-card-label">Testimonianze</div>
                             </div>
-                            <div class="stats-content">
-                                <h3 th:text="${publishedPosts}">0</h3>
-                                <p class="text-muted mb-0">Post Pubblicati</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Draft Posts -->
-                    <div class="col-md-3">
-                        <div class="stats-card">
-                            <div class="stats-icon bg-warning">
-                                <i class="bi bi-pencil"></i>
-                            </div>
-                            <div class="stats-content">
-                                <h3 th:text="${draftPosts}">0</h3>
-                                <p class="text-muted mb-0">Bozze</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Testimonials -->
-                    <div class="col-md-3">
-                        <div class="stats-card">
-                            <div class="stats-icon bg-info">
+                            <div class="stat-card-icon success">
                                 <i class="bi bi-chat-quote"></i>
                             </div>
-                            <div class="stats-content">
-                                <h3 th:text="${publishedTestimonials}">0</h3>
-                                <p class="text-muted mb-0">Testimonial</p>
-                            </div>
                         </div>
-                    </div>
-                </div>
-
-                <!-- Recent Content -->
-                <div class="row g-4">
-                    <!-- Recent Posts -->
-                    <div class="col-lg-7">
-                        <div class="admin-card">
-                            <div class="card-header d-flex justify-content-between align-items-center">
-                                <h5 class="mb-0">
-                                    <i class="bi bi-clock-history me-2"></i>
-                                    Post Recenti
-                                </h5>
-                                <a th:href="@{/admin/blog}" class="btn btn-sm btn-outline-primary">
-                                    Vedi tutti
-                                </a>
-                            </div>
-                            <div class="card-body p-0">
-                                <div class="table-responsive">
-                                    <table class="table table-hover mb-0">
-                                        <thead>
-                                            <tr>
-                                                <th>Titolo</th>
-                                                <th>Stato</th>
-                                                <th>Data</th>
-                                                <th>Azioni</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr th:each="post : ${recentPosts}">
-                                                <td>
-                                                    <div class="post-title-cell">
-                                                        <strong th:text="${post.title}">Titolo</strong>
-                                                        <small class="text-muted d-block" th:if="${post.sourceName}">
-                                                            <i class="bi bi-newspaper"></i>
-                                                            <span th:text="${post.sourceName}">Fonte</span>
-                                                        </small>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <span class="badge" 
-                                                          th:classappend="${post.published} ? 'bg-success' : 'bg-warning'"
-                                                          th:text="${post.published} ? 'Pubblicato' : 'Bozza'">
-                                                        Stato
-                                                    </span>
-                                                </td>
-                                                <td>
-                                                    <small th:text="${#temporals.format(post.createdAt, 'dd/MM/yyyy')}">Data</small>
-                                                </td>
-                                                <td>
-                                                    <a th:href="@{/admin/blog/edit/{id}(id=${post.id})}" 
-                                                       class="btn btn-sm btn-outline-secondary"
-                                                       title="Modifica">
-                                                        <i class="bi bi-pencil"></i>
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                            <tr th:if="${#lists.isEmpty(recentPosts)}">
-                                                <td colspan="4" class="text-center text-muted py-4">
-                                                    <i class="bi bi-inbox display-6 d-block mb-2"></i>
-                                                    Nessun post disponibile
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
+                        <div class="stat-card-footer">
+                            <i class="bi bi-arrow-up"></i>
+                            <span th:text="${publishedTestimonials} + ' pubblicate'">0 pubblicate</span>
                         </div>
                     </div>
 
-                    <!-- Recent Testimonials -->
-                    <div class="col-lg-5">
-                        <div class="admin-card">
-                            <div class="card-header d-flex justify-content-between align-items-center">
-                                <h5 class="mb-0">
-                                    <i class="bi bi-chat-left-quote me-2"></i>
-                                    Testimonial Recenti
-                                </h5>
-                                <a th:href="@{/admin/testimonials}" class="btn btn-sm btn-outline-primary">
-                                    Vedi tutti
-                                </a>
+                    <!-- Draft Articles -->
+                    <div class="stat-card">
+                        <div class="stat-card-header">
+                            <div>
+                                <div class="stat-card-value" th:text="${draftPosts}">0</div>
+                                <div class="stat-card-label">Bozze</div>
                             </div>
-                            <div class="card-body">
-                                <div th:if="${#lists.isEmpty(recentTestimonials)}" class="text-center text-muted py-4">
-                                    <i class="bi bi-chat-quote display-6 d-block mb-2"></i>
-                                    Nessun testimonial disponibile
-                                </div>
-                                
-                                <div th:unless="${#lists.isEmpty(recentTestimonials)}" class="testimonial-list">
-                                    <div class="testimonial-item" th:each="testimonial : ${recentTestimonials}">
-                                        <div class="d-flex justify-content-between align-items-start mb-2">
-                                            <div>
-                                                <strong th:text="${testimonial.author}">Autore</strong>
-                                                <span class="badge ms-2" 
-                                                      th:classappend="${testimonial.published} ? 'bg-success' : 'bg-warning'"
-                                                      th:text="${testimonial.published} ? 'Pubblicato' : 'Bozza'">
-                                                </span>
-                                            </div>
-                                            <a th:href="@{/admin/testimonials/edit/{id}(id=${testimonial.id})}" 
-                                               class="btn btn-sm btn-outline-secondary">
-                                                <i class="bi bi-pencil"></i>
-                                            </a>
-                                        </div>
-                                        <p class="text-muted small mb-1" th:if="${testimonial.companyName}">
-                                            <i class="bi bi-building"></i>
-                                            <span th:text="${testimonial.companyName}">Azienda</span>
-                                        </p>
-                                        <p class="mb-0 small" th:text="${testimonial.getShortContent(80)}">
-                                            Contenuto breve...
-                                        </p>
-                                    </div>
-                                </div>
+                            <div class="stat-card-icon warning">
+                                <i class="bi bi-file-earmark-text"></i>
                             </div>
+                        </div>
+                        <div class="stat-card-footer">
+                            <i class="bi bi-clock"></i>
+                            <span>In attesa di pubblicazione</span>
+                        </div>
+                    </div>
+
+                    <!-- Recent Activity -->
+                    <div class="stat-card">
+                        <div class="stat-card-header">
+                            <div>
+                                <div class="stat-card-value" th:text="${recentPostsCount}">0</div>
+                                <div class="stat-card-label">Ultimi 30 giorni</div>
+                            </div>
+                            <div class="stat-card-icon info">
+                                <i class="bi bi-calendar-event"></i>
+                            </div>
+                        </div>
+                        <div class="stat-card-footer">
+                            <i class="bi bi-graph-up"></i>
+                            <span>Nuovi contenuti</span>
                         </div>
                     </div>
                 </div>
 
                 <!-- Quick Actions -->
-                <div class="row g-4 mt-2">
-                    <div class="col-12">
-                        <div class="admin-card">
-                            <div class="card-header">
-                                <h5 class="mb-0">
-                                    <i class="bi bi-lightning me-2"></i>
-                                    Azioni Rapide
-                                </h5>
-                            </div>
-                            <div class="card-body">
-                                <div class="row g-3">
-                                    <div class="col-md-3">
-                                        <a th:href="@{/admin/blog/new}" class="quick-action-btn">
-                                            <i class="bi bi-plus-circle"></i>
-                                            <span>Nuovo Post</span>
-                                        </a>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <a th:href="@{/admin/testimonials/new}" class="quick-action-btn">
-                                            <i class="bi bi-plus-circle"></i>
-                                            <span>Nuovo Testimonial</span>
-                                        </a>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <a th:href="@{/blog}" target="_blank" class="quick-action-btn">
-                                            <i class="bi bi-newspaper"></i>
-                                            <span>Rassegna Stampa</span>
-                                        </a>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <a th:href="@{/blog/testimonials}" target="_blank" class="quick-action-btn">
-                                            <i class="bi bi-chat-quote"></i>
-                                            <span>Dicono di Noi</span>
-                                        </a>
-                                    </div>
+                <div class="quick-actions">
+                    <h3><i class="bi bi-lightning-fill"></i> Azioni Rapide</h3>
+                    <div class="quick-actions-grid">
+                        <a href="/admin/blog/new" class="quick-action-btn">
+                            <i class="bi bi-plus-circle"></i>
+                            <span>Nuovo Articolo</span>
+                        </a>
+                        <a href="/admin/testimonials/new" class="quick-action-btn">
+                            <i class="bi bi-plus-circle"></i>
+                            <span>Nuova Testimonianza</span>
+                        </a>
+                        <a href="/admin/blog" class="quick-action-btn">
+                            <i class="bi bi-list-ul"></i>
+                            <span>Gestisci Articoli</span>
+                        </a>
+                        <a href="/admin/testimonials" class="quick-action-btn">
+                            <i class="bi bi-list-ul"></i>
+                            <span>Gestisci Testimonianze</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Two Column Layout -->
+                <div class="row g-4">
+                    <!-- Recent Articles -->
+                    <div class="col-lg-6">
+                        <div class="recent-activity">
+                            <h3><i class="bi bi-newspaper"></i> Ultimi Articoli</h3>
+                            
+                            <div th:if="${latestPosts != null and !latestPosts.isEmpty()}">
+                                <ul class="activity-list">
+                                    <li class="activity-item" th:each="post : ${latestPosts}">
+                                        <div class="activity-icon primary">
+                                            <i class="bi bi-file-text"></i>
+                                        </div>
+                                        <div class="activity-content">
+                                            <div class="activity-title" th:text="${post.title}">Titolo articolo</div>
+                                            <div class="activity-time">
+                                                <span th:text="${post.sourceName}">Fonte</span> • 
+                                                <span th:text="${#temporals.format(post.publishedDate, 'dd/MM/yyyy')}">01/01/2024</span>
+                                                <span class="status-badge ms-2" 
+                                                      th:classappend="${post.published} ? 'published' : 'draft'"
+                                                      th:text="${post.published} ? 'Pubblicato' : 'Bozza'">
+                                                    Pubblicato
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="table-actions">
+                                            <a th:href="@{/admin/blog/edit/{id}(id=${post.id})}" 
+                                               class="table-btn table-btn-primary">
+                                                <i class="bi bi-pencil"></i>
+                                            </a>
+                                        </div>
+                                    </li>
+                                </ul>
+                                <div class="text-center mt-3">
+                                    <a href="/admin/blog" class="btn btn-outline">
+                                        Vedi tutti gli articoli <i class="bi bi-arrow-right"></i>
+                                    </a>
                                 </div>
+                            </div>
+
+                            <div th:unless="${latestPosts != null and !latestPosts.isEmpty()}" class="empty-state">
+                                <i class="bi bi-newspaper"></i>
+                                <h3>Nessun articolo</h3>
+                                <p>Inizia creando il tuo primo articolo</p>
+                                <a href="/admin/blog/new" class="btn btn-primary">
+                                    <i class="bi bi-plus-circle"></i> Crea Articolo
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Recent Testimonials -->
+                    <div class="col-lg-6">
+                        <div class="recent-activity">
+                            <h3><i class="bi bi-chat-quote"></i> Ultime Testimonianze</h3>
+                            
+                            <div th:if="${latestTestimonials != null and !latestTestimonials.isEmpty()}">
+                                <ul class="activity-list">
+                                    <li class="activity-item" th:each="testimonial : ${latestTestimonials}">
+                                        <div class="activity-icon success">
+                                            <i class="bi bi-quote"></i>
+                                        </div>
+                                        <div class="activity-content">
+                                            <div class="activity-title" th:text="${testimonial.sourceName}">Nome Fonte</div>
+                                            <div class="activity-time">
+                                                <span th:text="${testimonial.sourceRole}">Ruolo</span> • 
+                                                <span th:text="${#temporals.format(testimonial.publishedDate, 'dd/MM/yyyy')}">01/01/2024</span>
+                                                <span class="status-badge ms-2" 
+                                                      th:classappend="${testimonial.published} ? 'published' : 'draft'"
+                                                      th:text="${testimonial.published} ? 'Pubblicata' : 'Bozza'">
+                                                    Pubblicata
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="table-actions">
+                                            <a th:href="@{/admin/testimonials/edit/{id}(id=${testimonial.id})}" 
+                                               class="table-btn table-btn-primary">
+                                                <i class="bi bi-pencil"></i>
+                                            </a>
+                                        </div>
+                                    </li>
+                                </ul>
+                                <div class="text-center mt-3">
+                                    <a href="/admin/testimonials" class="btn btn-outline">
+                                        Vedi tutte le testimonianze <i class="bi bi-arrow-right"></i>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div th:unless="${latestTestimonials != null and !latestTestimonials.isEmpty()}" class="empty-state">
+                                <i class="bi bi-chat-quote"></i>
+                                <h3>Nessuna testimonianza</h3>
+                                <p>Inizia aggiungendo la prima testimonianza</p>
+                                <a href="/admin/testimonials/new" class="btn btn-primary">
+                                    <i class="bi bi-plus-circle"></i> Aggiungi Testimonianza
+                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
-
             </div>
-        </div>
-    </main>
-</div>
+        </main>
+    </div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom JS -->
+    <script>
+        // Mobile sidebar toggle
+        function toggleSidebar() {
+            const sidebar = document.getElementById('adminSidebar');
+            sidebar.classList.toggle('show');
+        }
+
+        // Auto-hide alerts after 5 seconds
+        document.addEventListener('DOMContentLoaded', function() {
+            const alerts = document.querySelectorAll('.alert');
+            alerts.forEach(alert => {
+                setTimeout(() => {
+                    alert.style.opacity = '0';
+                    setTimeout(() => alert.remove(), 300);
+                }, 5000);
+            });
+        });
+
+        // Close mobile sidebar when clicking outside
+        document.addEventListener('click', function(event) {
+            const sidebar = document.getElementById('adminSidebar');
+            const toggle = document.querySelector('.mobile-menu-toggle');
+            
+            if (window.innerWidth <= 768 && 
+                sidebar.classList.contains('show') && 
+                !sidebar.contains(event.target) && 
+                !toggle.contains(event.target)) {
+                sidebar.classList.remove('show');
+            }
+        });
+    </script>
 </body>
 </html>
