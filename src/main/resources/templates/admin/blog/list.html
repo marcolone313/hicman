@@ -5,12 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestione Rassegna Stampa - Hicman Capital Partner</title>
     
-    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
-    <!-- Custom CSS -->
-    <link rel="stylesheet" th:href="@{/css/admin.css}">
+    <link rel="stylesheet" th:href="@{/css/admin-blog-list.css}">
 </head>
 <body>
     <div class="admin-wrapper">
@@ -39,10 +36,12 @@
                     <i class="bi bi-box-arrow-up-right"></i>
                     <span>Visualizza Sito</span>
                 </a>
-                <a href="/logout" class="admin-nav-item">
-                    <i class="bi bi-box-arrow-right"></i>
-                    <span>Logout</span>
-                </a>
+                <form th:action="@{/admin/logout}" method="post">
+                    <button type="submit" class="admin-nav-item logout-btn">
+                        <i class="bi bi-box-arrow-right"></i>
+                        <span>Logout</span>
+                    </button>
+                </form>
             </nav>
         </aside>
 
@@ -58,7 +57,7 @@
                     <h1>Gestione Articoli</h1>
                 </div>
                 
-                <div class="admin-header-actions">
+                <div>
                     <a href="/admin/blog/new" class="btn btn-primary">
                         <i class="bi bi-plus-circle"></i> Nuovo Articolo
                     </a>
@@ -67,7 +66,7 @@
 
             <!-- Main Content Area -->
             <div class="admin-main">
-                <!-- Success/Error Messages -->
+                <!-- Alerts -->
                 <div class="alert alert-success" th:if="${successMessage}">
                     <i class="bi bi-check-circle-fill"></i>
                     <span th:text="${successMessage}"></span>
@@ -78,324 +77,167 @@
                     <span th:text="${errorMessage}"></span>
                 </div>
 
-                <!-- Table Wrapper -->
-                <div class="admin-table-wrapper">
-                    <!-- Table Header with Actions -->
-                    <div class="admin-table-header">
+                <!-- Toolbar -->
+                <div class="content-toolbar">
+                    <div class="toolbar-left">
                         <h2>
-                            <i class="bi bi-newspaper"></i> Articoli
-                            <small class="text-muted ms-2" th:text="'(' + ${totalItems} + ' totali)'"></small>
+                            <i class="bi bi-newspaper"></i>
+                            Articoli
+                            <small class="text-muted" th:text="'(' + ${totalItems} + ' totali)'"></small>
                         </h2>
+                    </div>
+                    
+                    <div class="toolbar-right">
+                        <!-- Search -->
+                        <div class="search-box">
+                            <i class="bi bi-search"></i>
+                            <input type="text" 
+                                   id="searchInput" 
+                                   placeholder="Cerca articoli..."
+                                   onkeyup="filterCards()">
+                        </div>
                         
-                        <div class="admin-table-actions">
-                            <!-- Search -->
-                            <div class="admin-search">
-                                <i class="bi bi-search"></i>
-                                <input type="text" 
-                                       id="searchInput" 
-                                       placeholder="Cerca articoli..."
-                                       onkeyup="searchTable()">
+                        <!-- Filter -->
+                        <select class="filter-select" onchange="window.location.href=this.value">
+                            <option value="/admin/blog" th:selected="${status == null}">Tutti</option>
+                            <option value="/admin/blog?status=published" th:selected="${status == 'published'}">Pubblicati</option>
+                            <option value="/admin/blog?status=draft" th:selected="${status == 'draft'}">Bozze</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Cards Grid -->
+                <div class="cards-grid" id="cardsContainer" th:if="${!#lists.isEmpty(posts)}">
+                    <div class="content-card" th:each="post : ${posts}" th:data-title="${post.title}">
+                        <!-- Image -->
+                        <div class="card-image">
+                            <img th:if="${post.imageUrl != null}" 
+                                 th:src="${post.imageUrl}" 
+                                 th:alt="${post.title}">
+                            <i th:if="${post.imageUrl == null}" class="bi bi-file-text"></i>
+                            
+                            <!-- Status Badge -->
+                            <span class="card-status-badge" 
+                                  th:classappend="${post.published} ? 'badge-published' : 'badge-draft'"
+                                  th:text="${post.published} ? 'Pubblicato' : 'Bozza'">
+                                Pubblicato
+                            </span>
+                        </div>
+                        
+                        <!-- Body -->
+                        <div class="card-body">
+                            <!-- Meta -->
+                            <div class="card-meta">
+                                <span class="meta-item" th:if="${post.sourceName}">
+                                    <i class="bi bi-tag"></i>
+                                    <span th:text="${post.sourceName}">Fonte</span>
+                                </span>
+                                <span class="meta-item">
+                                    <i class="bi bi-calendar"></i>
+                                    <span th:text="${#temporals.format(post.publishedDate, 'dd/MM/yyyy')}">01/01/2024</span>
+                                </span>
                             </div>
                             
-                            <!-- Filter by Status -->
-                            <select class="form-control" 
-                                    style="width: auto; min-width: 150px;"
-                                    onchange="filterByStatus(this.value)">
-                                <option value="">Tutti gli stati</option>
-                                <option value="published" th:selected="${status == 'published'}">Pubblicati</option>
-                                <option value="draft" th:selected="${status == 'draft'}">Bozze</option>
-                            </select>
+                            <!-- Title -->
+                            <h3 class="card-title" th:text="${post.title}">
+                                Titolo dell'articolo
+                            </h3>
                             
-                            <!-- Bulk Actions -->
-                            <button class="btn btn-outline" 
-                                    onclick="deleteSelected()"
-                                    id="bulkDeleteBtn"
-                                    style="display: none;">
-                                <i class="bi bi-trash"></i> Elimina Selezionati
-                            </button>
+                            <!-- Excerpt -->
+                            <p class="card-excerpt" th:text="${post.getExcerpt(120)}">
+                                Estratto del contenuto dell'articolo che viene mostrato come anteprima...
+                            </p>
+                            
+                            <!-- Actions -->
+                            <div class="card-actions">
+                                <a th:href="@{/admin/blog/edit/{id}(id=${post.id})}" 
+                                   class="btn btn-outline btn-sm">
+                                    <i class="bi bi-pencil"></i> Modifica
+                                </a>
+                                
+                                <form th:action="@{/admin/blog/toggle-publish/{id}(id=${post.id})}" 
+                                      method="post" 
+                                      style="display: inline;">
+                                    <button type="submit" 
+                                            class="btn btn-sm"
+                                            th:classappend="${post.published} ? 'btn-warning' : 'btn-success'">
+                                        <i class="bi" th:classappend="${post.published} ? 'bi-eye-slash' : 'bi-eye'"></i>
+                                        <span th:text="${post.published} ? 'Nascondi' : 'Pubblica'">Pubblica</span>
+                                    </button>
+                                </form>
+                                
+                                <form th:action="@{/admin/blog/delete/{id}(id=${post.id})}" 
+                                      method="post" 
+                                      style="display: inline;"
+                                      onsubmit="return confirm('Sei sicuro di voler eliminare questo articolo?');">
+                                    <button type="submit" class="btn btn-danger btn-sm">
+                                        <i class="bi bi-trash"></i>
+                                    </button>
+                                </form>
+                            </div>
                         </div>
                     </div>
+                </div>
 
-                    <!-- Table -->
-                    <div class="table-responsive" th:if="${posts != null and !posts.isEmpty()}">
-                        <form id="bulkForm" method="post">
-                            <table class="admin-table" id="postsTable">
-                                <thead>
-                                    <tr>
-                                        <th style="width: 40px;">
-                                            <input type="checkbox" 
-                                                   id="selectAll" 
-                                                   onchange="toggleSelectAll(this)">
-                                        </th>
-                                        <th style="width: 80px;">Immagine</th>
-                                        <th>Titolo</th>
-                                        <th style="width: 150px;">Fonte</th>
-                                        <th style="width: 120px;">Data</th>
-                                        <th style="width: 100px;">Stato</th>
-                                        <th style="width: 200px;">Azioni</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr th:each="post : ${posts}">
-                                        <!-- Checkbox -->
-                                        <td>
-                                            <input type="checkbox" 
-                                                   name="postIds" 
-                                                   th:value="${post.id}"
-                                                   class="post-checkbox"
-                                                   onchange="updateBulkActions()">
-                                        </td>
-                                        
-                                        <!-- Image -->
-                                        <td>
-                                            <img th:if="${post.imageUrl != null and !post.imageUrl.isEmpty()}" 
-                                                 th:src="${post.imageUrl}" 
-                                                 alt="Post image"
-                                                 class="table-image">
-                                            <div th:unless="${post.imageUrl != null and !post.imageUrl.isEmpty()}"
-                                                 class="table-image"
-                                                 style="background: #e9ecef; display: flex; align-items: center; justify-content: center;">
-                                                <i class="bi bi-image" style="color: #adb5bd;"></i>
-                                            </div>
-                                        </td>
-                                        
-                                        <!-- Title -->
-                                        <td>
-                                            <div class="table-title" th:text="${post.title}">Titolo</div>
-                                            <div class="table-meta" 
-                                                 th:if="${post.excerpt != null}"
-                                                 th:text="${#strings.abbreviate(post.excerpt, 60)}">
-                                                Excerpt breve...
-                                            </div>
-                                        </td>
-                                        
-                                        <!-- Source -->
-                                        <td>
-                                            <div th:text="${post.sourceName}">Fonte</div>
-                                            <div class="table-meta" th:if="${post.externalLink != null}">
-                                                <a th:href="${post.externalLink}" 
-                                                   target="_blank"
-                                                   style="font-size: 0.75rem;">
-                                                    <i class="bi bi-box-arrow-up-right"></i> Link
-                                                </a>
-                                            </div>
-                                        </td>
-                                        
-                                        <!-- Date -->
-                                        <td>
-                                            <div th:text="${#temporals.format(post.publishedDate, 'dd/MM/yyyy')}">
-                                                01/01/2024
-                                            </div>
-                                            <div class="table-meta" 
-                                                 th:text="${#temporals.format(post.publishedDate, 'HH:mm')}">
-                                                12:00
-                                            </div>
-                                        </td>
-                                        
-                                        <!-- Status -->
-                                        <td>
-                                            <span class="status-badge" 
-                                                  th:classappend="${post.published} ? 'published' : 'draft'"
-                                                  th:text="${post.published} ? 'Pubblicato' : 'Bozza'">
-                                                Pubblicato
-                                            </span>
-                                        </td>
-                                        
-                                        <!-- Actions -->
-                                        <td>
-                                            <div class="table-actions">
-                                                <!-- View -->
-                                                <a th:href="@{/rassegna-stampa/{id}(id=${post.id})}" 
-                                                   class="table-btn table-btn-primary"
-                                                   target="_blank"
-                                                   title="Visualizza">
-                                                    <i class="bi bi-eye"></i>
-                                                </a>
-                                                
-                                                <!-- Edit -->
-                                                <a th:href="@{/admin/blog/edit/{id}(id=${post.id})}" 
-                                                   class="table-btn table-btn-primary"
-                                                   title="Modifica">
-                                                    <i class="bi bi-pencil"></i>
-                                                </a>
-                                                
-                                                <!-- Toggle Publish -->
-                                                <form th:action="@{/admin/blog/toggle-publish/{id}(id=${post.id})}" 
-                                                      method="post" 
-                                                      style="display: inline;">
-                                                    <button type="submit" 
-                                                            class="table-btn"
-                                                            th:classappend="${post.published} ? 'table-btn-warning' : 'table-btn-success'"
-                                                            th:title="${post.published} ? 'Rimuovi pubblicazione' : 'Pubblica'">
-                                                        <i class="bi" 
-                                                           th:classappend="${post.published} ? 'bi-eye-slash' : 'bi-check-circle'"></i>
-                                                    </button>
-                                                </form>
-                                                
-                                                <!-- Delete -->
-                                                <form th:action="@{/admin/blog/delete/{id}(id=${post.id})}" 
-                                                      method="post" 
-                                                      style="display: inline;"
-                                                      onsubmit="return confirm('Sei sicuro di voler eliminare questo articolo?');">
-                                                    <button type="submit" 
-                                                            class="table-btn table-btn-danger"
-                                                            title="Elimina">
-                                                        <i class="bi bi-trash"></i>
-                                                    </button>
-                                                </form>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </form>
-                    </div>
+                <!-- Empty State -->
+                <div class="empty-state" th:if="${#lists.isEmpty(posts)}">
+                    <i class="bi bi-newspaper"></i>
+                    <h3>Nessun articolo trovato</h3>
+                    <p>Inizia creando il primo articolo per la rassegna stampa</p>
+                    <a href="/admin/blog/new" class="btn btn-primary">
+                        <i class="bi bi-plus-circle"></i> Crea Primo Articolo
+                    </a>
+                </div>
 
-                    <!-- Empty State -->
-                    <div th:unless="${posts != null and !posts.isEmpty()}" class="empty-state">
-                        <i class="bi bi-newspaper"></i>
-                        <h3>Nessun articolo trovato</h3>
-                        <p th:if="${status != null}">
-                            Prova a cambiare i filtri o crea un nuovo articolo
-                        </p>
-                        <p th:unless="${status != null}">
-                            Inizia creando il tuo primo articolo di rassegna stampa
-                        </p>
-                        <a href="/admin/blog/new" class="btn btn-primary">
-                            <i class="bi bi-plus-circle"></i> Crea Articolo
-                        </a>
-                    </div>
-
-                    <!-- Pagination -->
-                    <div class="pagination-wrapper" th:if="${totalPages > 1}">
-                        <ul class="pagination">
-                            <!-- Previous -->
-                            <li th:classappend="${currentPage == 0} ? 'disabled'">
-                                <a th:if="${currentPage > 0}"
-                                   th:href="@{/admin/blog(page=${currentPage - 1}, status=${status})}">
-                                    <i class="bi bi-chevron-left"></i>
-                                </a>
-                                <span th:unless="${currentPage > 0}">
-                                    <i class="bi bi-chevron-left"></i>
-                                </span>
-                            </li>
-                            
-                            <!-- Page Numbers -->
-                            <li th:each="i : ${#numbers.sequence(0, totalPages - 1)}"
-                                th:if="${i >= currentPage - 2 and i <= currentPage + 2}"
-                                th:classappend="${i == currentPage} ? 'active'">
-                                <a th:if="${i != currentPage}"
-                                   th:href="@{/admin/blog(page=${i}, status=${status})}"
-                                   th:text="${i + 1}">1</a>
-                                <span th:if="${i == currentPage}" th:text="${i + 1}">1</span>
-                            </li>
-                            
-                            <!-- Next -->
-                            <li th:classappend="${currentPage == totalPages - 1} ? 'disabled'">
-                                <a th:if="${currentPage < totalPages - 1}"
-                                   th:href="@{/admin/blog(page=${currentPage + 1}, status=${status})}">
-                                    <i class="bi bi-chevron-right"></i>
-                                </a>
-                                <span th:unless="${currentPage < totalPages - 1}">
-                                    <i class="bi bi-chevron-right"></i>
-                                </span>
-                            </li>
-                        </ul>
-                    </div>
+                <!-- Pagination -->
+                <div class="pagination-wrapper" th:if="${totalPages > 1}">
+                    <ul class="pagination">
+                        <li class="page-item" th:classappend="${currentPage == 0} ? 'disabled'">
+                            <a class="page-link" th:href="@{/admin/blog(page=${currentPage - 1}, status=${status})}">
+                                <i class="bi bi-chevron-left"></i>
+                            </a>
+                        </li>
+                        
+                        <li class="page-item" 
+                            th:each="i : ${#numbers.sequence(0, totalPages - 1)}"
+                            th:if="${i >= currentPage - 2 && i <= currentPage + 2}"
+                            th:classappend="${i == currentPage} ? 'active'">
+                            <a class="page-link" 
+                               th:href="@{/admin/blog(page=${i}, status=${status})}"
+                               th:text="${i + 1}">1</a>
+                        </li>
+                        
+                        <li class="page-item" th:classappend="${currentPage == totalPages - 1} ? 'disabled'">
+                            <a class="page-link" th:href="@{/admin/blog(page=${currentPage + 1}, status=${status})}">
+                                <i class="bi bi-chevron-right"></i>
+                            </a>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </main>
     </div>
 
-    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    
-    <!-- Custom JS -->
     <script>
         // Mobile sidebar toggle
         function toggleSidebar() {
-            const sidebar = document.getElementById('adminSidebar');
-            sidebar.classList.toggle('show');
+            document.getElementById('adminSidebar').classList.toggle('show');
         }
 
-        // Search functionality
-        function searchTable() {
-            const input = document.getElementById('searchInput');
-            const filter = input.value.toLowerCase();
-            const table = document.getElementById('postsTable');
-            const rows = table.getElementsByTagName('tr');
+        // Search/Filter cards
+        function filterCards() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const cards = document.querySelectorAll('.content-card');
             
-            for (let i = 1; i < rows.length; i++) {
-                const titleCell = rows[i].getElementsByClassName('table-title')[0];
-                const sourceCell = rows[i].cells[3];
-                
-                if (titleCell || sourceCell) {
-                    const titleText = titleCell ? titleCell.textContent || titleCell.innerText : '';
-                    const sourceText = sourceCell ? sourceCell.textContent || sourceCell.innerText : '';
-                    
-                    if (titleText.toLowerCase().indexOf(filter) > -1 || 
-                        sourceText.toLowerCase().indexOf(filter) > -1) {
-                        rows[i].style.display = '';
-                    } else {
-                        rows[i].style.display = 'none';
-                    }
+            cards.forEach(card => {
+                const title = card.getAttribute('data-title').toLowerCase();
+                if (title.includes(searchTerm)) {
+                    card.style.display = '';
+                } else {
+                    card.style.display = 'none';
                 }
-            }
-        }
-
-        // Filter by status
-        function filterByStatus(status) {
-            const currentUrl = new URL(window.location.href);
-            if (status) {
-                currentUrl.searchParams.set('status', status);
-            } else {
-                currentUrl.searchParams.delete('status');
-            }
-            currentUrl.searchParams.set('page', '0');
-            window.location.href = currentUrl.toString();
-        }
-
-        // Select all checkboxes
-        function toggleSelectAll(checkbox) {
-            const checkboxes = document.getElementsByClassName('post-checkbox');
-            for (let i = 0; i < checkboxes.length; i++) {
-                checkboxes[i].checked = checkbox.checked;
-            }
-            updateBulkActions();
-        }
-
-        // Update bulk actions button visibility
-        function updateBulkActions() {
-            const checkboxes = document.getElementsByClassName('post-checkbox');
-            const bulkBtn = document.getElementById('bulkDeleteBtn');
-            let anyChecked = false;
-            
-            for (let i = 0; i < checkboxes.length; i++) {
-                if (checkboxes[i].checked) {
-                    anyChecked = true;
-                    break;
-                }
-            }
-            
-            bulkBtn.style.display = anyChecked ? 'inline-flex' : 'none';
-        }
-
-        // Delete selected posts
-        function deleteSelected() {
-            const checkboxes = document.querySelectorAll('.post-checkbox:checked');
-            
-            if (checkboxes.length === 0) {
-                alert('Seleziona almeno un articolo da eliminare');
-                return;
-            }
-            
-            if (!confirm(`Sei sicuro di voler eliminare ${checkboxes.length} articolo/i?`)) {
-                return;
-            }
-            
-            const form = document.getElementById('bulkForm');
-            form.action = '/admin/blog/delete-multiple';
-            form.submit();
+            });
         }
 
         // Auto-hide alerts
@@ -407,19 +249,6 @@
                     setTimeout(() => alert.remove(), 300);
                 }, 5000);
             });
-        });
-
-        // Close mobile sidebar when clicking outside
-        document.addEventListener('click', function(event) {
-            const sidebar = document.getElementById('adminSidebar');
-            const toggle = document.querySelector('.mobile-menu-toggle');
-            
-            if (window.innerWidth <= 768 && 
-                sidebar.classList.contains('show') && 
-                !sidebar.contains(event.target) && 
-                !toggle.contains(event.target)) {
-                sidebar.classList.remove('show');
-            }
         });
     </script>
 </body>

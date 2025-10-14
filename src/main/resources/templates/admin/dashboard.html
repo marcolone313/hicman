@@ -40,10 +40,14 @@
                     <i class="bi bi-box-arrow-up-right"></i>
                     <span>Visualizza Sito</span>
                 </a>
-                <a href="/logout" class="admin-nav-item">
-                    <i class="bi bi-box-arrow-right"></i>
-                    <span>Logout</span>
-                </a>
+                
+                <!-- LOGOUT CORRETTO CON FORM POST -->
+                <form th:action="@{/admin/logout}" method="post" class="m-0" style="display: block;">
+                    <button type="submit" class="admin-nav-item" style="width: 100%; text-align: left; background: none; border: none; cursor: pointer;">
+                        <i class="bi bi-box-arrow-right"></i>
+                        <span>Logout</span>
+                    </button>
+                </form>
             </nav>
         </aside>
 
@@ -92,30 +96,22 @@
                                 <div class="stat-card-value" th:text="${totalPosts}">0</div>
                                 <div class="stat-card-label">Articoli Totali</div>
                             </div>
-                            <div class="stat-card-icon primary">
-                                <i class="bi bi-newspaper"></i>
+                            <div class="stat-card-icon">
+                                <i class="bi bi-file-text"></i>
                             </div>
-                        </div>
-                        <div class="stat-card-footer">
-                            <i class="bi bi-arrow-up"></i>
-                            <span th:text="${publishedPosts} + ' pubblicati'">0 pubblicati</span>
                         </div>
                     </div>
 
-                    <!-- Total Testimonials -->
+                    <!-- Published Articles -->
                     <div class="stat-card">
                         <div class="stat-card-header">
                             <div>
-                                <div class="stat-card-value" th:text="${totalTestimonials}">0</div>
-                                <div class="stat-card-label">Testimonianze</div>
+                                <div class="stat-card-value" th:text="${publishedPosts}">0</div>
+                                <div class="stat-card-label">Articoli Pubblicati</div>
                             </div>
                             <div class="stat-card-icon success">
-                                <i class="bi bi-chat-quote"></i>
+                                <i class="bi bi-check-circle"></i>
                             </div>
-                        </div>
-                        <div class="stat-card-footer">
-                            <i class="bi bi-arrow-up"></i>
-                            <span th:text="${publishedTestimonials} + ' pubblicate'">0 pubblicate</span>
                         </div>
                     </div>
 
@@ -127,92 +123,65 @@
                                 <div class="stat-card-label">Bozze</div>
                             </div>
                             <div class="stat-card-icon warning">
-                                <i class="bi bi-file-earmark-text"></i>
+                                <i class="bi bi-clock-history"></i>
                             </div>
-                        </div>
-                        <div class="stat-card-footer">
-                            <i class="bi bi-clock"></i>
-                            <span>In attesa di pubblicazione</span>
                         </div>
                     </div>
 
-                    <!-- Recent Activity -->
+                    <!-- Total Testimonials -->
                     <div class="stat-card">
                         <div class="stat-card-header">
                             <div>
-                                <div class="stat-card-value" th:text="${recentPostsCount}">0</div>
-                                <div class="stat-card-label">Ultimi 30 giorni</div>
+                                <div class="stat-card-value" th:text="${totalTestimonials}">0</div>
+                                <div class="stat-card-label">Testimonianze</div>
                             </div>
                             <div class="stat-card-icon info">
-                                <i class="bi bi-calendar-event"></i>
+                                <i class="bi bi-chat-quote"></i>
                             </div>
                         </div>
-                        <div class="stat-card-footer">
-                            <i class="bi bi-graph-up"></i>
-                            <span>Nuovi contenuti</span>
-                        </div>
                     </div>
                 </div>
 
-                <!-- Quick Actions -->
-                <div class="quick-actions">
-                    <h3><i class="bi bi-lightning-fill"></i> Azioni Rapide</h3>
-                    <div class="quick-actions-grid">
-                        <a href="/admin/blog/new" class="quick-action-btn">
-                            <i class="bi bi-plus-circle"></i>
-                            <span>Nuovo Articolo</span>
-                        </a>
-                        <a href="/admin/testimonials/new" class="quick-action-btn">
-                            <i class="bi bi-plus-circle"></i>
-                            <span>Nuova Testimonianza</span>
-                        </a>
-                        <a href="/admin/blog" class="quick-action-btn">
-                            <i class="bi bi-list-ul"></i>
-                            <span>Gestisci Articoli</span>
-                        </a>
-                        <a href="/admin/testimonials" class="quick-action-btn">
-                            <i class="bi bi-list-ul"></i>
-                            <span>Gestisci Testimonianze</span>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Two Column Layout -->
-                <div class="row g-4">
-                    <!-- Recent Articles -->
-                    <div class="col-lg-6">
-                        <div class="recent-activity">
-                            <h3><i class="bi bi-newspaper"></i> Ultimi Articoli</h3>
+                <!-- Recent Content Grid -->
+                <div class="row mt-4">
+                    <!-- Latest Blog Posts -->
+                    <div class="col-lg-6 mb-4">
+                        <div class="admin-card">
+                            <div class="admin-card-header">
+                                <h3>
+                                    <i class="bi bi-newspaper"></i>
+                                    Ultimi Articoli
+                                </h3>
+                                <a href="/admin/blog/new" class="btn btn-sm btn-primary">
+                                    <i class="bi bi-plus-circle"></i> Nuovo
+                                </a>
+                            </div>
                             
-                            <div th:if="${latestPosts != null and !latestPosts.isEmpty()}">
-                                <ul class="activity-list">
-                                    <li class="activity-item" th:each="post : ${latestPosts}">
-                                        <div class="activity-icon primary">
-                                            <i class="bi bi-file-text"></i>
-                                        </div>
-                                        <div class="activity-content">
-                                            <div class="activity-title" th:text="${post.title}">Titolo articolo</div>
-                                            <div class="activity-time">
-                                                <span th:text="${post.sourceName}">Fonte</span> • 
-                                                <span th:text="${#temporals.format(post.publishedDate, 'dd/MM/yyyy')}">01/01/2024</span>
-                                                <span class="status-badge ms-2" 
-                                                      th:classappend="${post.published} ? 'published' : 'draft'"
-                                                      th:text="${post.published} ? 'Pubblicato' : 'Bozza'">
-                                                    Pubblicato
-                                                </span>
+                            <div class="admin-card-body" th:if="${latestPosts != null and !latestPosts.isEmpty()}">
+                                <div class="list-group">
+                                    <div th:each="post : ${latestPosts}" class="list-group-item">
+                                        <div class="d-flex justify-content-between align-items-start">
+                                            <div class="flex-grow-1">
+                                                <h5 class="mb-1" th:text="${post.title}">Titolo Post</h5>
+                                                <p class="mb-1 text-muted small" th:text="${post.getExcerpt(100)}">
+                                                    Breve descrizione...
+                                                </p>
+                                                <small class="text-muted">
+                                                    <i class="bi bi-calendar"></i>
+                                                    <span th:text="${#temporals.format(post.createdAt, 'dd/MM/yyyy')}">01/01/2024</span>
+                                                </small>
                                             </div>
+                                            <span class="badge" 
+                                                  th:classappend="${post.published} ? 'bg-success' : 'bg-secondary'"
+                                                  th:text="${post.published} ? 'Pubblicato' : 'Bozza'">
+                                                Pubblicato
+                                            </span>
                                         </div>
-                                        <div class="table-actions">
-                                            <a th:href="@{/admin/blog/edit/{id}(id=${post.id})}" 
-                                               class="table-btn table-btn-primary">
-                                                <i class="bi bi-pencil"></i>
-                                            </a>
-                                        </div>
-                                    </li>
-                                </ul>
+                                    </div>
+                                </div>
                                 <div class="text-center mt-3">
-                                    <a href="/admin/blog" class="btn btn-outline">
-                                        Vedi tutti gli articoli <i class="bi bi-arrow-right"></i>
+                                    <a href="/admin/blog" class="btn btn-sm btn-outline-primary">
+                                        Vedi tutti <i class="bi bi-arrow-right"></i>
                                     </a>
                                 </div>
                             </div>
@@ -220,7 +189,7 @@
                             <div th:unless="${latestPosts != null and !latestPosts.isEmpty()}" class="empty-state">
                                 <i class="bi bi-newspaper"></i>
                                 <h3>Nessun articolo</h3>
-                                <p>Inizia creando il tuo primo articolo</p>
+                                <p>Inizia creando il primo articolo</p>
                                 <a href="/admin/blog/new" class="btn btn-primary">
                                     <i class="bi bi-plus-circle"></i> Crea Articolo
                                 </a>
@@ -228,40 +197,44 @@
                         </div>
                     </div>
 
-                    <!-- Recent Testimonials -->
-                    <div class="col-lg-6">
-                        <div class="recent-activity">
-                            <h3><i class="bi bi-chat-quote"></i> Ultime Testimonianze</h3>
+                    <!-- Latest Testimonials -->
+                    <div class="col-lg-6 mb-4">
+                        <div class="admin-card">
+                            <div class="admin-card-header">
+                                <h3>
+                                    <i class="bi bi-chat-quote"></i>
+                                    Ultime Testimonianze
+                                </h3>
+                                <a href="/admin/testimonials/new" class="btn btn-sm btn-primary">
+                                    <i class="bi bi-plus-circle"></i> Nuova
+                                </a>
+                            </div>
                             
-                            <div th:if="${latestTestimonials != null and !latestTestimonials.isEmpty()}">
-                                <ul class="activity-list">
-                                    <li class="activity-item" th:each="testimonial : ${latestTestimonials}">
-                                        <div class="activity-icon success">
-                                            <i class="bi bi-quote"></i>
-                                        </div>
-                                        <div class="activity-content">
-                                            <div class="activity-title" th:text="${testimonial.sourceName}">Nome Fonte</div>
-                                            <div class="activity-time">
-                                                <span th:text="${testimonial.sourceRole}">Ruolo</span> • 
-                                                <span th:text="${#temporals.format(testimonial.publishedDate, 'dd/MM/yyyy')}">01/01/2024</span>
-                                                <span class="status-badge ms-2" 
-                                                      th:classappend="${testimonial.published} ? 'published' : 'draft'"
-                                                      th:text="${testimonial.published} ? 'Pubblicata' : 'Bozza'">
-                                                    Pubblicata
-                                                </span>
+                            <div class="admin-card-body" th:if="${latestTestimonials != null and !latestTestimonials.isEmpty()}">
+                                <div class="list-group">
+                                    <div th:each="testimonial : ${latestTestimonials}" class="list-group-item">
+                                        <div class="d-flex justify-content-between align-items-start">
+                                            <div class="flex-grow-1">
+                                                <h5 class="mb-1" th:text="${testimonial.source}">Fonte</h5>
+                                                <p class="mb-1 text-muted small" th:text="${#strings.abbreviate(testimonial.content, 100)}">
+                                                    Contenuto testimonianza...
+                                                </p>
+                                                <small class="text-muted">
+                                                    <i class="bi bi-calendar"></i>
+                                                    <span th:text="${#temporals.format(testimonial.createdAt, 'dd/MM/yyyy')}">01/01/2024</span>
+                                                </small>
                                             </div>
+                                            <span class="badge" 
+                                                  th:classappend="${testimonial.published} ? 'bg-success' : 'bg-secondary'"
+                                                  th:text="${testimonial.published} ? 'Pubblicata' : 'Bozza'">
+                                                Pubblicata
+                                            </span>
                                         </div>
-                                        <div class="table-actions">
-                                            <a th:href="@{/admin/testimonials/edit/{id}(id=${testimonial.id})}" 
-                                               class="table-btn table-btn-primary">
-                                                <i class="bi bi-pencil"></i>
-                                            </a>
-                                        </div>
-                                    </li>
-                                </ul>
+                                    </div>
+                                </div>
                                 <div class="text-center mt-3">
-                                    <a href="/admin/testimonials" class="btn btn-outline">
-                                        Vedi tutte le testimonianze <i class="bi bi-arrow-right"></i>
+                                    <a href="/admin/testimonials" class="btn btn-sm btn-outline-primary">
+                                        Vedi tutte <i class="bi bi-arrow-right"></i>
                                     </a>
                                 </div>
                             </div>

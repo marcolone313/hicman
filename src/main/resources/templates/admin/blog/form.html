@@ -7,12 +7,10 @@
         Nuovo Articolo - Hicman Capital Partner
     </title>
     
-    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
-    <!-- Custom CSS -->
     <link rel="stylesheet" th:href="@{/css/admin.css}">
+    <link rel="stylesheet" th:href="@{/css/admin-forms.css}">
 </head>
 <body>
     <div class="admin-wrapper">
@@ -40,10 +38,12 @@
                     <i class="bi bi-box-arrow-up-right"></i>
                     <span>Visualizza Sito</span>
                 </a>
-                <a href="/logout" class="admin-nav-item">
-                    <i class="bi bi-box-arrow-right"></i>
-                    <span>Logout</span>
-                </a>
+                <form th:action="@{/admin/logout}" method="post">
+                    <button type="submit" class="admin-nav-item logout-btn">
+                        <i class="bi bi-box-arrow-right"></i>
+                        <span>Logout</span>
+                    </button>
+                </form>
             </nav>
         </aside>
 
@@ -60,7 +60,7 @@
                 </div>
                 
                 <div class="admin-header-actions">
-                    <a href="/admin/blog" class="btn btn-outline">
+                    <a href="/admin/blog" class="btn btn-outline-secondary">
                         <i class="bi bi-arrow-left"></i> Torna alla lista
                     </a>
                 </div>
@@ -69,325 +69,289 @@
             <!-- Main Content Area -->
             <div class="admin-main">
                 <!-- Success/Error Messages -->
-                <div class="alert alert-success" th:if="${successMessage}">
+                <div class="form-alert form-alert-success" th:if="${successMessage}">
                     <i class="bi bi-check-circle-fill"></i>
                     <span th:text="${successMessage}"></span>
                 </div>
 
-                <div class="alert alert-danger" th:if="${errorMessage}">
+                <div class="form-alert form-alert-danger" th:if="${errorMessage}">
                     <i class="bi bi-exclamation-triangle-fill"></i>
                     <span th:text="${errorMessage}"></span>
                 </div>
 
                 <!-- Validation Errors -->
-                <div class="alert alert-danger" th:if="${#fields.hasErrors('post.*')}">
-                    <i class="bi bi-exclamation-triangle-fill"></i>
-                    <strong>Errori di validazione:</strong>
-                    <ul class="mb-0 mt-2">
-                        <li th:each="err : ${#fields.errors('post.*')}" th:text="${err}"></li>
-                    </ul>
+                <div class="form-alert form-alert-danger" th:if="${#fields.hasErrors('post.*')}">
+                    <div>
+                        <i class="bi bi-exclamation-triangle-fill"></i>
+                        <strong>Errori di validazione:</strong>
+                        <ul>
+                            <li th:each="err : ${#fields.errors('post.*')}" th:text="${err}"></li>
+                        </ul>
+                    </div>
                 </div>
 
-                <!-- Form -->
-                <form th:action="@{/admin/blog/save}" 
-                      th:object="${post}" 
-                      method="post" 
-                      enctype="multipart/form-data"
-                      id="blogForm">
-                    
-                    <!-- Hidden ID for edit -->
-                    <input type="hidden" th:field="*{id}">
-                    
-                    <div class="admin-form-wrapper">
-                        <div class="admin-form-header">
-                            <h2 th:text="${isEdit ? 'Modifica Articolo' : 'Crea Nuovo Articolo'}">
-                                Crea Nuovo Articolo
-                            </h2>
-                        </div>
-
-                        <!-- Main Information Section -->
-                        <div class="form-section">
-                            <h3 class="form-section-title">
-                                <i class="bi bi-file-text"></i> Informazioni Principali
-                            </h3>
-
-                            <!-- Title -->
-                            <div class="form-group">
-                                <label for="title" class="required">Titolo Articolo</label>
-                                <input type="text" 
-                                       class="form-control" 
-                                       id="title" 
-                                       th:field="*{title}"
-                                       placeholder="Inserisci il titolo dell'articolo"
-                                       required>
-                                <div class="form-text">
-                                    Il titolo apparirà come intestazione dell'articolo
-                                </div>
-                            </div>
-
-                            <!-- Excerpt -->
-                            <div class="form-group">
-                                <label for="excerpt">Estratto (Riassunto breve)</label>
-                                <textarea class="form-control" 
-                                          id="excerpt" 
-                                          th:field="*{excerpt}"
-                                          rows="3"
-                                          maxlength="250"
-                                          placeholder="Inserisci un breve riassunto dell'articolo"></textarea>
-                                <div class="form-text">
-                                    Massimo 250 caratteri. Apparirà nelle card di anteprima.
-                                </div>
-                            </div>
-
-                            <!-- Content with CKEditor -->
-                            <div class="form-group">
-                                <label for="content" class="required">Contenuto Articolo</label>
-                                <textarea class="form-control" 
-                                          id="content" 
-                                          th:field="*{content}"
-                                          rows="15"
-                                          required></textarea>
-                                <div class="form-text">
-                                    Contenuto completo dell'articolo. Puoi formattare il testo usando l'editor.
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Source Information Section -->
-                        <div class="form-section">
-                            <h3 class="form-section-title">
-                                <i class="bi bi-link-45deg"></i> Fonte e Collegamenti
-                            </h3>
-
-                            <div class="row">
-                                <!-- Source Name -->
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="sourceName" class="required">Nome Fonte</label>
-                                        <input type="text" 
-                                               class="form-control" 
-                                               id="sourceName" 
-                                               th:field="*{sourceName}"
-                                               placeholder="es. Il Sole 24 Ore, La Repubblica..."
-                                               required>
-                                        <div class="form-text">
-                                            Nome della testata o fonte dell'articolo
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- External Link -->
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="externalLink">Link Articolo Originale</label>
-                                        <input type="url" 
-                                               class="form-control" 
-                                               id="externalLink" 
-                                               th:field="*{externalLink}"
-                                               placeholder="https://...">
-                                        <div class="form-text">
-                                            URL completo dell'articolo originale (opzionale)
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Media Section -->
-                        <div class="form-section">
-                            <h3 class="form-section-title">
-                                <i class="bi bi-image"></i> Immagine in Evidenza
-                            </h3>
-
-                            <!-- Current Image Preview -->
-                            <div th:if="${post.imageUrl != null and !post.imageUrl.isEmpty()}" 
-                                 class="mb-3">
-                                <label class="form-label">Immagine Attuale:</label>
-                                <div class="file-preview">
-                                    <img th:src="${post.imageUrl}" 
-                                         alt="Immagine articolo"
-                                         style="width: 200px; height: 150px; object-fit: cover; border-radius: 8px;">
-                                    <div class="file-preview-info">
-                                        <div class="file-preview-name">Immagine caricata</div>
-                                        <div class="file-preview-size">
-                                            <a href="javascript:void(0)" 
-                                               onclick="removeCurrentImage()"
-                                               style="color: #dc3545;">
-                                                <i class="bi bi-trash"></i> Rimuovi
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- File Upload -->
-                            <div class="form-group">
-                                <label for="imageFile">
-                                    <span th:if="${post.imageUrl == null or post.imageUrl.isEmpty()}">
-                                        Carica Immagine
-                                    </span>
-                                    <span th:unless="${post.imageUrl == null or post.imageUrl.isEmpty()}">
-                                        Cambia Immagine
-                                    </span>
-                                </label>
-                                <div class="file-upload-wrapper" 
-                                     id="fileUploadArea"
-                                     onclick="document.getElementById('imageFile').click()">
-                                    <div class="file-upload-icon">
-                                        <i class="bi bi-cloud-upload"></i>
-                                    </div>
-                                    <div class="file-upload-text">
-                                        Clicca per selezionare o trascina qui
-                                    </div>
-                                    <div class="file-upload-hint">
-                                        Formati supportati: JPG, PNG, WEBP (max 10MB)
-                                    </div>
-                                </div>
-                                <input type="file" 
-                                       class="form-control d-none" 
-                                       id="imageFile" 
-                                       name="imageFile"
-                                       accept="image/jpeg,image/png,image/webp,image/jpg"
-                                       onchange="previewImage(this)">
-                                
-                                <!-- New Image Preview -->
-                                <div id="newImagePreview" style="display: none;" class="mt-3">
-                                    <div class="file-preview">
-                                        <img id="previewImg" 
-                                             src="" 
-                                             alt="Anteprima"
-                                             style="width: 200px; height: 150px; object-fit: cover; border-radius: 8px;">
-                                        <div class="file-preview-info">
-                                            <div class="file-preview-name" id="fileName">Nome file</div>
-                                            <div class="file-preview-size" id="fileSize">Dimensione</div>
-                                        </div>
-                                        <button type="button" 
-                                                class="file-preview-remove"
-                                                onclick="clearImageUpload()">
-                                            <i class="bi bi-x-lg"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Publishing Section -->
-                        <div class="form-section">
-                            <h3 class="form-section-title">
-                                <i class="bi bi-calendar-check"></i> Pubblicazione
-                            </h3>
-
-                            <div class="row">
-                                <!-- Published Date -->
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="publishedDate">Data Pubblicazione</label>
-                                        <input type="datetime-local" 
-                                               class="form-control" 
-                                               id="publishedDate" 
-                                               th:field="*{publishedDate}">
-                                        <div class="form-text">
-                                            Lascia vuoto per usare la data corrente
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Published Status -->
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Stato Pubblicazione</label>
-                                        <div class="form-check">
-                                            <input type="checkbox" 
-                                                   class="form-check-input" 
-                                                   id="published" 
-                                                   th:field="*{published}">
-                                            <label class="form-check-label" for="published">
-                                                Pubblica immediatamente
-                                            </label>
-                                        </div>
-                                        <div class="form-text">
-                                            Se non selezionato, l'articolo sarà salvato come bozza
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Form Actions -->
-                        <div class="form-actions">
-                            <button type="submit" 
-                                    name="action" 
-                                    value="save" 
-                                    class="btn btn-primary">
-                                <i class="bi bi-check-circle"></i>
-                                <span th:text="${isEdit ? 'Aggiorna Articolo' : 'Crea Articolo'}">
-                                    Crea Articolo
-                                </span>
-                            </button>
-
-                            <button type="submit" 
-                                    name="action" 
-                                    value="save_and_publish" 
-                                    class="btn btn-primary"
-                                    th:if="${!post.published}">
-                                <i class="bi bi-upload"></i> Salva e Pubblica
-                            </button>
-
-                            <a href="/admin/blog" class="btn btn-outline">
-                                <i class="bi bi-x-circle"></i> Annulla
-                            </a>
-
-                            <button type="button" 
-                                    class="btn btn-secondary"
-                                    th:if="${isEdit}"
-                                    th:onclick="'window.open(\'/rassegna-stampa/' + ${post.id} + '\', \'_blank\')'">
-                                <i class="bi bi-eye"></i> Anteprima
-                            </button>
-                        </div>
+                <!-- Form Wrapper -->
+                <div class="admin-form-wrapper">
+                    <!-- Form Header -->
+                    <div class="admin-form-header">
+                        <h2>
+                            <i class="bi bi-newspaper"></i>
+                            <span th:text="${isEdit ? 'Modifica Articolo' : 'Crea Nuovo Articolo'}">Crea Nuovo Articolo</span>
+                        </h2>
                     </div>
-                </form>
+
+                    <!-- Form Body -->
+                    <div class="admin-form-body">
+                        <form th:action="@{/admin/blog/save}" 
+                              th:object="${post}" 
+                              method="post" 
+                              enctype="multipart/form-data"
+                              id="blogForm">
+                            
+                            <!-- Hidden ID for edit -->
+                            <input type="hidden" th:field="*{id}">
+                            
+                            <!-- Main Information Section -->
+                            <div class="form-section">
+                                <h3 class="form-section-title">
+                                    <i class="bi bi-file-text"></i>
+                                    Informazioni Principali
+                                </h3>
+
+                                <div class="form-section-description">
+                                    <i class="bi bi-info-circle"></i>
+                                    Compila i campi principali dell'articolo della rassegna stampa
+                                </div>
+
+                                <!-- Title -->
+                                <div class="form-group">
+                                    <label for="title" class="required">Titolo Articolo</label>
+                                    <input type="text" 
+                                           class="form-control" 
+                                           id="title" 
+                                           th:field="*{title}"
+                                           placeholder="Inserisci il titolo dell'articolo"
+                                           required>
+                                    <div class="form-text">
+                                        <i class="bi bi-info-circle"></i>
+                                        Il titolo apparirà come intestazione dell'articolo
+                                    </div>
+                                </div>
+
+                                <!-- Content -->
+                                <div class="form-group">
+                                    <label for="content" class="required">Contenuto Articolo</label>
+                                    <textarea class="form-control" 
+                                              id="content" 
+                                              th:field="*{content}"
+                                              rows="15"
+                                              maxlength="10000"
+                                              placeholder="Inserisci il contenuto completo dell'articolo..."
+                                              required
+                                              oninput="updateCharCount(this, 'contentCounter')"></textarea>
+                                    <div class="char-counter" id="contentCounter">0 / 10000 caratteri</div>
+                                </div>
+                            </div>
+
+                            <!-- Source Information Section -->
+                            <div class="form-section">
+                                <h3 class="form-section-title">
+                                    <i class="bi bi-link-45deg"></i>
+                                    Fonte e Collegamenti
+                                </h3>
+
+                                <div class="row">
+                                    <!-- Source Name -->
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="sourceName">Nome Fonte</label>
+                                            <input type="text" 
+                                                   class="form-control" 
+                                                   id="sourceName" 
+                                                   th:field="*{sourceName}"
+                                                   placeholder="es. Il Sole 24 Ore, Bloomberg, etc.">
+                                            <div class="form-text">
+                                                <i class="bi bi-info-circle"></i>
+                                                Nome della testata o fonte dell'articolo
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- External Link -->
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="externalLink">Link Esterno</label>
+                                            <input type="url" 
+                                                   class="form-control" 
+                                                   id="externalLink" 
+                                                   th:field="*{externalLink}"
+                                                   placeholder="https://esempio.com/articolo">
+                                            <div class="form-text">
+                                                <i class="bi bi-info-circle"></i>
+                                                Link alla pagina originale dell'articolo
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Media Section -->
+                            <div class="form-section">
+                                <h3 class="form-section-title">
+                                    <i class="bi bi-image"></i>
+                                    Immagine di Copertina
+                                </h3>
+
+                                <!-- Current Image (if editing) -->
+                                <div class="form-group" th:if="${isEdit && post.imageUrl != null}">
+                                    <label>Immagine Attuale</label>
+                                    <div class="file-preview">
+                                        <img th:src="${post.imageUrl}" 
+                                             alt="Immagine attuale" 
+                                             class="file-preview-image">
+                                        <div class="file-preview-info">
+                                            <div class="file-preview-name">Immagine caricata</div>
+                                        </div>
+                                        <label>
+                                            <input type="checkbox" 
+                                                   name="removeImage" 
+                                                   value="true">
+                                            Rimuovi immagine
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <!-- Upload New Image -->
+                                <div class="form-group">
+                                    <label for="imageFile">
+                                        <span th:text="${isEdit && post.imageUrl != null ? 'Carica Nuova Immagine' : 'Carica Immagine'}">
+                                            Carica Immagine
+                                        </span>
+                                    </label>
+                                    <div class="file-upload-wrapper">
+                                        <div class="file-upload-icon">
+                                            <i class="bi bi-cloud-upload"></i>
+                                        </div>
+                                        <div class="file-upload-text">
+                                            Trascina un'immagine qui o clicca per selezionare
+                                        </div>
+                                        <div class="file-upload-hint">
+                                            Dimensione massima: 10MB
+                                        </div>
+                                        <div class="file-upload-formats">
+                                            Formati supportati: JPG, PNG, WEBP, GIF
+                                        </div>
+                                        <input type="file" 
+                                               id="imageFile" 
+                                               name="imageFile" 
+                                               accept="image/jpeg,image/png,image/webp,image/gif"
+                                               onchange="previewImage(this)">
+                                    </div>
+                                    
+                                    <!-- Preview -->
+                                    <div id="imagePreview" class="file-preview d-none">
+                                        <img id="previewImg" class="file-preview-image" src="" alt="Preview">
+                                        <div class="file-preview-info">
+                                            <div class="file-preview-name" id="fileName"></div>
+                                            <div class="file-preview-size" id="fileSize"></div>
+                                        </div>
+                                        <i class="bi bi-x-circle file-preview-remove" onclick="removeImagePreview()"></i>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Publication Settings Section -->
+                            <div class="form-section">
+                                <h3 class="form-section-title">
+                                    <i class="bi bi-calendar-event"></i>
+                                    Impostazioni Pubblicazione
+                                </h3>
+
+                                <div class="row">
+                                    <!-- Published Date -->
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="publishedDate">Data di Pubblicazione</label>
+                                            <input type="datetime-local" 
+                                                   class="form-control" 
+                                                   id="publishedDate" 
+                                                   th:field="*{publishedDate}">
+                                            <div class="form-text">
+                                                <i class="bi bi-info-circle"></i>
+                                                Data e ora di pubblicazione dell'articolo
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Published Status -->
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Stato Pubblicazione</label>
+                                            <div class="custom-switch">
+                                                <div class="switch-input">
+                                                    <input type="checkbox" 
+                                                           id="published" 
+                                                           th:field="*{published}">
+                                                    <span class="switch-slider"></span>
+                                                </div>
+                                                <label for="published">
+                                                    Pubblica immediatamente
+                                                </label>
+                                            </div>
+                                            <div class="form-text">
+                                                <i class="bi bi-info-circle"></i>
+                                                L'articolo sarà visibile pubblicamente solo se pubblicato
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Form Actions -->
+                            <div class="form-actions">
+                                <button type="submit" name="action" value="save" class="btn btn-primary">
+                                    <i class="bi bi-save"></i>
+                                    Salva Articolo
+                                </button>
+                                
+                                <button type="submit" name="action" value="save_and_publish" class="btn btn-success" th:if="${!isEdit || !post.published}">
+                                    <i class="bi bi-check-circle"></i>
+                                    Salva e Pubblica
+                                </button>
+                                
+                                <a href="/admin/blog" class="btn btn-outline-secondary">
+                                    <i class="bi bi-x-circle"></i>
+                                    Annulla
+                                </a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
         </main>
     </div>
 
-    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    
-    <!-- CKEditor -->
-    <script src="https://cdn.ckeditor.com/ckeditor5/40.0.0/classic/ckeditor.js"></script>
-    
-    <!-- Custom JS -->
     <script>
-        // Initialize CKEditor
-        let editor;
-        ClassicEditor
-            .create(document.querySelector('#content'), {
-                toolbar: [
-                    'heading', '|',
-                    'bold', 'italic', 'link', 'bulletedList', 'numberedList', '|',
-                    'blockQuote', 'insertTable', '|',
-                    'undo', 'redo'
-                ],
-                heading: {
-                    options: [
-                        { model: 'paragraph', title: 'Paragrafo', class: 'ck-heading_paragraph' },
-                        { model: 'heading2', view: 'h2', title: 'Titolo 2', class: 'ck-heading_heading2' },
-                        { model: 'heading3', view: 'h3', title: 'Titolo 3', class: 'ck-heading_heading3' }
-                    ]
-                },
-                language: 'it'
-            })
-            .then(newEditor => {
-                editor = newEditor;
-            })
-            .catch(error => {
-                console.error(error);
-            });
-
         // Mobile sidebar toggle
         function toggleSidebar() {
-            const sidebar = document.getElementById('adminSidebar');
-            sidebar.classList.toggle('show');
+            document.getElementById('adminSidebar').classList.toggle('show');
+        }
+
+        // Character counter
+        function updateCharCount(textarea, counterId) {
+            const counter = document.getElementById(counterId);
+            const current = textarea.value.length;
+            const max = textarea.maxLength;
+            counter.textContent = `${current} / ${max} caratteri`;
+            
+            counter.classList.remove('warning', 'danger');
+            if (current > max * 0.9) {
+                counter.classList.add('warning');
+            }
+            if (current >= max) {
+                counter.classList.add('danger');
+            }
         }
 
         // Image preview
@@ -396,116 +360,47 @@
                 const file = input.files[0];
                 const reader = new FileReader();
                 
-                // Validate file size (10MB)
-                if (file.size > 10 * 1024 * 1024) {
-                    alert('Il file è troppo grande. Dimensione massima: 10MB');
-                    input.value = '';
-                    return;
-                }
-                
-                // Validate file type
-                if (!file.type.match('image.*')) {
-                    alert('Seleziona un file immagine valido');
-                    input.value = '';
-                    return;
-                }
-                
                 reader.onload = function(e) {
                     document.getElementById('previewImg').src = e.target.result;
                     document.getElementById('fileName').textContent = file.name;
-                    document.getElementById('fileSize').textContent = formatFileSize(file.size);
-                    document.getElementById('newImagePreview').style.display = 'block';
-                    document.getElementById('fileUploadArea').style.display = 'none';
+                    document.getElementById('fileSize').textContent = 
+                        (file.size / 1024 / 1024).toFixed(2) + ' MB';
+                    document.getElementById('imagePreview').classList.remove('d-none');
                 };
                 
                 reader.readAsDataURL(file);
             }
         }
 
-        // Clear image upload
-        function clearImageUpload() {
+        function removeImagePreview() {
             document.getElementById('imageFile').value = '';
-            document.getElementById('newImagePreview').style.display = 'none';
-            document.getElementById('fileUploadArea').style.display = 'block';
+            document.getElementById('imagePreview').classList.add('d-none');
         }
-
-        // Remove current image
-        function removeCurrentImage() {
-            if (confirm('Sei sicuro di voler rimuovere l\'immagine corrente?')) {
-                // Add hidden input to signal image removal
-                const form = document.getElementById('blogForm');
-                const input = document.createElement('input');
-                input.type = 'hidden';
-                input.name = 'removeImage';
-                input.value = 'true';
-                form.appendChild(input);
-                
-                // Hide current image preview
-                event.target.closest('.mb-3').style.display = 'none';
-            }
-        }
-
-        // Format file size
-        function formatFileSize(bytes) {
-            if (bytes === 0) return '0 Bytes';
-            const k = 1024;
-            const sizes = ['Bytes', 'KB', 'MB'];
-            const i = Math.floor(Math.log(bytes) / Math.log(k));
-            return Math.round(bytes / Math.pow(k, i) * 100) / 100 + ' ' + sizes[i];
-        }
-
-        // Drag and drop
-        const fileUploadArea = document.getElementById('fileUploadArea');
-        
-        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
-            fileUploadArea.addEventListener(eventName, preventDefaults, false);
-        });
-        
-        function preventDefaults(e) {
-            e.preventDefault();
-            e.stopPropagation();
-        }
-        
-        ['dragenter', 'dragover'].forEach(eventName => {
-            fileUploadArea.addEventListener(eventName, () => {
-                fileUploadArea.classList.add('dragover');
-            }, false);
-        });
-        
-        ['dragleave', 'drop'].forEach(eventName => {
-            fileUploadArea.addEventListener(eventName, () => {
-                fileUploadArea.classList.remove('dragover');
-            }, false);
-        });
-        
-        fileUploadArea.addEventListener('drop', (e) => {
-            const dt = e.dataTransfer;
-            const files = dt.files;
-            document.getElementById('imageFile').files = files;
-            previewImage(document.getElementById('imageFile'));
-        }, false);
 
         // Auto-hide alerts
         document.addEventListener('DOMContentLoaded', function() {
-            const alerts = document.querySelectorAll('.alert');
+            const alerts = document.querySelectorAll('.form-alert');
             alerts.forEach(alert => {
                 setTimeout(() => {
                     alert.style.opacity = '0';
                     setTimeout(() => alert.remove(), 300);
                 }, 5000);
             });
+            
+            // Initialize char counter if content exists
+            const contentField = document.getElementById('content');
+            if (contentField && contentField.value) {
+                updateCharCount(contentField, 'contentCounter');
+            }
         });
 
-        // Form validation before submit
-        document.getElementById('blogForm').addEventListener('submit', function(e) {
-            const title = document.getElementById('title').value.trim();
-            const sourceName = document.getElementById('sourceName').value.trim();
-            
-            if (!title || !sourceName) {
-                e.preventDefault();
-                alert('Compila tutti i campi obbligatori');
-                return false;
-            }
+        // Form loading state
+        document.getElementById('blogForm').addEventListener('submit', function() {
+            const submitButtons = this.querySelectorAll('button[type="submit"]');
+            submitButtons.forEach(btn => {
+                btn.classList.add('loading');
+                btn.disabled = true;
+            });
         });
     </script>
 </body>
