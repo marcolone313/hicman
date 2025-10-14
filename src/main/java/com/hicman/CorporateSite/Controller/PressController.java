@@ -1,9 +1,5 @@
-package com.osc.CorporateSite.Controller;
+package com.hicman.CorporateSite.Controller;
 
-import com.osc.CorporateSite.Model.BlogPost;
-import com.osc.CorporateSite.Model.Testimonial;
-import com.osc.CorporateSite.Service.BlogService;
-import com.osc.CorporateSite.Service.TestimonialService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -13,6 +9,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import com.hicman.CorporateSite.Model.BlogPost;
+import com.hicman.CorporateSite.Model.Testimonial;
+import com.hicman.CorporateSite.Service.BlogService;
+import com.hicman.CorporateSite.Service.TestimonialService;
 
 import java.util.List;
 import java.util.Optional;

@@ -1,7 +1,5 @@
-package com.osc.CorporateSite.Controller;
+package com.hicman.CorporateSite.Controller;
 
-import com.osc.CorporateSite.Model.BlogPost;
-import com.osc.CorporateSite.Service.BlogService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -14,6 +12,9 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import com.hicman.CorporateSite.Model.BlogPost;
+import com.hicman.CorporateSite.Service.BlogService;
 
 import java.io.IOException;
 import java.time.LocalDateTime;

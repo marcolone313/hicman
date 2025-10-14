@@ -9,11 +9,11 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     
-    <groupId>com.osc</groupId>
+    <groupId>com.hicman</groupId>
     <artifactId>CorporateSite</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>CorporateSite</name>
-    <description>Corporate site of OSC Innovation</description>
+    <description>Corporate site of hicman</description>
 
     <properties>
         <java.version>17</java.version>

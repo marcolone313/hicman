@@ -1,7 +1,5 @@
-package com.osc.CorporateSite.Controller;
+package com.hicman.CorporateSite.Controller;
 
-import com.osc.CorporateSite.Model.Contact;
-import com.osc.CorporateSite.Service.ContactService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
@@ -10,6 +8,10 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import com.hicman.CorporateSite.Model.Contact;
+import com.hicman.CorporateSite.Service.ContactService;
+
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

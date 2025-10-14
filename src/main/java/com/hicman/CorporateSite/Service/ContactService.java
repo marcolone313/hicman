@@ -1,6 +1,5 @@
-package com.osc.CorporateSite.Service;
+package com.hicman.CorporateSite.Service;
 
-import com.osc.CorporateSite.Model.Contact;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -12,6 +11,8 @@ import org.springframework.http.ResponseEntity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.hicman.CorporateSite.Model.Contact;
+
 import java.util.HashMap;
 import java.util.Map;
 

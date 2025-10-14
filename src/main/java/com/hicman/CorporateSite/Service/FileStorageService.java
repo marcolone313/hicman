@@ -1,4 +1,4 @@
-package com.osc.CorporateSite.Service;
+package com.hicman.CorporateSite.Service;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;

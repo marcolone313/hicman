@@ -1,13 +1,14 @@
-package com.osc.CorporateSite.Service;
+package com.hicman.CorporateSite.Service;
 
-import com.osc.CorporateSite.Model.Testimonial;
-import com.osc.CorporateSite.Repository.TestimonialRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import com.hicman.CorporateSite.Model.Testimonial;
+import com.hicman.CorporateSite.Repository.TestimonialRepository;
 
 import java.time.LocalDateTime;
 import java.util.List;

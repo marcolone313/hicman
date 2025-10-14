@@ -1,4 +1,4 @@
-package com.osc.CorporateSite.Config;
+package com.hicman.CorporateSite.Config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;

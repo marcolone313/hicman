@@ -1,4 +1,4 @@
-package com.osc.CorporateSite.Model;
+package com.hicman.CorporateSite.Model;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;

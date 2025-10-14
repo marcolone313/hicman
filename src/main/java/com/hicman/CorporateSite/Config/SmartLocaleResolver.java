@@ -1,4 +1,4 @@
-package com.osc.CorporateSite.Config;
+package com.hicman.CorporateSite.Config;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;

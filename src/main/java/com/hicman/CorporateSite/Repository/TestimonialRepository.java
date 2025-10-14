@@ -1,8 +1,9 @@
-package com.osc.CorporateSite.Repository;
+package com.hicman.CorporateSite.Repository;
 
-import com.osc.CorporateSite.Model.Testimonial;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+
+import com.hicman.CorporateSite.Model.Testimonial;
 
 import java.util.List;
 import java.util.Optional;

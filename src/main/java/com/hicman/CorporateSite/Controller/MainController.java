@@ -1,4 +1,4 @@
-package com.osc.CorporateSite.Controller;
+package com.hicman.CorporateSite.Controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -7,12 +7,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import com.hicman.CorporateSite.Model.Contact;
+import com.hicman.CorporateSite.Service.ContactService;
+
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.util.StringUtils;
-
-import com.osc.CorporateSite.Model.Contact;
-import com.osc.CorporateSite.Service.ContactService;
 
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;

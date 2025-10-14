@@ -1,4 +1,4 @@
-package com.osc.CorporateSite;
+package com.hicman.CorporateSite;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

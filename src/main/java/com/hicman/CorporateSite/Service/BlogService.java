@@ -1,7 +1,5 @@
-package com.osc.CorporateSite.Service;
+package com.hicman.CorporateSite.Service;
 
-import com.osc.CorporateSite.Model.BlogPost;
-import com.osc.CorporateSite.Repository.BlogPostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -10,6 +8,9 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
+
+import com.hicman.CorporateSite.Model.BlogPost;
+import com.hicman.CorporateSite.Repository.BlogPostRepository;
 
 import java.io.IOException;
 import java.time.LocalDateTime;

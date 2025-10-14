@@ -1,12 +1,13 @@
-package com.osc.CorporateSite.Controller;
+package com.hicman.CorporateSite.Controller;
 
-import com.osc.CorporateSite.Service.BlogService;
-import com.osc.CorporateSite.Service.TestimonialService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.hicman.CorporateSite.Service.BlogService;
+import com.hicman.CorporateSite.Service.TestimonialService;
 
 /**
  * Controller per la Dashboard Admin

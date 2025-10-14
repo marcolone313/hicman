@@ -1,4 +1,4 @@
-package com.osc.CorporateSite.Controller;
+package com.hicman.CorporateSite.Controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
