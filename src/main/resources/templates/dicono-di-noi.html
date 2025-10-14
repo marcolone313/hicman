@@ -54,38 +54,53 @@
 
                             <!-- Content -->
                             <div class="testimonial-content">
-                                <p class="testimonial-text" th:text="${testimonial.content}">
+                                <p class="testimonial-text" th:text="${testimonial.quote}">
                                     Contenuto della testimonianza che esprime l'opinione del cliente 
                                     riguardo la nostra azienda e i nostri servizi...
                                 </p>
                             </div>
 
                             <!-- Author Info -->
-                            <div class="testimonial-author">
-                                <div class="author-avatar">
+                            <div class="testimonial-source">
+                                <!-- Logo (se presente) -->
+                                <div class="testimonial-logo" th:if="${testimonial.logoUrl != null}">
+                                    <img th:src="@{${testimonial.logoUrl}}" th:alt="${testimonial.sourceName}" />
+                                </div>
+                                
+                                <!-- Avatar placeholder (se non c'è logo) -->
+                                <div class="author-avatar" th:unless="${testimonial.logoUrl != null}">
                                     <i class="bi bi-person-circle"></i>
                                 </div>
-                                <div class="author-details">
-                                    <h4 class="author-name" th:text="${testimonial.author}">
-                                        Nome Autore
+                                
+                                <div class="testimonial-info">
+                                    <h4 class="author-name" th:text="${testimonial.sourceName}">
+                                        Nome Fonte
                                     </h4>
-                                    <p class="author-role" th:if="${testimonial.authorRole}">
-                                        <span th:text="${testimonial.authorRole}">Ruolo</span>
-                                        <span th:if="${testimonial.companyName}" class="author-company">
-                                            at <strong th:text="${testimonial.companyName}">Azienda</strong>
-                                        </span>
+                                    <p class="author-role" th:if="${testimonial.sourceRole}" th:text="${testimonial.sourceRole}">
+                                        Ruolo/Testata
                                     </p>
-                                    
-                                    <!-- Source Link -->
-                                    <a th:if="${testimonial.hasSourceUrl()}" 
-                                       th:href="${testimonial.sourceUrl}" 
-                                       target="_blank" 
-                                       rel="noopener noreferrer"
-                                       class="source-link-testimonial">
-                                        <i class="bi bi-link-45deg me-1"></i>
-                                        Vai alla fonte
-                                    </a>
                                 </div>
+                            </div>
+
+                            <!-- External Link (se presente) -->
+                            <div class="testimonial-link mt-3" th:if="${testimonial.externalLink != null}">
+                                <a th:href="${testimonial.externalLink}" 
+                                   class="btn btn-outline-primary btn-sm" 
+                                   target="_blank" 
+                                   rel="noopener noreferrer">
+                                    <i class="bi bi-box-arrow-up-right"></i>
+                                    Leggi l'articolo completo
+                                </a>
+                            </div>
+
+                            <!-- Published Date -->
+                            <div class="testimonial-date mt-3">
+                                <small class="text-muted">
+                                    <i class="bi bi-calendar3"></i>
+                                    <span th:text="${#temporals.format(testimonial.publishedDate, 'dd MMMM yyyy')}">
+                                        Data pubblicazione
+                                    </span>
+                                </small>
                             </div>
                         </article>
                     </div>
@@ -94,24 +109,13 @@
         </section>
 
         <!-- CTA Section -->
-        <section class="testimonials-cta-section py-5">
-            <div class="container py-4">
-                <div class="row align-items-center">
-                    <div class="col-lg-8 mb-4 mb-lg-0">
-                        <h2 class="cta-title mb-3">
-                            <i class="bi bi-newspaper me-3"></i>
-                            Rassegna Stampa
-                        </h2>
-                        <p class="cta-text mb-0">
-                            Leggi gli ultimi articoli e notizie che parlano di Hicman Capital Partner
-                        </p>
-                    </div>
-                    <div class="col-lg-4 text-lg-end">
-                        <a href="/rassegna-stampa" class="btn btn-finance-primary btn-lg">
-                            Vai alla Rassegna Stampa <i class="bi bi-arrow-right ms-2"></i>
-                        </a>
-                    </div>
-                </div>
+        <section class="cta-section py-5 text-center text-white">
+            <div class="container">
+                <h2 class="mb-3">Vuoi essere il prossimo a parlare di noi?</h2>
+                <p class="lead mb-4">Contattaci per scoprire come possiamo aiutarti a raggiungere i tuoi obiettivi finanziari</p>
+                <a href="/contatti" class="btn btn-light btn-lg">
+                    <i class="bi bi-envelope"></i> Contattaci
+                </a>
             </div>
         </section>
     </main>

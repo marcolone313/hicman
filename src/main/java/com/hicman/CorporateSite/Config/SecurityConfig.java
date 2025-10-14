@@ -40,6 +40,10 @@ public class SecurityConfig {
                     "/services",
                     "/services/**",
                     "/contact",
+                    "/chi-siamo",
+                    "/servizi",
+                    "/servizi/**",
+                    "/contatti",
                     "/rassegna-stampa",
                     "/rassegna-stampa/**",
                     "/dicono-di-noi",
@@ -49,16 +53,21 @@ public class SecurityConfig {
                     "/images/**",
                     "/uploads/**",
                     "/error",
-                    "/favicon.ico"
+                    "/favicon.ico",
+                    "/h2-console/**"  // ACCESSO H2 CONSOLE
                 ).permitAll()
                 // Richiedi autenticazione per /admin
                 .requestMatchers("/admin/**").authenticated()
                 .anyRequest().permitAll()
             )
-            // Configurazione CSRF migliorata
+            // Disabilita CSRF e frame options per H2 Console
             .csrf(csrf -> csrf
+                .ignoringRequestMatchers("/h2-console/**")
                 .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
                 .csrfTokenRequestHandler(requestHandler)
+            )
+            .headers(headers -> headers
+                .frameOptions(frame -> frame.sameOrigin())  // Permetti frames per H2
             )
             .formLogin(form -> form
                 .loginPage("/admin/login")

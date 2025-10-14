@@ -215,8 +215,10 @@
                                     <div th:each="testimonial : ${latestTestimonials}" class="list-group-item">
                                         <div class="d-flex justify-content-between align-items-start">
                                             <div class="flex-grow-1">
-                                                <h5 class="mb-1" th:text="${testimonial.source}">Fonte</h5>
-                                                <p class="mb-1 text-muted small" th:text="${#strings.abbreviate(testimonial.content, 100)}">
+                                                <!-- CORRETTO: sourceName invece di source -->
+                                                <h5 class="mb-1" th:text="${testimonial.sourceName}">Fonte</h5>
+                                                <!-- CORRETTO: quote invece di content -->
+                                                <p class="mb-1 text-muted small" th:text="${#strings.abbreviate(testimonial.quote, 100)}">
                                                     Contenuto testimonianza...
                                                 </p>
                                                 <small class="text-muted">
