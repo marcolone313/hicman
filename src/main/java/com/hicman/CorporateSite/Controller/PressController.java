@@ -99,8 +99,14 @@ public class PressController {
      * Redirect da /blog/{id} a /rassegna-stampa/{id} per compatibilità
      */
     @GetMapping("/blog/{id}")
-    public String blogDetailRedirect(@PathVariable Long id) {
-        return "redirect:/rassegna-stampa/" + id;
+    public String blogDetailRedirect(@PathVariable String id) {
+        try {
+            Long postId = Long.parseLong(id);
+            return "redirect:/rassegna-stampa/" + postId;
+        } catch (NumberFormatException e) {
+            // Se non è un numero, redirect alla home o pagina non trovata
+            return "redirect:/rassegna-stampa";
+        }
     }
 
     /**
@@ -139,5 +145,15 @@ public class PressController {
         // Se vuoi una pagina dettaglio dedicata, crea testimonial-detail.html
         // Altrimenti redirect alla lista
         return "redirect:/dicono-di-noi";
+    }
+
+    @GetMapping("/blog/testimonials")
+    public String blogTestimonialsRedirect() {
+        return "redirect:/dicono-di-noi";
+    }
+
+    @GetMapping("/blog/{id:[0-9]+}")
+    public String blogDetailRedirect(@PathVariable Long id) {
+        return "redirect:/rassegna-stampa/" + id;
     }
 }
