@@ -108,7 +108,7 @@
 
                 <!-- Cards Grid -->
                 <div class="cards-grid" id="cardsContainer" th:if="${!#lists.isEmpty(testimonials)}">
-                    <div class="testimonial-card" th:each="testimonial : ${testimonials}" th:data-source="${testimonial.source}">
+                    <div class="testimonial-card" th:each="testimonial : ${testimonials}" th:data-source="${testimonial.sourceName}">
                         <!-- Status Badge -->
                         <span class="testimonial-status-badge" 
                               th:classappend="${testimonial.published} ? 'badge-published' : 'badge-draft'"
@@ -123,7 +123,7 @@
                         
                         <!-- Content -->
                         <div class="testimonial-content">
-                            <p class="testimonial-text" th:text="${testimonial.content}">
+                            <p class="testimonial-text" th:text="${testimonial.quote}">
                                 "Contenuto della testimonianza che esprime l'opinione riguardo ai nostri servizi..."
                             </p>
                         </div>
@@ -134,7 +134,7 @@
                                 <i class="bi bi-person"></i>
                             </div>
                             <div class="author-info">
-                                <h4 class="author-name" th:text="${testimonial.source}">Nome Fonte</h4>
+                                <h4 class="author-name" th:text="${testimonial.sourceName}">Nome Fonte</h4>
                                 <p class="author-role" th:if="${testimonial.sourceRole}" th:text="${testimonial.sourceRole}">
                                     Ruolo/Testata
                                 </p>
@@ -149,7 +149,7 @@
                             </span>
                             <span class="meta-item" th:if="${testimonial.sourceUrl}">
                                 <i class="bi bi-link-45deg"></i>
-                                <a th:href="${testimonial.sourceUrl}" target="_blank" style="color: inherit;">Link fonte</a>
+                                <a th:href="${testimonial.externalLink}" target="_blank" style="color: inherit;">Link fonte</a>
                             </span>
                         </div>
                         
@@ -205,10 +205,11 @@
         function filterCards() {
             const searchTerm = document.getElementById('searchInput').value.toLowerCase();
             const cards = document.querySelectorAll('.testimonial-card');
-            
+    
             cards.forEach(card => {
-                const source = card.getAttribute('data-source').toLowerCase();
-                if (source.includes(searchTerm)) {
+                const sourceName = card.getAttribute('data-source').toLowerCase();
+                // Rinominato da 'source' a 'sourceName' per chiarezza
+                if (sourceName.includes(searchTerm)) {
                     card.style.display = '';
                 } else {
                     card.style.display = 'none';

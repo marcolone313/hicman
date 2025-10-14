@@ -40,9 +40,9 @@
 
                             <!-- Author Info -->
                             <div class="author-info">
-                                <h6 class="mb-0 fw-bold" th:text="${testimonial.author}">Nome Autore</h6>
-                                <p class="text-muted small mb-0" th:if="${testimonial.authorRole}">
-                                    <span th:text="${testimonial.authorRole}">Ruolo</span>
+                                <h6 class="mb-0 fw-bold" th:text="${testimonial.sourceName}">Nome Autore</h6>
+                                <p class="text-muted small mb-0" th:if="${testimonial.sourceRole}">
+                                    <span th:text="${testimonial.sourceRole}">Ruolo</span>
                                     <span th:if="${testimonial.companyName}">
                                         at <strong th:text="${testimonial.companyName}">Azienda</strong>
                                     </span>
