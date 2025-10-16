@@ -1,44 +1,79 @@
 /* ========================================
-   HICMAN CAPITAL PARTNER - FINANCE STYLES
+   HICMAN CAPITAL PARTNER - FINANCE STYLES ENHANCED
+   Ispirato a Patience Capital Group
    ======================================== */
 
 /* === VARIABILI COLORI === */
 :root {
-    /* Palette Principale */
+    /* Palette Principale come da richiesta */
     --finance-primary: #282942;        /* Header e elementi di rilievo */
     --finance-secondary: #d5daf5;      /* Sfondi leggeri */
     --finance-text: #2e2e2e;           /* Testi e dettagli */
     --finance-bg: #f5f6fb;             /* Sfondi principali */
     
-    /* Colori Aggiuntivi */
+    /* Colori Aggiuntivi ottimizzati */
     --finance-white: #ffffff;
-    --finance-accent: #4a4d7c;         /* Hover states */
+    --finance-accent: #4a4d7c;         /* Hover states più chiari */
     --finance-light: #e8eaf6;
     --finance-border: #d0d4e4;
+    --finance-dark-text: #1a1a2e;      /* Testo molto scuro per contrasto */
+    --finance-link-hover: #5a5d8c;     /* Link hover più chiaro */
     
-    /* Typography */
+    /* Gradienti sofisticati */
+    --gradient-hero: linear-gradient(135deg, #282942 0%, #3a3b5c 50%, #4a4d7c 100%);
+    --gradient-subtle: linear-gradient(180deg, #f5f6fb 0%, #ffffff 100%);
+    --gradient-card-hover: linear-gradient(135deg, rgba(40, 41, 66, 0.03) 0%, rgba(213, 218, 245, 0.08) 100%);
+    
+    /* Typography - Simile a Patience Capital */
     --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     --font-heading: 'Playfair Display', Georgia, serif;
+    
+    /* Shadows più morbide */
+    --shadow-sm: 0 2px 8px rgba(40, 41, 66, 0.06);
+    --shadow-md: 0 4px 16px rgba(40, 41, 66, 0.08);
+    --shadow-lg: 0 8px 32px rgba(40, 41, 66, 0.12);
+    --shadow-xl: 0 16px 48px rgba(40, 41, 66, 0.16);
+    
+    /* Transitions */
+    --transition-base: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-slow: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* === TYPOGRAPHY === */
+/* === RESET & BASE === */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
     font-family: var(--font-primary);
     color: var(--finance-text);
-    background-color: var(--finance-bg);
+    background-color: var(--finance-white);
     line-height: 1.7;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
+/* === TYPOGRAPHY === */
 h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-heading);
-    font-weight: 600;
+    font-weight: 500;
     color: var(--finance-primary);
+    line-height: 1.3;
+    letter-spacing: -0.02em;
 }
 
-/* === HERO SECTION === */
+p {
+    margin-bottom: 1rem;
+    color: var(--finance-text);
+}
+
+/* === HERO SECTION ENHANCED === */
 .hero-section-finance {
     min-height: 100vh;
-    background: linear-gradient(135deg, var(--finance-primary) 0%, var(--finance-accent) 100%);
+    background: var(--gradient-hero);
     position: relative;
     display: flex;
     align-items: center;
@@ -47,6 +82,7 @@ h1, h2, h3, h4, h5, h6 {
     overflow: hidden;
 }
 
+/* Pattern sottile come Patience Capital */
 .hero-section-finance::before {
     content: '';
     position: absolute;
@@ -54,10 +90,30 @@ h1, h2, h3, h4, h5, h6 {
     left: 0;
     right: 0;
     bottom: 0;
-    background: 
-        radial-gradient(circle at 20% 30%, rgba(213, 218, 245, 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 80% 70%, rgba(213, 218, 245, 0.08) 0%, transparent 50%);
+    background-image: 
+        radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.03) 0%, transparent 50%);
     pointer-events: none;
+    z-index: 1;
+}
+
+/* Animazione geometrica sottile */
+.hero-section-finance::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -25%;
+    width: 100%;
+    height: 200%;
+    background: radial-gradient(ellipse at center, transparent 30%, rgba(255, 255, 255, 0.02) 70%);
+    animation: rotate-slow 30s linear infinite;
+    pointer-events: none;
+    z-index: 1;
+}
+
+@keyframes rotate-slow {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
 
 .hero-overlay-finance {
@@ -66,7 +122,7 @@ h1, h2, h3, h4, h5, h6 {
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(180deg, transparent 0%, rgba(40, 41, 66, 0.3) 100%);
+    background: linear-gradient(180deg, transparent 0%, rgba(40, 41, 66, 0.2) 100%);
     z-index: 1;
 }
 
@@ -74,134 +130,132 @@ h1, h2, h3, h4, h5, h6 {
     position: relative;
     z-index: 2;
     color: var(--finance-white);
-    padding: 2rem 1rem;
+    padding: 2rem;
+    text-align: center;
 }
 
 .hero-title-finance {
-    font-size: clamp(2.5rem, 6vw, 4.5rem);
-    font-weight: 700;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 300;
     margin-bottom: 1.5rem;
-    letter-spacing: -0.02em;
-    line-height: 1.1;
+    letter-spacing: -0.03em;
+    line-height: 1.2;
+    animation: fadeInUp 0.8s ease-out;
 }
 
 .hero-subtitle-finance {
-    font-size: clamp(1.1rem, 2vw, 1.4rem);
+    font-size: clamp(1.1rem, 2vw, 1.3rem);
     font-weight: 300;
-    margin-bottom: 2.5rem;
+    margin-bottom: 3rem;
     line-height: 1.6;
     max-width: 800px;
     margin-left: auto;
     margin-right: auto;
+    opacity: 0.95;
+    animation: fadeInUp 0.8s ease-out 0.2s both;
 }
 
+/* Buttons ottimizzati */
 .hero-buttons-finance {
     display: flex;
     gap: 1.5rem;
     justify-content: center;
     flex-wrap: wrap;
+    animation: fadeInUp 0.8s ease-out 0.4s both;
 }
 
-/* Scroll Indicator */
+.btn-finance-primary {
+    background-color: var(--finance-white);
+    color: var(--finance-primary) !important;
+    border: 2px solid var(--finance-white);
+    padding: 16px 40px;
+    font-size: 1rem;
+    font-weight: 500;
+    border-radius: 50px;
+    transition: var(--transition-base);
+    text-decoration: none;
+    display: inline-block;
+    box-shadow: 0 4px 14px rgba(255, 255, 255, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-finance-primary::before {
+    content: '';
+    color: var(--finance-primary);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(40, 41, 66, 0.1);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.btn-finance-primary:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+.btn-finance-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(255, 255, 255, 0.2);
+    background-color: var(--finance-white);
+    color: var(--finance-primary);
+}
+
+.btn-finance-secondary {
+    background-color: transparent;
+    color: var(--finance-white);
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    padding: 16px 40px;
+    font-size: 1rem;
+    font-weight: 500;
+    border-radius: 50px;
+    transition: var(--transition-base);
+    text-decoration: none;
+    display: inline-block;
+    backdrop-filter: blur(10px);
+}
+
+.btn-finance-secondary:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: var(--finance-white);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Scroll Indicator migliorato */
 .scroll-indicator-finance {
     position: absolute;
     bottom: 40px;
     left: 50%;
     transform: translateX(-50%);
     color: var(--finance-white);
-    font-size: 2rem;
-    animation: bounce-finance 2s infinite;
+    font-size: 1.5rem;
+    animation: bounce-smooth 2s infinite;
     z-index: 2;
     cursor: pointer;
-    opacity: 0.7;
+    opacity: 0.6;
     transition: opacity 0.3s ease;
 }
 
-.scroll-indicator-finance:hover {
-    opacity: 1;
+@keyframes bounce-smooth {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(-15px); }
 }
 
-@keyframes bounce-finance {
-    0%, 20%, 50%, 80%, 100% {
-        transform: translateX(-50%) translateY(0);
-    }
-    40% {
-        transform: translateX(-50%) translateY(-20px);
-    }
-    60% {
-        transform: translateX(-50%) translateY(-10px);
-    }
-}
-
-/* === BUTTONS === */
-.btn-finance-primary {
-    background-color: var(--finance-white);
-    color: var(--finance-primary);
-    border: 2px solid var(--finance-white);
-    padding: 14px 32px;
-    font-size: 1rem;
-    font-weight: 600;
-    border-radius: 8px;
-    transition: all 0.3s ease;
-    text-decoration: none;
-    display: inline-block;
-}
-
-.btn-finance-primary:hover {
-    background-color: transparent;
-    color: var(--finance-white);
-    transform: translateY(-2px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-}
-
-.btn-finance-secondary {
-    background-color: transparent;
-    color: var(--finance-white);
-    border: 2px solid var(--finance-white);
-    padding: 14px 32px;
-    font-size: 1rem;
-    font-weight: 600;
-    border-radius: 8px;
-    transition: all 0.3s ease;
-    text-decoration: none;
-    display: inline-block;
-}
-
-.btn-finance-secondary:hover {
-    background-color: var(--finance-white);
-    color: var(--finance-primary);
-    transform: translateY(-2px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-}
-
-.btn-finance-outline {
-    background-color: transparent;
-    color: var(--finance-primary);
-    border: 2px solid var(--finance-primary);
-    padding: 12px 28px;
-    font-size: 0.95rem;
-    font-weight: 600;
-    border-radius: 6px;
-    transition: all 0.3s ease;
-    text-decoration: none;
-    display: inline-block;
-}
-
-.btn-finance-outline:hover {
-    background-color: var(--finance-primary);
-    color: var(--finance-white);
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(40, 41, 66, 0.2);
-}
-
-/* === SECTION TITLES === */
+/* === SECTION TITLES ENHANCED === */
 .section-title-finance {
-    font-size: clamp(2rem, 4vw, 3rem);
-    font-weight: 700;
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    font-weight: 400;
     color: var(--finance-primary);
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
     position: relative;
-    padding-bottom: 1rem;
+    padding-bottom: 1.5rem;
+    text-align: center;
 }
 
 .section-title-finance::after {
@@ -210,15 +264,16 @@ h1, h2, h3, h4, h5, h6 {
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
-    width: 80px;
-    height: 4px;
-    background: linear-gradient(90deg, var(--finance-primary), var(--finance-accent));
+    width: 60px;
+    height: 3px;
+    background: var(--finance-primary);
     border-radius: 2px;
 }
 
 /* === INTRO SECTION === */
 .intro-section {
-    background-color: var(--finance-white);
+    background: linear-gradient(180deg, var(--finance-white) 0%, var(--finance-bg) 100%);
+    padding: 80px 0;
 }
 
 .intro-content {
@@ -227,79 +282,88 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .intro-text {
-    font-size: 1.2rem;
+    font-size: 1.125rem;
     line-height: 1.8;
     margin-bottom: 1.5rem;
     color: var(--finance-text);
+    text-align: center;
 }
 
-/* === SERVICES HIGHLIGHTS === */
+/* === SERVICE CARDS ENHANCED === */
 .services-highlights-section {
     background-color: var(--finance-bg);
+    padding: 80px 0;
 }
 
 .service-card {
     background: var(--finance-white);
-    border-radius: 16px;
-    padding: 2.5rem;
-    transition: all 0.4s ease;
-    box-shadow: 0 4px 20px rgba(40, 41, 66, 0.08);
+    border-radius: 20px;
+    padding: 3rem 2rem;
+    transition: var(--transition-base);
+    box-shadow: var(--shadow-sm);
     border: 1px solid var(--finance-border);
     position: relative;
     overflow: hidden;
+    height: 100%;
 }
 
+/* Gradient sottile al hover */
 .service-card::before {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    height: 4px;
+    height: 5px;
     background: linear-gradient(90deg, var(--finance-primary), var(--finance-accent));
     transform: scaleX(0);
     transform-origin: left;
     transition: transform 0.4s ease;
 }
 
-.service-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 12px 40px rgba(40, 41, 66, 0.15);
-    border-color: var(--finance-primary);
-}
-
 .service-card:hover::before {
     transform: scaleX(1);
 }
 
+.service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-xl);
+    background: linear-gradient(180deg, var(--finance-white) 0%, rgba(213, 218, 245, 0.05) 100%);
+}
+
 .service-icon {
-    width: 70px;
-    height: 70px;
+    width: 80px;
+    height: 80px;
     background: linear-gradient(135deg, var(--finance-secondary), var(--finance-light));
-    border-radius: 16px;
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 1.5rem;
-    transition: all 0.3s ease;
+    margin-bottom: 2rem;
+    transition: var(--transition-base);
 }
 
 .service-icon i {
-    font-size: 2rem;
-    color: var(--finance-primary);
+    font-size: 2.5rem;
+    background: linear-gradient(135deg, var(--finance-primary), var(--finance-accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .service-card:hover .service-icon {
+    transform: rotate(10deg) scale(1.1);
     background: linear-gradient(135deg, var(--finance-primary), var(--finance-accent));
 }
 
 .service-card:hover .service-icon i {
-    color: var(--finance-white);
+    background: var(--finance-white);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .service-card-title {
     font-size: 1.5rem;
-    font-weight: 700;
+    font-weight: 600;
     color: var(--finance-primary);
     margin-bottom: 1rem;
 }
@@ -312,386 +376,31 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .service-details {
-    background-color: var(--finance-bg);
-    border-radius: 8px;
-    padding: 1.25rem;
+    background: var(--gradient-subtle);
+    border-radius: 12px;
+    padding: 1.5rem;
     margin-bottom: 1.5rem;
+    border: 1px solid var(--finance-border);
 }
 
 .service-detail-item {
-    font-size: 0.9rem;
-    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+    margin-bottom: 0.75rem;
     color: var(--finance-text);
+    padding-left: 20px;
+    position: relative;
 }
 
-.service-detail-item:last-child {
-    margin-bottom: 0;
+.service-detail-item::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: var(--finance-accent);
 }
 
 .service-detail-item strong {
     color: var(--finance-primary);
-}
-
-/* === VALUE PROPOSITION === */
-.value-proposition-section {
-    background-color: var(--finance-white);
-}
-
-.value-text {
-    font-size: 1.1rem;
-    line-height: 1.8;
-    margin-bottom: 1.25rem;
-    color: var(--finance-text);
-}
-
-.value-stats {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-}
-
-.stat-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 1.5rem;
-    padding: 1.5rem;
-    background: var(--finance-bg);
-    border-radius: 12px;
-    transition: all 0.3s ease;
-}
-
-.stat-item:hover {
-    transform: translateX(8px);
-    background: var(--finance-secondary);
-}
-
-.stat-icon {
-    width: 60px;
-    height: 60px;
-    background: linear-gradient(135deg, var(--finance-primary), var(--finance-accent));
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-}
-
-.stat-icon i {
-    font-size: 1.8rem;
-    color: var(--finance-white);
-}
-
-.stat-title {
-    font-size: 1.3rem;
-    font-weight: 700;
-    color: var(--finance-primary);
-    margin-bottom: 0.5rem;
-}
-
-.stat-text {
-    font-size: 0.95rem;
-    color: var(--finance-text);
-    margin: 0;
-    line-height: 1.5;
-}
-
-/* === CONTACT SECTION === */
-.contact-section-finance {
-    background: linear-gradient(135deg, var(--finance-primary) 0%, var(--finance-accent) 100%);
-    color: var(--finance-white);
-}
-
-.contact-section-finance .section-title-finance {
-    color: var(--finance-white);
-}
-
-.contact-section-finance .section-title-finance::after {
-    background: linear-gradient(90deg, var(--finance-white), var(--finance-secondary));
-}
-
-.contact-form-wrapper {
-    background: var(--finance-white);
-    border-radius: 16px;
-    padding: 3rem;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
-}
-
-.contact-form-wrapper h3 {
-    color: var(--finance-primary);
-    margin-bottom: 2rem;
-}
-
-.contact-form-finance .form-control {
-    border: 2px solid var(--finance-border);
-    border-radius: 8px;
-    padding: 0.75rem 1rem;
-    font-size: 1rem;
-    transition: all 0.3s ease;
-    background-color: var(--finance-bg);
-}
-
-.contact-form-finance .form-control:focus {
-    border-color: var(--finance-primary);
-    box-shadow: 0 0 0 0.2rem rgba(40, 41, 66, 0.15);
-    background-color: var(--finance-white);
-}
-
-.contact-form-finance .form-floating > label {
-    color: var(--finance-text);
-}
-
-.contact-form-finance .form-check-label {
-    color: var(--finance-text);
-    font-size: 0.9rem;
-}
-
-.contact-form-finance .form-check-label a {
-    color: var(--finance-primary);
-    text-decoration: underline;
     font-weight: 600;
-}
-
-.contact-form-finance .form-check-label a:hover {
-    color: var(--finance-accent);
-}
-
-.contact-form-finance .btn-finance-primary {
-    padding: 16px 48px;
-    font-size: 1.1rem;
-}
-
-/* Contact Info Box */
-.contact-info-box {
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    border-radius: 16px;
-    padding: 2.5rem;
-    color: var(--finance-white);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    height: 100%;
-}
-
-.contact-info-box h4 {
-    color: var(--finance-white);
-    font-size: 1.5rem;
-    margin-bottom: 2rem;
-    font-weight: 700;
-}
-
-.contact-info-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 1.25rem;
-    margin-bottom: 2rem;
-    padding-bottom: 2rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-.contact-info-item:last-child {
-    border-bottom: none;
-    margin-bottom: 0;
-    padding-bottom: 0;
-}
-
-.contact-info-item i {
-    font-size: 1.5rem;
-    color: var(--finance-secondary);
-    margin-top: 0.25rem;
-    flex-shrink: 0;
-}
-
-.contact-info-item strong {
-    display: block;
-    font-size: 1.1rem;
-    margin-bottom: 0.5rem;
-    font-weight: 600;
-}
-
-.contact-info-item p {
-    margin: 0;
-    font-size: 1rem;
-    line-height: 1.5;
-}
-
-.contact-info-item a {
-    color: var(--finance-white);
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-.contact-info-item a:hover {
-    color: var(--finance-secondary);
-}
-
-/* === ALERTS === */
-.alert {
-    border-radius: 8px;
-    border: none;
-    padding: 1rem 1.5rem;
-}
-
-.alert-success {
-    background-color: #d4edda;
-    color: #155724;
-}
-
-.alert-danger {
-    background-color: #f8d7da;
-    color: #721c24;
-}
-
-/* === RESPONSIVE === */
-@media (max-width: 991px) {
-    .hero-section-finance {
-        min-height: 80vh;
-        padding-top: 100px;
-    }
-
-    .hero-title-finance {
-        font-size: 2.5rem;
-    }
-
-    .hero-subtitle-finance {
-        font-size: 1.1rem;
-    }
-
-    .hero-buttons-finance {
-        gap: 1rem;
-    }
-
-    .section-title-finance {
-        font-size: 2rem;
-    }
-
-    .value-stats {
-        margin-top: 2rem;
-    }
-
-    .contact-form-wrapper {
-        padding: 2rem;
-        margin-bottom: 2rem;
-    }
-
-    .contact-info-box {
-        margin-top: 2rem;
-    }
-}
-
-@media (max-width: 767px) {
-    .hero-section-finance {
-        min-height: 70vh;
-    }
-
-    .hero-title-finance {
-        font-size: 2rem;
-        margin-bottom: 1rem;
-    }
-
-    .hero-subtitle-finance {
-        font-size: 1rem;
-        margin-bottom: 2rem;
-    }
-
-    .hero-buttons-finance {
-        flex-direction: column;
-        gap: 1rem;
-    }
-
-    .hero-buttons-finance a {
-        width: 100%;
-        max-width: 280px;
-        text-align: center;
-    }
-
-    .section-title-finance {
-        font-size: 1.75rem;
-    }
-
-    .service-card {
-        padding: 2rem;
-    }
-
-    .service-card-title {
-        font-size: 1.3rem;
-    }
-
-    .intro-text {
-        font-size: 1.05rem;
-    }
-
-    .value-text {
-        font-size: 1rem;
-    }
-
-    .stat-item {
-        flex-direction: column;
-        text-align: center;
-        align-items: center;
-    }
-
-    .contact-form-wrapper {
-        padding: 1.5rem;
-    }
-
-    .contact-info-box {
-        padding: 2rem;
-    }
-
-    .scroll-indicator-finance {
-        bottom: 20px;
-        font-size: 1.5rem;
-    }
-}
-
-@media (max-width: 575px) {
-    .hero-section-finance {
-        min-height: 65vh;
-        padding-top: 80px;
-    }
-
-    .hero-title-finance {
-        font-size: 1.75rem;
-    }
-
-    .hero-subtitle-finance {
-        font-size: 0.95rem;
-    }
-
-    .btn-finance-primary,
-    .btn-finance-secondary {
-        padding: 12px 24px;
-        font-size: 0.9rem;
-    }
-
-    .section-title-finance {
-        font-size: 1.5rem;
-    }
-
-    .service-card {
-        padding: 1.5rem;
-    }
-
-    .service-icon {
-        width: 60px;
-        height: 60px;
-    }
-
-    .service-icon i {
-        font-size: 1.75rem;
-    }
-
-    .stat-icon {
-        width: 50px;
-        height: 50px;
-    }
-
-    .stat-icon i {
-        font-size: 1.5rem;
-    }
-
-    .contact-form-wrapper {
-        padding: 1.25rem;
-    }
 }
 
 /* === ANIMATIONS === */
@@ -706,43 +415,41 @@ h1, h2, h3, h4, h5, h6 {
     }
 }
 
-.animate__animated {
-    animation-duration: 1s;
-    animation-fill-mode: both;
+/* === RESPONSIVE === */
+@media (max-width: 991px) {
+    .hero-section-finance {
+        min-height: 80vh;
+    }
+    
+    .hero-title-finance {
+        font-size: 2.5rem;
+    }
+    
+    .hero-subtitle-finance {
+        font-size: 1.1rem;
+    }
+    
+    .service-card {
+        padding: 2rem 1.5rem;
+    }
 }
 
-.animate__fadeInUp {
-    animation-name: fadeInUp;
-}
-
-.animate__delay-1s {
-    animation-delay: 0.3s;
-}
-
-.animate__delay-2s {
-    animation-delay: 0.6s;
-}
-
-/* === UTILITIES === */
-.text-gradient {
-    background: linear-gradient(135deg, var(--finance-primary), var(--finance-accent));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-
-/* Smooth Scrolling */
-html {
-    scroll-behavior: smooth;
-}
-
-/* Selection Color */
-::selection {
-    background-color: var(--finance-primary);
-    color: var(--finance-white);
-}
-
-::-moz-selection {
-    background-color: var(--finance-primary);
-    color: var(--finance-white);
+@media (max-width: 767px) {
+    .hero-section-finance {
+        min-height: 70vh;
+    }
+    
+    .hero-title-finance {
+        font-size: 2rem;
+    }
+    
+    .hero-buttons-finance {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .hero-buttons-finance .btn {
+        width: 100%;
+        max-width: 280px;
+    }
 }

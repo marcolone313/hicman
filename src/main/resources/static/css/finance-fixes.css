@@ -1,0 +1,317 @@
+/* ========================================
+   FIX CONTRASTO E ANIMAZIONI DINAMICHE
+   ======================================== */
+
+/* === FIX PROBLEMI DI CONTRASTO === */
+
+/* Correzione testi blu su sfondo blu */
+.navbar-finance {
+    background-color: var(--finance-primary) !important;
+}
+
+.navbar-finance .nav-link {
+    color: var(--finance-white) !important;
+    opacity: 0.9;
+    transition: all 0.3s ease;
+}
+
+.navbar-finance .nav-link:hover {
+    color: var(--finance-white) !important;
+    opacity: 1;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.navbar-finance .navbar-brand {
+    color: var(--finance-white) !important;
+}
+
+/* Fix per testi in sezioni con sfondo colorato */
+.hero-section-finance * {
+    color: var(--finance-white);
+}
+
+.service-card h3,
+.service-card p {
+    color: var(--finance-primary) !important;
+}
+
+.service-details {
+    background: rgba(213, 218, 245, 0.15) !important;
+}
+
+.service-detail-item {
+    color: var(--finance-text) !important;
+}
+
+/* === VALUE PROPOSITION SECTION FIX === */
+.value-proposition-section {
+    background: linear-gradient(180deg, var(--finance-bg) 0%, var(--finance-white) 100%);
+    padding: 80px 0;
+}
+
+.value-text {
+    color: var(--finance-text) !important;
+}
+
+.stat-item {
+    background: var(--finance-white);
+    border: 1px solid var(--finance-border);
+    box-shadow: var(--shadow-sm);
+}
+
+.stat-item:hover {
+    background: var(--finance-white);
+    box-shadow: var(--shadow-lg);
+}
+
+.stat-title {
+    color: var(--finance-primary) !important;
+}
+
+.stat-text {
+    color: var(--finance-text) !important;
+}
+
+/* === CONTACT SECTION FIX === */
+.contact-section {
+    background: var(--finance-bg);
+}
+
+.contact-form-wrapper {
+    background: var(--finance-white) !important;
+    box-shadow: var(--shadow-lg);
+}
+
+.contact-form-wrapper h3 {
+    color: var(--finance-primary) !important;
+}
+
+.form-label {
+    color: var(--finance-text) !important;
+    font-weight: 500;
+}
+
+.form-control,
+.form-select {
+    border: 1px solid var(--finance-border);
+    color: var(--finance-text) !important;
+    background-color: var(--finance-white) !important;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--finance-primary);
+    box-shadow: 0 0 0 0.2rem rgba(40, 41, 66, 0.15);
+}
+
+.contact-info-box {
+    background: linear-gradient(135deg, var(--finance-primary) 0%, var(--finance-accent) 100%) !important;
+}
+
+.contact-info-box * {
+    color: var(--finance-white) !important;
+}
+
+/* === ANIMAZIONI DINAMICHE === */
+
+/* Parallax effect per hero */
+@keyframes float-hero {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.hero-content-finance {
+    animation: float-hero 6s ease-in-out infinite;
+}
+
+/* Card entrance animations */
+.service-card {
+    opacity: 0;
+    animation: slideInUp 0.6s ease-out forwards;
+}
+
+.service-card:nth-child(1) { animation-delay: 0.1s; }
+.service-card:nth-child(2) { animation-delay: 0.2s; }
+.service-card:nth-child(3) { animation-delay: 0.3s; }
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Hover effect migliorato per i buttons */
+.btn-finance-outline {
+    background-color: transparent;
+    color: var(--finance-primary) !important;
+    border: 2px solid var(--finance-primary);
+    padding: 14px 36px;
+    font-size: 1rem;
+    font-weight: 500;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.btn-finance-outline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: var(--finance-primary);
+    transition: left 0.3s ease;
+    z-index: -1;
+}
+
+.btn-finance-outline:hover::before {
+    left: 0;
+}
+
+.btn-finance-outline:hover {
+    color: var(--finance-white) !important;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(40, 41, 66, 0.2);
+}
+
+/* Smooth scroll behavior */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Loading animation per le sezioni */
+.fade-in-section {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease;
+}
+
+.fade-in-section.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Effetto wave per background */
+@keyframes wave {
+    0% { transform: translateX(0) translateZ(0) scaleY(1); }
+    50% { transform: translateX(-25%) translateZ(0) scaleY(0.55); }
+    100% { transform: translateX(-50%) translateZ(0) scaleY(1); }
+}
+
+.wave-container {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 200%;
+    height: 100px;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.wave {
+    position: absolute;
+    bottom: 0;
+    width: 200%;
+    height: 100px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 100%;
+    animation: wave 10s linear infinite;
+}
+
+/* Micro-interazioni */
+.interactive-element {
+    transition: all 0.2s ease;
+}
+
+.interactive-element:active {
+    transform: scale(0.98);
+}
+
+/* Gradient text effect */
+.gradient-text {
+    background: linear-gradient(135deg, var(--finance-primary) 0%, var(--finance-accent) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    display: inline-block;
+}
+
+/* Card glass effect */
+.glass-card {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px rgba(40, 41, 66, 0.1);
+}
+
+/* Tooltip migliorati */
+.tooltip-custom {
+    position: relative;
+    cursor: help;
+}
+
+.tooltip-custom::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 125%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--finance-primary);
+    color: var(--finance-white);
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 0.875rem;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.tooltip-custom:hover::after {
+    opacity: 1;
+}
+
+/* Progress indicator per scroll */
+.scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--finance-primary), var(--finance-accent));
+    z-index: 9999;
+    transition: width 0.3s ease;
+}
+
+/* === RESPONSIVE FIXES === */
+@media (max-width: 768px) {
+    .hero-content-finance {
+        animation: none;
+    }
+    
+    .service-card {
+        animation-delay: 0s !important;
+    }
+}
+
+/* === PERFORMANCE OPTIMIZATIONS === */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
