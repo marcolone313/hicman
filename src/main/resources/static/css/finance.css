@@ -73,7 +73,7 @@ p {
 /* === HERO SECTION ENHANCED === */
 .hero-section-finance {
     min-height: 100vh;
-    background: var(--gradient-hero);
+    background: linear-gradient(135deg, #282942 0%, #1a1a2e 50%, #282942 100%);
     position: relative;
     display: flex;
     align-items: center;
@@ -82,56 +82,46 @@ p {
     overflow: hidden;
 }
 
+
 /* Sfere animate in background */
 .hero-section-finance .sphere {
     content: '';
     position: absolute;
     border-radius: 50%;
-    filter: blur(2px);
+    background: rgba(213, 218, 245, 0.08);
     pointer-events: none;
-    border: 2px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+    animation: float 20s infinite ease-in-out;
 }
 
 .hero-section-finance .sphere-1 {
-    width: 120px;
-    height: 120px;
-    background-color: rgba(74, 77, 124, 0.3);
-    top: 30%;
-    left: 40%;
-    animation: moveRandom1 20s linear infinite;
+    width: 500px;
+    height: 500px;
+    top: -100px;
+    left: -100px;
+    animation-delay: 0s;
 }
 
 .hero-section-finance .sphere-2 {
-    width: 80px;
-    height: 80px;
-    background-color: rgba(213, 218, 245, 0.3);
-    top: 50%;
-    left: 60%;
-    animation: moveRandom2 25s linear infinite;
+    width: 400px;
+    height: 400px;
+    bottom: -120px;
+    right: -120px;
+    animation-delay: 3s;
 }
 
-@keyframes moveRandom1 {
-    0% { transform: translate(0, 0); }
-    10% { transform: translate(200px, -100px); }
-    25% { transform: translate(-150px, 200px); }
-    40% { transform: translate(100px, 100px); }
-    55% { transform: translate(-200px, -150px); }
-    70% { transform: translate(150px, -200px); }
-    85% { transform: translate(-100px, 150px); }
-    100% { transform: translate(0, 0); }
+/* Animazione float - movimento morbido e naturale */
+@keyframes float {
+    0%, 100% {
+        transform: translate(0, 0) scale(1);
+    }
+    33% {
+        transform: translate(30px, -30px) scale(1.05);
+    }
+    66% {
+        transform: translate(-20px, 20px) scale(0.95);
+    }
 }
 
-@keyframes moveRandom2 {
-    0% { transform: translate(0, 0); }
-    15% { transform: translate(-180px, 150px); }
-    30% { transform: translate(120px, -180px); }
-    45% { transform: translate(-150px, -120px); }
-    60% { transform: translate(180px, 90px); }
-    75% { transform: translate(-90px, 180px); }
-    90% { transform: translate(150px, -150px); }
-    100% { transform: translate(0, 0); }
-}
 .hero-section-finance::after {
     content: '';
     position: absolute;
@@ -150,26 +140,43 @@ p {
     100% { transform: rotate(360deg); }
 }
 
+/* Overlay per dare profondità */
 .hero-overlay-finance {
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(180deg, transparent 0%, rgba(40, 41, 66, 0.2) 100%);
+    background: linear-gradient(180deg, 
+        transparent 0%, 
+        rgba(40, 41, 66, 0.2) 50%,
+        rgba(40, 41, 66, 0.4) 100%
+    );
     z-index: 1;
 }
 
 .hero-content-finance {
     position: relative;
     z-index: 2;
-    color: var(--finance-white);
+    color: #ffffff;
     padding: 2rem;
     text-align: center;
+    animation: slideUp 0.8s ease-out;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .hero-title-finance {
-    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-size: clamp(4rem, 5vw, 4rem);
     font-weight: 300;
     margin-bottom: 1.5rem;
     letter-spacing: -0.03em;
@@ -189,6 +196,7 @@ p {
     animation: fadeInUp 0.8s ease-out 0.2s both;
 }
 
+
 /* Buttons ottimizzati */
 .hero-buttons-finance {
     display: flex;
@@ -199,14 +207,14 @@ p {
 }
 
 .btn-finance-primary {
-    background-color: var(--finance-white);
-    color: var(--finance-primary) !important;
-    border: 2px solid var(--finance-white);
+    background-color: #ffffff;
+    color: #282942 !important;
+    border: 2px solid #ffffff;
     padding: 16px 40px;
     font-size: 1rem;
     font-weight: 500;
     border-radius: 50px;
-    transition: var(--transition-base);
+    transition: all 0.3s ease;
     text-decoration: none;
     display: inline-block;
     box-shadow: 0 4px 14px rgba(255, 255, 255, 0.1);
@@ -216,7 +224,6 @@ p {
 
 .btn-finance-primary::before {
     content: '';
-    color: var(--finance-primary);
     position: absolute;
     top: 50%;
     left: 50%;
@@ -242,45 +249,62 @@ p {
 
 .btn-finance-secondary {
     background-color: transparent;
-    color: var(--finance-white);
-    border: 2px solid rgba(255, 255, 255, 0.5);
+    color: #ffffff !important;
+    border: 2px solid #ffffff;
     padding: 16px 40px;
     font-size: 1rem;
     font-weight: 500;
     border-radius: 50px;
-    transition: var(--transition-base);
+    transition: all 0.3s ease;
     text-decoration: none;
     display: inline-block;
-    backdrop-filter: blur(10px);
 }
 
 .btn-finance-secondary:hover {
     background-color: rgba(255, 255, 255, 0.1);
-    border-color: var(--finance-white);
     transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 14px rgba(255, 255, 255, 0.2);
 }
+
 
 /* Scroll Indicator migliorato */
 .scroll-indicator-finance {
     position: absolute;
-    bottom: 40px;
+    bottom: 30px;
     left: 50%;
     transform: translateX(-50%);
-    color: var(--finance-white);
-    font-size: 1.5rem;
-    animation: bounce-smooth 2s infinite;
     z-index: 2;
-    cursor: pointer;
-    opacity: 0.6;
-    transition: opacity 0.3s ease;
+    animation: bounce 2s infinite;
 }
 
-@keyframes bounce-smooth {
-    0%, 100% { transform: translateX(-50%) translateY(0); }
-    50% { transform: translateX(-50%) translateY(-15px); }
+.scroll-indicator-finance i {
+    font-size: 2rem;
+    color: #ffffff;
+    opacity: 0.7;
 }
 
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateX(-50%) translateY(0);
+    }
+    40% {
+        transform: translateX(-50%) translateY(-10px);
+    }
+    60% {
+        transform: translateX(-50%) translateY(-5px);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 /* === SECTION TITLES ENHANCED === */
 .section-title-finance {
     font-size: clamp(2rem, 4vw, 2.8rem);
@@ -476,18 +500,6 @@ p {
     font-weight: 600;
 }
 
-/* === ANIMATIONS === */
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
 /* === RESPONSIVE === */
 @media (max-width: 991px) {
     .hero-section-finance {
@@ -508,6 +520,19 @@ p {
 }
 
 @media (max-width: 767px) {
+    .hero-section-finance .sphere-1 {
+        width: 300px;
+        height: 300px;
+        top: -80px;
+        left: -80px;
+    }
+    
+    .hero-section-finance .sphere-2 {
+        width: 250px;
+        height: 250px;
+        bottom: -80px;
+        right: -80px;
+    }
     .hero-section-finance {
         min-height: 100vh;
         padding-top: 60px;
@@ -525,5 +550,217 @@ p {
     .hero-buttons-finance .btn {
         width: 100%;
         max-width: 280px;
+    }
+}
+
+/* Performance optimization - riduce animazioni su dispositivi che preferiscono ridurre il movimento */
+@media (prefers-reduced-motion: reduce) {
+    .hero-section-finance .sphere-1,
+    .hero-section-finance .sphere-2 {
+        animation: none;
+    }
+    
+    .scroll-indicator-finance {
+        animation: none;
+    }
+    
+    .hero-content-finance,
+    .hero-title-finance,
+    .hero-subtitle-finance,
+    .hero-buttons-finance {
+        animation: none;
+    }
+}
+
+
+/*LOGO*/
+
+/* === LOGO GRANDE HERO === */
+
+.hero-logo-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+/* Logo circolare con H */
+.hero-logo-circle {
+    width: 200px;
+    height: 200px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 
+        0 20px 60px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    position: relative;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hero-logo-circle::before {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    border-radius: 50%;
+    padding: 3px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.4), rgba(213, 218, 245, 0.4));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.hero-logo-circle:hover::before {
+    opacity: 1;
+}
+
+.hero-logo-circle:hover {
+    transform: translateY(-10px) scale(1.05);
+    box-shadow: 
+        0 30px 80px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.hero-logo-letter {
+    font-family: var(--font-heading);
+    font-size: 120px;
+    font-weight: 700;
+    color: #ffffff;
+    line-height: 1;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    transition: all 0.4s ease;
+}
+
+.hero-logo-circle:hover .hero-logo-letter {
+    transform: scale(1.1);
+    text-shadow: 0 8px 30px rgba(255, 255, 255, 0.4);
+}
+
+/* Testo del brand sotto il logo */
+.hero-brand-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.hero-brand-name {
+    font-family: var(--font-heading);
+    font-size: clamp(3rem, 8vw, 6rem);
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: 0.15em;
+    margin: 0;
+    line-height: 1;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.hero-brand-subtitle {
+    font-size: clamp(0.9rem, 2vw, 1.3rem);
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.9);
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    margin: 0;
+    opacity: 0.9;
+}
+
+/* Sottotitolo hero - modificato per dare più spazio */
+.hero-subtitle-finance {
+    font-size: clamp(1.1rem, 2vw, 1.3rem);
+    font-weight: 300;
+    margin-bottom: 3rem;
+    line-height: 1.6;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    opacity: 0.95;
+}
+
+/* === RESPONSIVE LOGO === */
+@media (max-width: 992px) {
+    .hero-logo-circle {
+        width: 160px;
+        height: 160px;
+    }
+    
+    .hero-logo-letter {
+        font-size: 90px;
+    }
+    
+    .hero-brand-name {
+        font-size: 4rem;
+    }
+    
+    .hero-brand-subtitle {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-logo-wrapper {
+        gap: 1.5rem;
+        margin-bottom: 2.5rem;
+    }
+    
+    .hero-logo-circle {
+        width: 140px;
+        height: 140px;
+    }
+    
+    .hero-logo-letter {
+        font-size: 75px;
+    }
+    
+    .hero-brand-name {
+        font-size: 3rem;
+        letter-spacing: 0.1em;
+    }
+    
+    .hero-brand-subtitle {
+        font-size: 0.85rem;
+        letter-spacing: 0.2em;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero-logo-circle {
+        width: 120px;
+        height: 120px;
+    }
+    
+    .hero-logo-letter {
+        font-size: 65px;
+    }
+    
+    .hero-brand-name {
+        font-size: 2.5rem;
+    }
+    
+    .hero-brand-subtitle {
+        font-size: 0.75rem;
+    }
+}
+
+/* Performance optimization */
+@media (prefers-reduced-motion: reduce) {
+    .hero-logo-circle,
+    .hero-logo-letter {
+        transition: none;
+    }
+    
+    .hero-logo-circle:hover {
+        transform: none;
+    }
+    
+    .hero-logo-circle:hover .hero-logo-letter {
+        transform: none;
     }
 }
