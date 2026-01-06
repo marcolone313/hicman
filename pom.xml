@@ -10,10 +10,10 @@
     </parent>
     
     <groupId>com.hicman</groupId>
-    <artifactId>CorporateSite</artifactId>
+    <artifactId>HicmanCorporateSite</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>CorporateSite</name>
-    <description>Corporate site of hicman</description>
+    <name>HicmanCorporateSite</name>
+    <description>Hicman Corporate site</description>
 
     <properties>
         <java.version>17</java.version>

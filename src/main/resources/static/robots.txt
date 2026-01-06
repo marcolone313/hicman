@@ -14,4 +14,4 @@ Allow: /contact
 Allow: /playstation
 
 # Sitemap
-Sitemap: https://oscinnovation.com/sitemap.xml
+Sitemap: https://hicman.com/sitemap.xml

@@ -8,32 +8,58 @@
     <nav th:replace="~{fragments/navbar :: navbar('home')}"></nav>
 
     <main>
-        <!-- Hero Section -->
+        <!-- ========================================
+             HERO SECTION CON LOGO GRANDE E SFERE
+             ======================================== -->
         <section class="hero-section-finance">
+            <!-- Sfere Animate -->
             <div class="sphere sphere-1"></div>
             <div class="sphere sphere-2"></div>
+            
+            <!-- Overlay -->
             <div class="hero-overlay-finance"></div>
+            
+            <!-- Content -->
             <div class="hero-content-finance">
                 <div class="container">
                     <div class="row justify-content-center">
                         <div class="col-lg-10 text-center">
+                            
                             <!-- Logo Grande al posto del titolo -->
                             <div class="hero-logo-wrapper animate__animated animate__fadeInUp">
                                 <div class="hero-logo-circle">
-                                    <span class="hero-logo-letter">H</span>
+                                    <!-- Logo SVG H stilizzato -->
+                                    <svg class="hero-logo-svg" viewBox="0 0 100 140" xmlns="http://www.w3.org/2000/svg">
+                                        <!-- Barra sinistra -->
+                                        <rect x="10" y="10" width="15" height="120" fill="currentColor"/>
+                                        <!-- Barra destra -->
+                                        <rect x="75" y="10" width="15" height="120" fill="currentColor"/>
+                                        <!-- Diagonale sinistra (da alto-sinistra a centro) -->
+                                        <rect x="25" y="35" width="30" height="12" fill="currentColor" 
+                                              transform="rotate(-35 40 41)"/>
+                                        <!-- Diagonale destra (da alto-destra a centro) -->
+                                        <rect x="45" y="35" width="30" height="12" fill="currentColor" 
+                                              transform="rotate(35 60 41)"/>
+                                        <!-- Diagonale sinistra bassa (da centro a basso-sinistra) -->
+                                        <rect x="25" y="83" width="30" height="12" fill="currentColor" 
+                                              transform="rotate(35 40 89)"/>
+                                        <!-- Diagonale destra bassa (da centro a basso-destra) -->
+                                        <rect x="45" y="83" width="30" height="12" fill="currentColor" 
+                                              transform="rotate(-35 60 89)"/>
+                                    </svg>
                                 </div>
                                 <div class="hero-brand-text">
                                     <h1 class="hero-brand-name">HICMAN</h1>
                                     <p class="hero-brand-subtitle">CAPITAL PARTNER</p>
                                 </div>
                             </div>
-        
+                            
                             <!-- Sottotitolo -->
                             <p class="hero-subtitle-finance animate__animated animate__fadeInUp animate__delay-1s">
                                 Boutique finanziaria indipendente specializzata in finanza strutturata e speciale.<br>
                                 Trasformiamo complessità in valore strategico.
                             </p>
-        
+                            
                             <!-- Buttons -->
                             <div class="hero-buttons-finance animate__animated animate__fadeInUp animate__delay-2s">
                                 <a href="#servizi" class="btn btn-finance-primary">Scopri i Servizi</a>
@@ -43,27 +69,29 @@
                     </div>
                 </div>
             </div>
-        
+            
             <!-- Scroll Indicator -->
             <div class="scroll-indicator-finance">
                 <i class="bi bi-chevron-down"></i>
             </div>
         </section>
 
-        <!-- Introduzione Aziendale -->
+        <!-- ========================================
+             INTRODUZIONE AZIENDALE
+             ======================================== -->
         <section class="intro-section py-5">
             <div class="container py-5">
                 <div class="row justify-content-center">
                     <div class="col-lg-10">
                         <div class="intro-content text-center">
-                            <h2 class="section-title-finance mb-4">Chi Siamo</h2>
-                            <p class="intro-text">
+                            <h2 class="section-title-finance mb-4" th:text="#{home.intro.title}">Chi Siamo</h2>
+                            <p class="intro-text" th:text="#{home.intro.text1}">
                                 <strong>HICMAN CAPITAL PARTNER</strong> è una boutique finanziaria indipendente che 
                                 affianca imprese e gruppi industriali nella definizione e realizzazione di operazioni 
                                 di finanza strutturata e finanza speciale, analizzando e valutando gli obiettivi 
                                 strategici, i profili di rischio e le condizioni di mercato.
                             </p>
-                            <p class="intro-text">
+                            <p class="intro-text" th:text="#{home.intro.text2}">
                                 Dove c'è complessità portiamo <strong>visione, metodo e direzione</strong>.
                             </p>
                         </div>
@@ -72,130 +100,202 @@
             </div>
         </section>
 
-        <!-- Servizi Highlights -->
+        <!-- ========================================
+             SERVIZI HIGHLIGHTS
+             ======================================== -->
         <section id="servizi" class="services-highlights-section py-5">
             <div class="container py-5">
-                <h2 class="section-title-finance text-center mb-5">I Nostri Servizi</h2>
+                <h2 class="section-title-finance text-center mb-5" th:text="#{home.services.title}">I Nostri Servizi</h2>
                 
                 <div class="row g-4">
                     <!-- Finanza Strutturata -->
                     <div class="col-lg-4 col-md-6">
-                        <div class="service-card h-100 animate__animated animate__fadeInUp">
+                        <div class="service-card h-100">
                             <div class="service-card-content">
                                 <div class="service-icon">
                                     <i class="bi bi-building"></i>
                                 </div>
-                                <h3 class="service-card-title">Finanza Strutturata</h3>
-                                <p class="service-card-text">
+                                <h3 class="service-card-title" th:text="#{home.services.finanza-strutturata.title}">
+                                    Finanza Strutturata
+                                </h3>
+                                <p class="service-card-text" th:text="#{home.services.finanza-strutturata.description}">
                                     Supportiamo le aziende nella pianificazione ed esecuzione di operazioni complesse 
                                     per garantire l'apporto di nuovi capitali e sostenere progetti in fase di crescita, 
                                     espansione o trasformazione strategica.
                                 </p>
+                                
                                 <div class="service-details">
-                                    <p class="service-detail-item"><strong>Contesto:</strong> Ordinario e strategico</p>
-                                    <p class="service-detail-item"><strong>Complessità:</strong> Elevata</p>
-                                    <p class="service-detail-item"><strong>Finalità:</strong> Crescita ed espansione</p>
+                                    <div class="service-detail-item">
+                                        <strong th:text="#{home.services.finanza-strutturata.context}">Contesto:</strong> 
+                                        Ordinario e strategico
+                                    </div>
+                                    <div class="service-detail-item">
+                                        <strong th:text="#{home.services.finanza-strutturata.complexity}">Complessità:</strong> 
+                                        Elevata
+                                    </div>
+                                    <div class="service-detail-item">
+                                        <strong th:text="#{home.services.finanza-strutturata.goal}">Finalità:</strong> 
+                                        Crescita ed espansione
+                                    </div>
+                                </div>
+                                
+                                <div class="text-center mt-4">
+                                    <a href="/servizi#finanza-strutturata" 
+                                       class="btn btn-finance-primary btn-sm" 
+                                       th:text="#{home.services.finanza-strutturata.button}">
+                                        Scopri di più
+                                    </a>
                                 </div>
                             </div>
-                            <a href="/servizi#finanza-strutturata" class="btn btn-finance-outline">
-                                Scopri di più <i class="bi bi-arrow-right ms-2"></i>
-                            </a>
                         </div>
                     </div>
 
                     <!-- Finanza Speciale -->
                     <div class="col-lg-4 col-md-6">
-                        <div class="service-card h-100 animate__animated animate__fadeInUp animate__delay-1s">
+                        <div class="service-card h-100">
                             <div class="service-card-content">
                                 <div class="service-icon">
-                                    <i class="bi bi-shield-check"></i>
+                                    <i class="bi bi-life-preserver"></i>
                                 </div>
-                                <h3 class="service-card-title">Finanza Speciale</h3>
-                                <p class="service-card-text">
+                                <h3 class="service-card-title" th:text="#{home.services.finanza-speciale.title}">
+                                    Finanza Speciale
+                                </h3>
+                                <p class="service-card-text" th:text="#{home.services.finanza-speciale.description}">
                                     In contesti straordinari o di tensione finanziaria, progettiamo interventi mirati 
                                     per garantire continuità operativa, rilancio industriale e riequilibrio finanziario. 
                                     Interveniamo in modo efficace in qualsiasi fase e circostanza.
                                 </p>
+                                
                                 <div class="service-details">
-                                    <p class="service-detail-item"><strong>Contesto:</strong> Straordinario e di crisi</p>
-                                    <p class="service-detail-item"><strong>Complessità:</strong> Elevata, con vincoli temporali</p>
-                                    <p class="service-detail-item"><strong>Finalità:</strong> Risanamento e rilancio</p>
+                                    <div class="service-detail-item">
+                                        <strong th:text="#{home.services.finanza-speciale.context}">Contesto:</strong> 
+                                        Straordinario e di crisi
+                                    </div>
+                                    <div class="service-detail-item">
+                                        <strong th:text="#{home.services.finanza-speciale.complexity}">Complessità:</strong> 
+                                        Elevata, con vincoli temporali
+                                    </div>
+                                    <div class="service-detail-item">
+                                        <strong th:text="#{home.services.finanza-speciale.goal}">Finalità:</strong> 
+                                        Risanamento e rilancio
+                                    </div>
+                                </div>
+                                
+                                <div class="text-center mt-4">
+                                    <a href="/servizi#finanza-speciale" 
+                                       class="btn btn-finance-primary btn-sm" 
+                                       th:text="#{home.services.finanza-speciale.button}">
+                                        Scopri di più
+                                    </a>
                                 </div>
                             </div>
-                            <a href="/servizi#finanza-speciale" class="btn btn-finance-outline">
-                                Scopri di più <i class="bi bi-arrow-right ms-2"></i>
-                            </a>
                         </div>
                     </div>
 
                     <!-- Asset Alternativi -->
                     <div class="col-lg-4 col-md-6">
-                        <div class="service-card h-100 animate__animated animate__fadeInUp animate__delay-2s">
+                        <div class="service-card h-100">
                             <div class="service-card-content">
                                 <div class="service-icon">
-                                    <i class="bi bi-graph-up-arrow"></i>
+                                    <i class="bi bi-tree"></i>
                                 </div>
-                                <h3 class="service-card-title">Asset Alternativi</h3>
-                                <p class="service-card-text">
+                                <h3 class="service-card-title" th:text="#{home.services.asset-alternativi.title}">
+                                    Asset Alternativi
+                                </h3>
+                                <p class="service-card-text" th:text="#{home.services.asset-alternativi.description}">
                                     Attenti alle politiche ambientali, favoriamo investimenti in asset alternativi, 
                                     identificando progetti immobiliari sostenibili orientati al recupero e rigenerazione 
                                     urbana, in grado di garantire ritorno economico, crescita e posizionamento.
                                 </p>
+                                
                                 <div class="service-details">
-                                    <p class="service-detail-item"><strong>Ambito:</strong> Origination</p>
-                                    <p class="service-detail-item"><strong>Focus:</strong> Investment structuring</p>
-                                    <p class="service-detail-item"><strong>Modalità:</strong> Club deal & execution</p>
+                                    <div class="service-detail-item">
+                                        <strong th:text="#{home.services.asset-alternativi.scope}">Ambito:</strong> 
+                                        Origination
+                                    </div>
+                                    <div class="service-detail-item">
+                                        <strong th:text="#{home.services.asset-alternativi.focus}">Focus:</strong> 
+                                        Strutturazione investimenti
+                                    </div>
+                                    <div class="service-detail-item">
+                                        <strong th:text="#{home.services.asset-alternativi.mode}">Modalità:</strong> 
+                                        Club deal & execution
+                                    </div>
+                                </div>
+                                
+                                <div class="text-center mt-4">
+                                    <a href="/servizi#asset-alternativi" 
+                                       class="btn btn-finance-primary btn-sm" 
+                                       th:text="#{home.services.asset-alternativi.button}">
+                                        Scopri di più
+                                    </a>
                                 </div>
                             </div>
-                            <a href="/servizi#asset-alternativi" class="btn btn-finance-outline">
-                                Scopri di più <i class="bi bi-arrow-right ms-2"></i>
-                            </a>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Value Proposition Section -->
+        <!-- ========================================
+             VALUE PROPOSITION
+             ======================================== -->
         <section class="value-proposition-section py-5">
             <div class="container py-5">
                 <div class="row align-items-center">
                     <div class="col-lg-6 mb-4 mb-lg-0">
-                        <h2 class="section-title-finance mb-4">Il Vantaggio di Lavorare con Noi</h2>
-                        <p class="value-text">
-                            Siamo un <strong>partner strategico</strong> con un approccio dinamico e orientato al risultato.
+                        <h2 class="section-title-finance text-start" th:text="#{home.value.title}">
+                            Il Vantaggio di Lavorare con Noi
+                        </h2>
+                        <p class="value-text" th:text="#{home.value.text1}">
+                            Siamo un partner strategico con un approccio dinamico e orientato ai risultati.
                         </p>
-                        <p class="value-text">
-                            L'esperienza maturata ci consente di operare in contesti articolati e complessi, 
-                            prestando attenzione alle esigenze del cliente per essere in grado di aiutarlo 
-                            in qualsiasi momento.
+                        <p class="value-text" th:text="#{home.value.text2}">
+                            La nostra esperienza accumulata ci permette di operare in contesti complessi e 
+                            articolati, ponendo attenzione alle esigenze del cliente per poterlo aiutare in 
+                            qualsiasi momento.
                         </p>
-                        <p class="value-text">
-                            <strong>Portiamo soluzioni dove gli altri vedono ostacoli.</strong>
+                        <p class="value-text" th:text="#{home.value.text3}">
+                            <strong>Portiamo soluzioni dove altri vedono ostacoli.</strong>
                         </p>
                     </div>
+                    
                     <div class="col-lg-6">
                         <div class="value-stats">
                             <div class="stat-item">
                                 <div class="stat-icon">
                                     <i class="bi bi-award"></i>
                                 </div>
-                                <h3 class="stat-title">Competenza</h3>
-                                <p class="stat-text">Esperienza consolidata in operazioni complesse</p>
+                                <div class="stat-content">
+                                    <h4 class="stat-title" th:text="#{home.value.competence.title}">Competenza</h4>
+                                    <p class="stat-text" th:text="#{home.value.competence.text}">
+                                        Esperienza comprovata in operazioni complesse
+                                    </p>
+                                </div>
                             </div>
+                            
                             <div class="stat-item">
                                 <div class="stat-icon">
-                                    <i class="bi bi-people"></i>
+                                    <i class="bi bi-diagram-3"></i>
                                 </div>
-                                <h3 class="stat-title">Network</h3>
-                                <p class="stat-text">Partnership con primarie banche e fondi</p>
+                                <div class="stat-content">
+                                    <h4 class="stat-title" th:text="#{home.value.network.title}">Network</h4>
+                                    <p class="stat-text" th:text="#{home.value.network.text}">
+                                        Partnership con le principali banche e fondi
+                                    </p>
+                                </div>
                             </div>
+                            
                             <div class="stat-item">
                                 <div class="stat-icon">
                                     <i class="bi bi-lightning"></i>
                                 </div>
-                                <h3 class="stat-title">Tempestività</h3>
-                                <p class="stat-text">Interventi rapidi anche in situazioni critiche</p>
+                                <div class="stat-content">
+                                    <h4 class="stat-title" th:text="#{home.value.speed.title}">Tempestività</h4>
+                                    <p class="stat-text" th:text="#{home.value.speed.text}">
+                                        Interventi rapidi anche in situazioni critiche
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -203,85 +303,102 @@
             </div>
         </section>
 
-        <!-- Contact Section with Form -->
+        <!-- ========================================
+             CONTACT SECTION
+             ======================================== -->
         <section id="contact" class="contact-section-finance py-5">
             <div class="container py-5">
-                <h2 class="section-title-finance text-center mb-5">Contattaci</h2>
+                <div class="row justify-content-center mb-5">
+                    <div class="col-lg-10 text-center">
+                        <h2 class="section-title-finance" th:text="#{contact.section.title}">Contattaci</h2>
+                        <p class="lead text-muted">Siamo qui per rispondere alle tue domande</p>
+                    </div>
+                </div>
 
-                <div class="row g-4 justify-content-center">
+                <div class="row g-4">
                     <!-- Form Column -->
                     <div class="col-lg-8">
                         <div class="contact-form-wrapper">
-                            <h3 class="h4 text-center mb-4">Inviaci un Messaggio</h3>
+                            <h3 class="mb-4" th:text="#{contact.form.title}">Inviaci un Messaggio</h3>
 
                             <!-- Alert Messages -->
                             <div th:if="${successMessage}" class="alert alert-success alert-dismissible fade show mb-4" role="alert">
-                                <span id="contact-success" th:text="${successMessage}"></span>
+                                <i class="bi bi-check-circle-fill me-2"></i>
+                                <span th:text="${successMessage}"></span>
                                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                             </div>
 
                             <div th:if="${errorMessage}" class="alert alert-danger alert-dismissible fade show mb-4" role="alert">
+                                <i class="bi bi-exclamation-triangle-fill me-2"></i>
                                 <span th:text="${errorMessage}"></span>
                                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                             </div>
 
                             <!-- Contact Form -->
-                            <form th:action="@{/}" th:object="${contact}" method="POST" class="contact-form-finance">
+                            <form th:action="@{/}" th:object="${contact}" method="POST">
                                 <div class="row g-3">
                                     <!-- Nome -->
                                     <div class="col-md-6">
-                                        <div class="form-floating">
-                                            <input type="text" class="form-control" id="nome" th:field="*{nome}"
-                                                placeholder="Nome" required>
-                                            <label for="nome">Nome *</label>
-                                            <div class="invalid-feedback" th:if="${#fields.hasErrors('nome')}" 
-                                                th:errors="*{nome}"></div>
-                                        </div>
+                                        <label for="nome" class="form-label" th:text="#{contact.form.name}">Nome</label>
+                                        <input type="text" 
+                                               class="form-control" 
+                                               id="nome" 
+                                               th:field="*{nome}"
+                                               th:classappend="${#fields.hasErrors('nome')} ? 'is-invalid'"
+                                               required>
+                                        <div class="invalid-feedback" th:if="${#fields.hasErrors('nome')}" 
+                                             th:errors="*{nome}"></div>
                                     </div>
 
                                     <!-- Cognome -->
                                     <div class="col-md-6">
-                                        <div class="form-floating">
-                                            <input type="text" class="form-control" id="cognome" th:field="*{cognome}"
-                                                placeholder="Cognome" required>
-                                            <label for="cognome">Cognome *</label>
-                                            <div class="invalid-feedback" th:if="${#fields.hasErrors('cognome')}" 
-                                                th:errors="*{cognome}"></div>
-                                        </div>
+                                        <label for="cognome" class="form-label" th:text="#{contact.form.surname}">Cognome</label>
+                                        <input type="text" 
+                                               class="form-control" 
+                                               id="cognome" 
+                                               th:field="*{cognome}"
+                                               th:classappend="${#fields.hasErrors('cognome')} ? 'is-invalid'"
+                                               required>
+                                        <div class="invalid-feedback" th:if="${#fields.hasErrors('cognome')}" 
+                                             th:errors="*{cognome}"></div>
                                     </div>
 
                                     <!-- Email -->
                                     <div class="col-md-6">
-                                        <div class="form-floating">
-                                            <input type="email" class="form-control" id="email" th:field="*{email}"
-                                                placeholder="Email" required>
-                                            <label for="email">Email *</label>
-                                            <div class="invalid-feedback" th:if="${#fields.hasErrors('email')}" 
-                                                th:errors="*{email}"></div>
-                                        </div>
+                                        <label for="email" class="form-label" th:text="#{contact.form.email}">Email</label>
+                                        <input type="email" 
+                                               class="form-control" 
+                                               id="email" 
+                                               th:field="*{email}"
+                                               th:classappend="${#fields.hasErrors('email')} ? 'is-invalid'"
+                                               required>
+                                        <div class="invalid-feedback" th:if="${#fields.hasErrors('email')}" 
+                                             th:errors="*{email}"></div>
                                     </div>
 
                                     <!-- Telefono -->
                                     <div class="col-md-6">
-                                        <div class="form-floating">
-                                            <input type="tel" class="form-control" id="telefono" th:field="*{telefono}"
-                                                placeholder="Telefono (opzionale)">
-                                            <label for="telefono">Telefono (opzionale)</label>
-                                        </div>
+                                        <label for="telefono" class="form-label" th:text="#{contact.form.phone}">Telefono (opzionale)</label>
+                                        <input type="tel" 
+                                               class="form-control" 
+                                               id="telefono" 
+                                               th:field="*{telefono}">
                                     </div>
 
                                     <!-- Messaggio -->
                                     <div class="col-12">
-                                        <div class="form-floating">
-                                            <textarea class="form-control" id="messaggio" th:field="*{messaggio}"
-                                                placeholder="Messaggio" style="height: 150px" required></textarea>
-                                            <label for="messaggio">Messaggio *</label>
-                                            <div class="invalid-feedback" th:if="${#fields.hasErrors('messaggio')}" 
-                                                th:errors="*{messaggio}"></div>
-                                        </div>
+                                        <label for="messaggio" class="form-label" th:text="#{contact.form.message}">Messaggio</label>
+                                        <textarea class="form-control" 
+                                                  id="messaggio" 
+                                                  th:field="*{messaggio}"
+                                                  th:classappend="${#fields.hasErrors('messaggio')} ? 'is-invalid'"
+                                                  rows="5" 
+                                                  required></textarea>
+                                        <div class="invalid-feedback" th:if="${#fields.hasErrors('messaggio')}" 
+                                             th:errors="*{messaggio}"></div>
                                     </div>
 
-                                    <!-- Honeypot (nascosto) -->
+                                    <!-- Honeypot (anti-spam nascosto) -->
                                     <div class="d-none">
                                         <input type="text" name="website" th:field="*{website}" tabindex="-1" autocomplete="off">
                                     </div>
@@ -291,15 +408,16 @@
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox" id="privacy" required>
                                             <label class="form-check-label" for="privacy">
-                                                Accetto la <a href="/privacy" target="_blank">Privacy Policy</a> *
+                                                <span th:text="#{contact.form.privacy}">Accetto la Privacy Policy</span> *
                                             </label>
                                         </div>
                                     </div>
 
                                     <!-- Submit Button -->
-                                    <div class="col-12 text-center">
-                                        <button type="submit" class="btn btn-submit-button btn-lg">
-                                            Invia Messaggio <i class="bi bi-send ms-2"></i>
+                                    <div class="col-12 text-center mt-4">
+                                        <button type="submit" class="btn-submit-button">
+                                            <i class="bi bi-send me-2"></i>
+                                            <span th:text="#{contact.form.button}">Invia Messaggio</span>
                                         </button>
                                     </div>
                                 </div>
@@ -307,31 +425,34 @@
                         </div>
                     </div>
 
-                    <!-- Contact Info -->
+                    <!-- Contact Info Column -->
                     <div class="col-lg-4">
                         <div class="contact-info-box">
-                            <h4 class="mb-4">Informazioni di Contatto</h4>
-                            
+                            <h4 class="mb-4" th:text="#{contact.info.title}">Informazioni di Contatto</h4>
+
+                            <!-- Email -->
                             <div class="contact-info-item">
-                                <i class="bi bi-envelope"></i>
+                                <i class="bi bi-envelope-fill"></i>
                                 <div>
-                                    <strong>Email</strong>
+                                    <strong th:text="#{contact.info.email}">Email</strong>
                                     <p><a href="mailto:info@hicman.com">info@hicman.com</a></p>
                                 </div>
                             </div>
 
+                            <!-- Telefono -->
                             <div class="contact-info-item">
-                                <i class="bi bi-telephone"></i>
+                                <i class="bi bi-telephone-fill"></i>
                                 <div>
-                                    <strong>Telefono</strong>
-                                    <p><a href="tel:+390612345678">+39 06 1234 5678</a></p>
+                                    <strong th:text="#{contact.info.phone}">Telefono</strong>
+                                    <p><a href="tel:+390612345678">+39 06 12345678</a></p>
                                 </div>
                             </div>
 
+                            <!-- Indirizzo -->
                             <div class="contact-info-item">
-                                <i class="bi bi-geo-alt"></i>
+                                <i class="bi bi-geo-alt-fill"></i>
                                 <div>
-                                    <strong>Sede</strong>
+                                    <strong th:text="#{contact.info.address}">Sede</strong>
                                     <p>Roma, Italia</p>
                                 </div>
                             </div>
@@ -340,13 +461,16 @@
                 </div>
             </div>
         </section>
+
     </main>
 
     <!-- Footer Fragment -->
     <footer th:replace="~{fragments/footer :: footer}"></footer>
 
-    <!-- Scripts -->
+    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom Scripts -->
     <script>
         // Smooth scroll per i link interni
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -362,15 +486,13 @@
             });
         });
 
-        // Animazione scroll indicator
+        // Navbar scroll effect
         window.addEventListener('scroll', function() {
-            const scrollIndicator = document.querySelector('.scroll-indicator-finance');
-            if (scrollIndicator) {
-                if (window.scrollY > 100) {
-                    scrollIndicator.style.opacity = '0';
-                } else {
-                    scrollIndicator.style.opacity = '1';
-                }
+            const navbar = document.querySelector('.navbar-finance');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
             }
         });
     </script>
