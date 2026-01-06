@@ -109,8 +109,8 @@
 
 /* CTA Link (Contatti) */
 .nav-link-cta {
-    background-color: var(--finance-white);
-    color: var(--finance-primary) !important;
+    background-color: var(--finance-primary);  /* BLU di default */
+    color: var(--finance-white) !important;     /* Testo bianco */
     font-weight: 600;
     padding: 0.5rem 1.5rem !important;
     border-radius: 6px;
@@ -122,10 +122,10 @@
 }
 
 .nav-link-cta:hover {
-    background-color: var(--finance-secondary);
-    color: var(--finance-primary) !important;
+    background-color: var(--finance-white);     /* BIANCO on hover */
+    color: var(--finance-primary) !important;   /* Testo blu on hover */
     transform: translateY(-2px);
-    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 /* Language Switcher */

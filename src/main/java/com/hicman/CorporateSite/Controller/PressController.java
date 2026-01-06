@@ -98,7 +98,7 @@ public class PressController {
     /**
      * Redirect da /blog/{id} a /rassegna-stampa/{id} per compatibilità
      */
-    @GetMapping("/blog/{id}")
+    /*@GetMapping("/blog/{id}")
     public String blogDetailRedirect(@PathVariable String id) {
         try {
             Long postId = Long.parseLong(id);
@@ -107,7 +107,7 @@ public class PressController {
             // Se non è un numero, redirect alla home o pagina non trovata
             return "redirect:/rassegna-stampa";
         }
-    }
+    }*/
 
     /**
      * Pagina "Dicono di Noi" - Testimonials
