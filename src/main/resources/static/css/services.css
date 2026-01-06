@@ -8,7 +8,7 @@
 ======================================== */
 
 .services-hero-section {
-    min-height: 100vh;
+    min-height: 40vh;
     background: linear-gradient(135deg, #282942 0%, #3a3b5c 50%, #4a4d7c 100%);
     position: relative;
     display: flex;
@@ -620,7 +620,7 @@
 
 @media (max-width: 991px) {
     .services-hero-section {
-        min-height: 80vh;
+        min-height: 40vh;
         padding-top: 60px;
     }
     
@@ -675,7 +675,7 @@
 
 @media (max-width: 768px) {
     .services-hero-section {
-        min-height: 100vh;
+        min-height: 40vh;
         padding-top: 50px;
     }
     
