@@ -48,6 +48,18 @@ public class MainController {
         return "index";
     }
 
+    @GetMapping("/2")
+    public String index2(Model model) {
+        model.addAttribute("pageTitle", "Hicman Capital Partner - Finanza Strutturata e Speciale");
+        return "index2";
+    }
+
+    @GetMapping("/3")
+    public String index3(Model model) {
+        model.addAttribute("pageTitle", "Hicman Capital Partner - Finanza Strutturata e Speciale");
+        return "index3";
+    }
+
     /**
      * Gestione invio form contatti dalla homepage
      */
