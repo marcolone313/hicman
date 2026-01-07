@@ -28,24 +28,32 @@
                             <!-- Logo Grande al posto del titolo -->
                             <div class="hero-logo-wrapper animate__animated animate__fadeInUp">
                                 <div class="hero-logo-circle">
-                                    <!-- Logo SVG H stilizzato -->
                                     <svg class="hero-logo-svg" viewBox="0 0 100 140" xmlns="http://www.w3.org/2000/svg">
-                                        <!-- Barra sinistra -->
-                                        <rect x="10" y="10" width="15" height="120" fill="currentColor"/>
-                                        <!-- Barra destra -->
-                                        <rect x="75" y="10" width="15" height="120" fill="currentColor"/>
-                                        <!-- Diagonale sinistra (da alto-sinistra a centro) -->
-                                        <rect x="25" y="35" width="30" height="12" fill="currentColor" 
-                                              transform="rotate(-35 40 41)"/>
-                                        <!-- Diagonale destra (da alto-destra a centro) -->
-                                        <rect x="45" y="35" width="30" height="12" fill="currentColor" 
-                                              transform="rotate(35 60 41)"/>
-                                        <!-- Diagonale sinistra bassa (da centro a basso-sinistra) -->
-                                        <rect x="25" y="83" width="30" height="12" fill="currentColor" 
-                                              transform="rotate(35 40 89)"/>
-                                        <!-- Diagonale destra bassa (da centro a basso-destra) -->
-                                        <rect x="45" y="83" width="30" height="12" fill="currentColor" 
-                                              transform="rotate(-35 60 89)"/>
+                                        <!-- Colonna sinistra (rettangolo con contorno bianco e riempimento blu) -->
+                                        <rect x="10" y="15" width="20" height="110" fill="#282942" stroke="white" stroke-width="6" />
+                            
+                                        <!-- Colonna destra (rettangolo con contorno bianco e riempimento blu) -->
+                                        <rect x="70" y="15" width="20" height="110" fill="#282942" stroke="white" stroke-width="6" />
+                            
+                                        <!-- X SUPERIORE (schiacciate - più orizzontali) -->
+                                        <!-- Diagonale 1: da sinistra-alto verso destra-centro -->
+                                        <line x1="10" y1="35" x2="50" y2="55" stroke="white" stroke-width="5" stroke-linecap="round" />
+                            
+                                        <!-- Diagonale 2: da destra-alto verso sinistra-centro -->
+                                        <line x1="90" y1="35" x2="50" y2="55" stroke="white" stroke-width="5" stroke-linecap="round" />
+                            
+                                        <!-- Diagonale 3: da sinistra-centro verso destra-basso -->
+                                        <line x1="50" y1="55" x2="90" y2="75" stroke="white" stroke-width="5" stroke-linecap="round" />
+                            
+                                        <!-- Diagonale 4: da destra-centro verso sinistra-basso -->
+                                        <line x1="50" y1="55" x2="10" y2="75" stroke="white" stroke-width="5" stroke-linecap="round" />
+                            
+                                        <!-- X INFERIORE (schiacciate - più orizzontali, tocca bordi interni) -->
+                                        <!-- Diagonale 1: da sinistra-interno verso destra-centro -->
+                                        <line x1="30" y1="65" x2="68" y2="85" stroke="white" stroke-width="5" stroke-linecap="round" />
+                            
+                                        <!-- Diagonale 2: da destra-interno verso sinistra-centro -->
+                                        <line x1="70" y1="65" x2="30" y2="85" stroke="white" stroke-width="5" stroke-linecap="round" />
                                     </svg>
                                 </div>
                                 <div class="hero-brand-text">
@@ -315,9 +323,9 @@
                     </div>
                 </div>
 
-                <div class="row g-4">
+                <div class="row g-4 px-1">
                     <!-- Form Column -->
-                    <div class="col-lg-8">
+                    <div class="col-lg-7">
                         <div class="contact-form-wrapper">
                             <h3 class="mb-4" th:text="#{contact.form.title}">Inviaci un Messaggio</h3>
 

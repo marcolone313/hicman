@@ -1,418 +1,535 @@
 /* ========================================
-   HOMEPAGE FIXES - HICMAN CAPITAL
-   Correzioni specifiche per le sezioni problematiche
-   ======================================== */
-
+ HOMEPAGE FIXES - HICMAN CAPITAL
+ Correzioni specifiche per le sezioni problematiche
+======================================== */
 /* === SEZIONE "IL VANTAGGIO DI LAVORARE CON NOI" - FIX === */
-
 .value-proposition-section {
-    background: linear-gradient(180deg, #ffffff 0%, #f5f6fb 100%);
-    padding: 100px 0;
-    position: relative;
+ background: linear-gradient(180deg, #ffffff 0%, #f5f6fb 100%);
+ padding: 100px 0;
+ position: relative;
 }
 
 /* Titolo della sezione con stile migliorato */
 .value-proposition-section .section-title-finance {
-    color: #282942;
-    font-size: clamp(2rem, 4vw, 3rem);
-    margin-bottom: 2rem;
-    text-align: left;
-    position: relative;
-    padding-bottom: 1.5rem;
+ color: #282942;
+ font-size: clamp(2rem, 4vw, 3rem);
+ margin-bottom: 2rem;
+ text-align: left;
+ position: relative;
+ padding-bottom: 1.5rem;
 }
 
 .value-proposition-section .section-title-finance::after {
-    left: 0;
-    transform: translateX(0);
+ left: 0;
+ transform: translateX(0);
 }
 
 /* Testi del valore */
 .value-text {
-    font-size: 1.125rem;
-    line-height: 1.8;
-    color: #2e2e2e !important;
-    margin-bottom: 1.5rem;
-    opacity: 0.9;
+ font-size: 1.125rem;
+ line-height: 1.8;
+ color: #2e2e2e !important;
+ margin-bottom: 1.5rem;
+ opacity: 0.9;
 }
 
 .value-text strong {
-    color: #282942 !important;
-    font-weight: 600;
+ color: #282942 !important;
+ font-weight: 600;
 }
 
 /* Container per le statistiche */
 .value-stats {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
+ display: flex;
+ flex-direction: column;
+ gap: 2rem;
 }
 
 /* Card delle statistiche ridisegnate */
 .stat-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 1.5rem;
-    padding: 2rem;
-    background: #ffffff;
-    border-radius: 16px;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 4px 20px rgba(40, 41, 66, 0.08);
-    border: 1px solid rgba(213, 218, 245, 0.3);
-    position: relative;
-    overflow: hidden;
+ display: flex;
+ align-items: flex-start;
+ gap: 1.5rem;
+ padding: 2rem;
+ background: #ffffff;
+ border-radius: 16px;
+ transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+ box-shadow: 0 4px 20px rgba(40, 41, 66, 0.08);
+ border: 1px solid rgba(213, 218, 245, 0.3);
+ position: relative;
+ overflow: hidden;
 }
 
 /* Gradient border effect */
 .stat-item::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 4px;
-    height: 100%;
-    background: linear-gradient(180deg, #282942 0%, #4a4d7c 100%);
-    opacity: 0;
-    transition: opacity 0.3s ease;
+ content: '';
+ position: absolute;
+ top: 0;
+ left: 0;
+ width: 4px;
+ height: 100%;
+ background: linear-gradient(180deg, #282942 0%, #4a4d7c 100%);
+ opacity: 0;
+ transition: opacity 0.3s ease;
 }
 
 .stat-item:hover::before {
-    opacity: 1;
+ opacity: 1;
 }
 
 .stat-item:hover {
-    transform: translateX(10px);
-    box-shadow: 0 10px 40px rgba(40, 41, 66, 0.15);
-    background: linear-gradient(135deg, #ffffff 0%, rgba(213, 218, 245, 0.1) 100%);
+ transform: translateX(10px);
+ box-shadow: 0 10px 40px rgba(40, 41, 66, 0.15);
+ background: linear-gradient(135deg, #ffffff 0%, rgba(213, 218, 245, 0.1) 100%);
 }
 
 /* Icone delle statistiche */
 .stat-icon {
-    width: 70px;
-    height: 70px;
-    background: linear-gradient(135deg, #d5daf5 0%, #e8eaf6 100%);
-    border-radius: 16px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    transition: all 0.3s ease;
+ width: 70px;
+ height: 70px;
+ background: linear-gradient(135deg, #d5daf5 0%, #e8eaf6 100%);
+ border-radius: 16px;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ flex-shrink: 0;
+ transition: all 0.3s ease;
 }
 
 .stat-icon i {
-    font-size: 2rem;
-    background: linear-gradient(135deg, #282942 0%, #4a4d7c 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    transition: all 0.3s ease;
+ font-size: 2rem;
+ background: linear-gradient(135deg, #282942 0%, #4a4d7c 100%);
+ -webkit-background-clip: text;
+ -webkit-text-fill-color: transparent;
+ background-clip: text;
+ transition: all 0.3s ease;
 }
 
 .stat-item:hover .stat-icon {
-    transform: rotate(5deg) scale(1.05);
-    background: linear-gradient(135deg, #282942 0%, #4a4d7c 100%);
+ transform: rotate(5deg) scale(1.05);
+ background: linear-gradient(135deg, #282942 0%, #4a4d7c 100%);
 }
 
 .stat-item:hover .stat-icon i {
-    -webkit-text-fill-color: #ffffff;
+ -webkit-text-fill-color: #ffffff;
 }
 
 /* Testi delle statistiche */
 .stat-title {
-    font-size: 1.4rem;
-    font-weight: 600;
-    color: #282942 !important;
-    margin-bottom: 0.5rem;
-    font-family: var(--font-heading);
+ font-size: 1.4rem;
+ font-weight: 600;
+ color: #282942 !important;
+ margin-bottom: 0.5rem;
+ font-family: var(--font-heading);
 }
 
 .stat-text {
-    font-size: 1rem;
-    line-height: 1.6;
-    color: #2e2e2e !important;
-    opacity: 0.85;
+ font-size: 1rem;
+ line-height: 1.6;
+ color: #2e2e2e !important;
+ opacity: 0.85;
 }
 
 /* === SEZIONE CONTATTI - FIX === */
-
 .contact-section-finance {
-    background: linear-gradient(180deg, #f5f6fb 0%, #ffffff 100%);
-    padding: 100px 0;
-    position: relative;
+ background: linear-gradient(180deg, #f5f6fb 0%, #ffffff 100%);
+ padding: 100px 0;
+ position: relative;
 }
 
 /* Form wrapper styling */
 .contact-form-wrapper {
-    background: #ffffff;
-    border-radius: 20px;
-    padding: 3rem;
-    box-shadow: 0 10px 40px rgba(40, 41, 66, 0.1);
-    border: 1px solid rgba(213, 218, 245, 0.3);
+ background: #ffffff;
+ border-radius: 20px;
+ padding: 3rem;
+ box-shadow: 0 10px 40px rgba(40, 41, 66, 0.1);
+ border: 1px solid rgba(213, 218, 245, 0.3);
 }
 
 .contact-form-wrapper h3 {
-    color: #282942 !important;
-    font-size: 1.8rem;
-    margin-bottom: 2rem;
-    font-family: var(--font-heading);
+ color: #282942 !important;
+ font-size: 1.8rem;
+ margin-bottom: 2rem;
+ font-family: var(--font-heading);
 }
 
 /* Form controls */
 .contact-form-wrapper .form-label {
-    color: #2e2e2e !important;
-    font-weight: 500;
-    margin-bottom: 0.5rem;
-    font-size: 0.95rem;
+ color: #2e2e2e !important;
+ font-weight: 500;
+ margin-bottom: 0.5rem;
+ font-size: 0.95rem;
 }
 
 .contact-form-wrapper .form-control,
 .contact-form-wrapper .form-select {
-    border: 1px solid #d0d4e4;
-    border-radius: 10px;
-    padding: 12px 16px;
-    font-size: 1rem;
-    color: #2e2e2e !important;
-    background-color: #ffffff !important;
-    transition: all 0.3s ease;
+ border: 1px solid #d0d4e4;
+ border-radius: 10px;
+ padding: 12px 16px;
+ font-size: 1rem;
+ color: #2e2e2e !important;
+ background-color: #ffffff !important;
+ transition: all 0.3s ease;
 }
 
 .contact-form-wrapper .form-control:focus,
 .contact-form-wrapper .form-select:focus {
-    border-color: #282942;
-    box-shadow: 0 0 0 3px rgba(40, 41, 66, 0.1);
-    outline: none;
+ border-color: #282942;
+ box-shadow: 0 0 0 3px rgba(40, 41, 66, 0.1);
+ outline: none;
 }
 
 .contact-form-wrapper .form-control::placeholder {
-    color: rgba(46, 46, 46, 0.5);
+ color: rgba(46, 46, 46, 0.5);
 }
 
 /* Checkbox styling */
 .contact-form-wrapper .form-check-label {
-    color: #2e2e2e !important;
-    font-size: 0.95rem;
+ color: #2e2e2e !important;
+ font-size: 0.95rem;
 }
 
 .contact-form-wrapper .form-check-label a {
-    color: #282942;
-    text-decoration: underline;
+ color: #282942;
+ text-decoration: underline;
 }
 
 /* Submit button */
 .btn-submit-button {
-    background: linear-gradient(135deg, #282942 0%, #4a4d7c 100%);
-    color: #ffffff;
-    border: none;
-    padding: 16px 40px;
-    font-size: 1.1rem;
-    font-weight: 500;
-    border-radius: 50px;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 20px rgba(40, 41, 66, 0.2);
+ background: linear-gradient(135deg, #282942 0%, #4a4d7c 100%);
+ color: #ffffff;
+ border: none;
+ padding: 16px 40px;
+ font-size: 1.1rem;
+ font-weight: 500;
+ border-radius: 50px;
+ transition: all 0.3s ease;
+ box-shadow: 0 4px 20px rgba(40, 41, 66, 0.2);
 }
 
 .btn-submit-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 30px rgba(40, 41, 66, 0.3);
-    color: #ffffff;
-    background: linear-gradient(135deg, #4a4d7c 0%, #282942 100%);
+ transform: translateY(-2px);
+ box-shadow: 0 8px 30px rgba(40, 41, 66, 0.3);
+ color: #ffffff;
+ background: linear-gradient(135deg, #4a4d7c 0%, #282942 100%);
 }
 
 /* Contact Info Box - CORRETTO */
 .contact-info-box {
-    background: linear-gradient(135deg, #282942 0%, #4a4d7c 100%);
-    border-radius: 20px;
-    padding: 3rem;
-    box-shadow: 0 10px 40px rgba(40, 41, 66, 0.15);
-    height: 100%;
-    position: relative;
-    overflow: hidden;
+ background: linear-gradient(135deg, #282942 0%, #4a4d7c 100%);
+ border-radius: 20px;
+ padding: 3rem;
+ box-shadow: 0 10px 40px rgba(40, 41, 66, 0.15);
+ height: 100%;
+ position: relative;
+ overflow: hidden;
 }
 
 /* Pattern decorativo */
 .contact-info-box::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    right: -50%;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle, rgba(255, 255, 255, 0.05) 0%, transparent 70%);
-    animation: rotate-slow 20s linear infinite;
+ content: '';
+ position: absolute;
+ top: -50%;
+ right: -50%;
+ width: 200%;
+ height: 200%;
+ background: radial-gradient(circle, rgba(255, 255, 255, 0.05) 0%, transparent 70%);
+ animation: rotate-slow 20s linear infinite;
 }
 
 .contact-info-box h4 {
-    color: #ffffff !important;
-    font-size: 1.8rem;
-    margin-bottom: 2rem;
-    font-family: var(--font-heading);
-    position: relative;
+ color: #ffffff !important;
+ font-size: 1.8rem;
+ margin-bottom: 2rem;
+ font-family: var(--font-heading);
+ position: relative;
 }
 
 /* Info items */
 .contact-info-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 1rem;
-    margin-bottom: 2rem;
-    padding-bottom: 2rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-    position: relative;
+ display: flex;
+ align-items: flex-start;
+ gap: 1rem;
+ margin-bottom: 2rem;
+ padding-bottom: 2rem;
+ border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+ position: relative;
 }
 
 .contact-info-item:last-child {
-    border-bottom: none;
-    margin-bottom: 0;
-    padding-bottom: 0;
+ border-bottom: none;
+ margin-bottom: 0;
+ padding-bottom: 0;
 }
 
 .contact-info-item i {
-    font-size: 1.5rem;
-    color: #d5daf5 !important;
-    margin-top: 0.25rem;
-    flex-shrink: 0;
+ font-size: 1.5rem;
+ color: #d5daf5 !important;
+ margin-top: 0.25rem;
+ flex-shrink: 0;
 }
 
 .contact-info-item strong {
-    display: block;
-    font-size: 1.1rem;
-    margin-bottom: 0.5rem;
-    font-weight: 600;
-    color: #ffffff !important;
+ display: block;
+ font-size: 1.1rem;
+ margin-bottom: 0.5rem;
+ font-weight: 600;
+ color: #ffffff !important;
 }
 
 .contact-info-item p {
-    margin: 0;
-    font-size: 1rem;
-    line-height: 1.5;
-    color: rgba(255, 255, 255, 0.9) !important;
+ margin: 0;
+ font-size: 1rem;
+ line-height: 1.5;
+ color: rgba(255, 255, 255, 0.9) !important;
 }
 
 .contact-info-item a {
-    color: #ffffff !important;
-    text-decoration: none;
-    transition: color 0.3s ease;
-    border-bottom: 1px solid transparent;
+ color: #ffffff !important;
+ text-decoration: none;
+ transition: color 0.3s ease;
+ border-bottom: 1px solid transparent;
 }
 
 .contact-info-item a:hover {
-    color: #d5daf5 !important;
-    border-bottom-color: #d5daf5;
+ color: #d5daf5 !important;
+ border-bottom-color: #d5daf5;
 }
 
-/* === ANIMAZIONI ENTRANCE === */
-
-@keyframes slideInFromLeft {
-    0% {
-        opacity: 0;
-        transform: translateX(-50px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateX(0);
-    }
+/* === SEZIONE "I NOSTRI SERVIZI" - FIX === */
+.services-highlights-section {
+ background: linear-gradient(180deg, #ffffff 0%, #f5f6fb 100%);
+ padding: 100px 0;
+ position: relative;
 }
 
-@keyframes slideInFromRight {
-    0% {
-        opacity: 0;
-        transform: translateX(50px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateX(0);
-    }
+.services-highlights-section .row {
+ display: flex;
+ flex-wrap: wrap;
+ justify-content: center;
+ gap: 2rem;
 }
 
-.value-proposition-section .col-lg-6:first-child {
-    animation: slideInFromLeft 0.8s ease-out;
+/* Mantieni 3 box sempre in linea su desktop */
+.services-highlights-section .col-lg-4 {
+ flex: 1 1 auto;
+ min-width: 300px;
+ max-width: calc(33.333% - 1.35rem);
 }
 
-.value-proposition-section .col-lg-6:last-child {
-    animation: slideInFromRight 0.8s ease-out 0.2s both;
-}
-
-/* === RESPONSIVE === */
-
-@media (max-width: 991px) {
-    .value-proposition-section {
-        padding: 60px 0;
-    }
-    
-    .stat-item {
-        padding: 1.5rem;
-    }
-    
-    .stat-icon {
-        width: 60px;
-        height: 60px;
-    }
-    
-    .stat-icon i {
-        font-size: 1.5rem;
-    }
-    
-    .contact-form-wrapper,
-    .contact-info-box {
-        padding: 2rem;
-    }
-    
-    .value-proposition-section .section-title-finance {
-        text-align: center;
-    }
-    
-    .value-proposition-section .section-title-finance::after {
-        left: 50%;
-        transform: translateX(-50%);
-    }
+@media (max-width: 1199px) {
+ .services-highlights-section .col-lg-4 {
+  max-width: calc(50% - 1rem);
+ }
 }
 
 @media (max-width: 767px) {
-    .value-stats {
-        gap: 1rem;
-    }
-    
-    .stat-item {
-        flex-direction: column;
-        text-align: center;
-        align-items: center;
-        padding: 1.5rem;
-    }
-    
-    .stat-item:hover {
-        transform: translateY(-5px);
-    }
-    
-    .stat-icon {
-        margin-bottom: 1rem;
-    }
-    
-    .contact-form-wrapper,
-    .contact-info-box {
-        padding: 1.5rem;
-        margin-bottom: 2rem;
-    }
-    
-    .contact-section-finance {
-        padding: 60px 0;
-    }
+ .services-highlights-section .col-lg-4 {
+  max-width: 100%;
+  flex: 0 0 100%;
+ }
+}
+
+/* Service Cards */
+.service-card {
+ background: #ffffff;
+ border-radius: 16px;
+ border: 1px solid rgba(213, 218, 245, 0.3);
+ padding: 2rem;
+ transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+ height: 100%;
+ display: flex;
+ flex-direction: column;
+ box-shadow: 0 4px 16px rgba(40, 41, 66, 0.08);
+}
+
+.service-card:hover {
+ transform: translateY(-10px);
+ box-shadow: 0 12px 32px rgba(40, 41, 66, 0.15);
+ border-color: #282942;
+}
+
+.service-card-content {
+ flex: 1;
+ display: flex;
+ flex-direction: column;
+}
+
+.service-icon {
+ width: 70px;
+ height: 70px;
+ background: linear-gradient(135deg, #d5daf5 0%, #e8eaf6 100%);
+ border-radius: 12px;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ margin-bottom: 1.5rem;
+ flex-shrink: 0;
+ transition: all 0.3s ease;
+ font-size: 2rem;
+ color: #282942;
+}
+
+.service-card:hover .service-icon {
+ transform: scale(1.1);
+ background: linear-gradient(135deg, #282942 0%, #4a4d7c 100%);
+ color: #ffffff;
+}
+
+.service-card-title {
+ font-size: 1.3rem;
+ font-weight: 600;
+ color: #282942 !important;
+ margin-bottom: 1rem;
+}
+
+.service-card-text {
+ font-size: 0.95rem;
+ line-height: 1.6;
+ color: #2e2e2e !important;
+ margin-bottom: 1.5rem;
+ flex-grow: 1;
+}
+
+.service-details {
+ display: flex;
+ flex-direction: column;
+ gap: 0.75rem;
+ margin: 1.5rem 0;
+ padding: 1rem 0;
+ border-top: 1px solid rgba(213, 218, 245, 0.3);
+ border-bottom: 1px solid rgba(213, 218, 245, 0.3);
+}
+
+.service-detail-item {
+ font-size: 0.9rem;
+ line-height: 1.5;
+ color: #2e2e2e !important;
+}
+
+.service-detail-item strong {
+ color: #282942 !important;
+ font-weight: 600;
+}
+
+
+
+/* === ANIMAZIONI ENTRANCE === */
+@keyframes slideInFromLeft {
+ 0% {
+  opacity: 0;
+  transform: translateX(-50px);
+ }
+ 100% {
+  opacity: 1;
+  transform: translateX(0);
+ }
+}
+
+@keyframes slideInFromRight {
+ 0% {
+  opacity: 0;
+  transform: translateX(50px);
+ }
+ 100% {
+  opacity: 1;
+  transform: translateX(0);
+ }
+}
+
+.value-proposition-section .col-lg-6:first-child {
+ animation: slideInFromLeft 0.8s ease-out;
+}
+
+.value-proposition-section .col-lg-6:last-child {
+ animation: slideInFromRight 0.8s ease-out 0.2s both;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 991px) {
+ .value-proposition-section {
+  padding: 60px 0;
+}
+
+ .stat-item {
+  padding: 1.5rem;
+ }
+ 
+ .stat-icon {
+  width: 60px;
+  height: 60px;
+ }
+ 
+ .stat-icon i {
+  font-size: 1.5rem;
+ }
+ 
+ .contact-form-wrapper,
+ .contact-info-box {
+  padding: 2rem;
+ }
+ 
+ .value-proposition-section .section-title-finance {
+  text-align: center;
+ }
+ 
+ .value-proposition-section .section-title-finance::after {
+  left: 50%;
+  transform: translateX(-50%);
+ }
+}
+
+@media (max-width: 767px) {
+ .value-stats {
+  gap: 1rem;
+ }
+ 
+ .stat-item {
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  padding: 1.5rem;
+ }
+ 
+ .stat-item:hover {
+  transform: translateY(-5px);
+ }
+ 
+ .stat-icon {
+  margin-bottom: 1rem;
+ }
+ 
+ .contact-form-wrapper,
+ .contact-info-box {
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+ }
+ 
+ .contact-section-finance {
+  padding: 60px 0;
+ }
+ 
+ .services-highlights-section .col-lg-4 {
+  margin-bottom: 1rem;
+ }
 }
 
 /* === DARK MODE SUPPORT (opzionale) === */
 @media (prefers-color-scheme: dark) {
-    .value-proposition-section,
-    .contact-section-finance {
-        background: linear-gradient(180deg, #1a1a2e 0%, #16213e 100%);
-    }
-    
-    .stat-item,
-    .contact-form-wrapper {
-        background: #0f0f1e;
-        border-color: rgba(255, 255, 255, 0.1);
-    }
-    
-    .value-text,
-    .stat-text,
-    .contact-form-wrapper .form-label {
-        color: rgba(255, 255, 255, 0.9) !important;
-    }
+ .value-proposition-section,
+ .contact-section-finance {
+  background: linear-gradient(180deg, #1a1a2e 0%, #16213e 100%);
+ }
+ 
+ .stat-item,
+ .contact-form-wrapper {
+  background: #0f0f1e;
+  border-color: rgba(255, 255, 255, 0.1);
+ }
+ 
+ .value-text,
+ .stat-text,
+ .contact-form-wrapper .form-label {
+  color: rgba(255, 255, 255, 0.9) !important;
+ }
 }
