@@ -1060,3 +1060,53 @@
         border: 1px solid #ddd;
     }
 }
+
+/* === DIVIDER TRA SEZIONI CHI SIAMO === */
+.about-section-divider-wrapper {
+ width: 100%;
+ background: #f5f6fb; /* Stesso colore delle sezioni */
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ padding: 60px 0;
+ margin: 0;
+}
+
+.about-section-divider {
+ width: 100%;
+ max-width: 100%;
+ height: 2px;
+ background: linear-gradient(90deg, transparent, #282942, transparent);
+ position: relative;
+}
+
+@media (max-width: 768px) {
+ .about-section-divider-wrapper {
+  padding: 40px 0;
+ }
+}
+
+/* === DIVIDER 2 TRA SEZIONI CHI SIAMO === */
+.about-section-divider-wrapper2 {
+ width: 100%;
+ background: #ffffff; /* Stesso colore delle sezioni */
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ padding: 60px 0;
+ margin: 0;
+}
+
+.about-section-divider2 {
+ width: 100%;
+ max-width: 100%;
+ height: 2px;
+ background: linear-gradient(90deg, transparent, #282942, transparent);
+ position: relative;
+}
+
+@media (max-width: 768px) {
+ .about-section-divider-wrapper2 {
+  padding: 40px 0;
+ }
+}
