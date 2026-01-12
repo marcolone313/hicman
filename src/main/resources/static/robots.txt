@@ -10,8 +10,6 @@ Disallow: /terms
 # Permetti l'accesso alle pagine principali
 Allow: /index
 Allow: /about
-Allow: /contact
-Allow: /playstation
 
 # Sitemap
 Sitemap: https://hicman.com/sitemap.xml
