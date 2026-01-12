@@ -15,10 +15,10 @@
                 <div class="container">
                     <div class="row justify-content-center">
                         <div class="col-lg-10 text-center">
-                            <h1 class="about-hero-title animate__animated animate__fadeInUp">
+                            <h1 class="about-hero-title animate__animated animate__fadeInUp" th:text="#{about.hero.title}">
                                 Chi Siamo
                             </h1>
-                            <p class="about-hero-subtitle animate__animated animate__fadeInUp animate__delay-1s">
+                            <p class="about-hero-subtitle animate__animated animate__fadeInUp animate__delay-1s" th:text="#{about.hero.subtitle}">
                                 Partner strategico per la crescita delle imprese
                             </p>
                         </div>
@@ -36,8 +36,8 @@
                             <div class="section-icon mb-4">
                                 <i class="bi bi-eye"></i>
                             </div>
-                            <h2 class="about-section-title mb-4">Vision</h2>
-                            <p class="about-lead-text">
+                            <h2 class="about-section-title mb-4" th:text="#{about.vision.title}">Vision</h2>
+                            <p class="about-lead-text" th:text="#{about.vision.text}">
                                 Crescita per le imprese, valore strategico per i partner, nuove opportunità per il territorio.
                             </p>
                         </div>
@@ -62,8 +62,8 @@
                                     <div class="section-icon mb-4">
                                         <i class="bi bi-rocket-takeoff"></i>
                                     </div>
-                                    <h2 class="about-section-title mb-4">Mission</h2>
-                                    <p class="about-text">
+                                    <h2 class="about-section-title mb-4" th:text="#{about.mission.title}">Mission</h2>
+                                    <p class="about-text" th:text="#{about.mission.text}">
                                         Mettiamo a disposizione dei nostri clienti la nostra consolidata esperienza, 
                                         per trasformare esigenze complesse in obiettivi economici sostenibili, 
                                         sia nel breve che nel lungo periodo.
@@ -73,15 +73,15 @@
                                     <div class="mission-highlights">
                                         <div class="highlight-item">
                                             <i class="bi bi-check-circle-fill"></i>
-                                            <span>Trasformazione di esigenze complesse</span>
+                                            <span th:text="#{about.mission.highlight1}">Trasformazione di esigenze complesse</span>
                                         </div>
                                         <div class="highlight-item">
                                             <i class="bi bi-check-circle-fill"></i>
-                                            <span>Obiettivi economici sostenibili</span>
+                                            <span th:text="#{about.mission.highlight2}">Obiettivi economici sostenibili</span>
                                         </div>
                                         <div class="highlight-item">
                                             <i class="bi bi-check-circle-fill"></i>
-                                            <span>Visione di lungo periodo</span>
+                                            <span th:text="#{about.mission.highlight3}">Visione di lungo periodo</span>
                                         </div>
                                     </div>
                                 </div>
@@ -107,8 +107,8 @@
                         <div class="section-icon mb-4">
                             <i class="bi bi-gem"></i>
                         </div>
-                        <h2 class="about-section-title mb-3">I Nostri Valori</h2>
-                        <p class="about-subtitle">
+                        <h2 class="about-section-title mb-3" th:text="#{about.values.title}">I Nostri Valori</h2>
+                        <p class="about-subtitle" th:text="#{about.values.subtitle}">
                             I principi che guidano ogni nostra azione
                         </p>
                     </div>
@@ -121,8 +121,8 @@
                             <div class="value-icon">
                                 <i class="bi bi-shield-check"></i>
                             </div>
-                            <h3 class="value-title">Etica</h3>
-                            <p class="value-text">
+                            <h3 class="value-title" th:text="#{about.values.ethics.title}">Etica</h3>
+                            <p class="value-text" th:text="#{about.values.ethics.text}">
                                 Garantiamo trasparenza, correttezza e responsabilità in ogni operazione, 
                                 costruendo rapporti basati sulla fiducia reciproca.
                             </p>
@@ -135,8 +135,8 @@
                             <div class="value-icon">
                                 <i class="bi bi-hand-thumbs-up"></i>
                             </div>
-                            <h3 class="value-title">Integrità</h3>
-                            <p class="value-text">
+                            <h3 class="value-title" th:text="#{about.values.integrity.title}">Integrità</h3>
+                            <p class="value-text" th:text="#{about.values.integrity.text}">
                                 Creiamo e manteniamo rapporti professionali di fiducia e successo a lungo termine, 
                                 con un approccio onesto e coerente.
                             </p>
@@ -149,8 +149,8 @@
                             <div class="value-icon">
                                 <i class="bi bi-lock"></i>
                             </div>
-                            <h3 class="value-title">Riservatezza</h3>
-                            <p class="value-text">
+                            <h3 class="value-title" th:text="#{about.values.confidentiality.title}">Riservatezza</h3>
+                            <p class="value-text" th:text="#{about.values.confidentiality.text}">
                                 Proteggiamo e tuteliamo in modo rigoroso i nostri partner, garantendo 
                                 la massima discrezione in ogni fase della collaborazione.
                             </p>
@@ -175,8 +175,8 @@
                         <div class="section-icon mb-4">
                             <i class="bi bi-trophy"></i>
                         </div>
-                        <h2 class="about-section-title mb-3">Il Vantaggio di Lavorare con Noi</h2>
-                        <p class="about-subtitle">
+                        <h2 class="about-section-title mb-3" th:text="#{about.advantage.title}">Il Vantaggio di Lavorare con Noi</h2>
+                        <p class="about-subtitle" th:text="#{about.advantage.subtitle}">
                             Cosa ci rende il partner ideale per la tua azienda
                         </p>
                     </div>
@@ -188,8 +188,8 @@
                             <div class="advantage-item">
                                 <div class="advantage-number">01</div>
                                 <div class="advantage-info">
-                                    <h3 class="advantage-title">Approccio Dinamico</h3>
-                                    <p class="advantage-text">
+                                    <h3 class="advantage-title" th:text="#{about.advantage.dynamic.title}">Approccio Dinamico</h3>
+                                    <p class="advantage-text" th:text="#{about.advantage.dynamic.text}">
                                         Siamo un partner strategico con un approccio dinamico e orientato al risultato, 
                                         capace di adattarsi rapidamente alle esigenze di ogni situazione.
                                     </p>
@@ -199,8 +199,8 @@
                             <div class="advantage-item">
                                 <div class="advantage-number">02</div>
                                 <div class="advantage-info">
-                                    <h3 class="advantage-title">Esperienza Consolidata</h3>
-                                    <p class="advantage-text">
+                                    <h3 class="advantage-title" th:text="#{about.advantage.experience.title}">Esperienza Consolidata</h3>
+                                    <p class="advantage-text" th:text="#{about.advantage.experience.text}">
                                         L'esperienza maturata ci consente di operare in contesti articolati e complessi, 
                                         prestando attenzione alle esigenze del cliente.
                                     </p>
@@ -210,8 +210,8 @@
                             <div class="advantage-item">
                                 <div class="advantage-number">03</div>
                                 <div class="advantage-info">
-                                    <h3 class="advantage-title">Supporto Continuo</h3>
-                                    <p class="advantage-text">
+                                    <h3 class="advantage-title" th:text="#{about.advantage.support.title}">Supporto Continuo</h3>
+                                    <p class="advantage-text" th:text="#{about.advantage.support.text}">
                                         Siamo in grado di aiutare il cliente in qualsiasi momento, 
                                         anche quando la situazione appare irreversibile.
                                     </p>
@@ -225,11 +225,11 @@
                             <div class="highlight-icon">
                                 <i class="bi bi-lightbulb"></i>
                             </div>
-                            <h3 class="highlight-title">La Nostra Filosofia</h3>
+                            <h3 class="highlight-title" th:text="#{about.advantage.philosophy.title}">La Nostra Filosofia</h3>
                             <p class="highlight-text">
-                                <strong>Portiamo soluzioni dove gli altri vedono ostacoli.</strong>
+                                <strong th:text="#{about.advantage.philosophy.quote}">Portiamo soluzioni dove gli altri vedono ostacoli.</strong>
                             </p>
-                            <p class="highlight-description">
+                            <p class="highlight-description" th:text="#{about.advantage.philosophy.text}">
                                 Non ci limitiamo ad analizzare i problemi: identifichiamo opportunità 
                                 e creiamo percorsi concreti verso il successo, trasformando la complessità 
                                 in valore strategico per i nostri clienti.
@@ -255,8 +255,8 @@
                         <div class="section-icon mb-4">
                             <i class="bi bi-diagram-3"></i>
                         </div>
-                        <h2 class="about-section-title mb-3">Network & Partner</h2>
-                        <p class="about-subtitle">
+                        <h2 class="about-section-title mb-3" th:text="#{about.network.title}">Network & Partner</h2>
+                        <p class="about-subtitle" th:text="#{about.network.subtitle}">
                             Un ecosistema di relazioni strategiche al servizio dei nostri clienti
                         </p>
                     </div>
@@ -265,7 +265,7 @@
                 <div class="row g-5 justify-content-center">
                     <div class="col-lg-10">
                         <div class="network-content-box">
-                            <p class="network-lead-text">
+                            <p class="network-lead-text" th:utext="#{about.network.text}">
                                 Operiamo con le <strong>primarie banche italiane</strong>, con le più importanti 
                                 <strong>società del settore dell'investment banking</strong> e con i principali 
                                 <strong>fondi di private equity e debt</strong> per strutturare soluzioni 
@@ -278,8 +278,8 @@
                                         <div class="partner-icon">
                                             <i class="bi bi-bank2"></i>
                                         </div>
-                                        <h4 class="partner-title">Istituti Bancari</h4>
-                                        <p class="partner-text">
+                                        <h4 class="partner-title" th:text="#{about.network.banks.title}">Istituti Bancari</h4>
+                                        <p class="partner-text" th:text="#{about.network.banks.text}">
                                             Partnership consolidate con le principali banche italiane
                                         </p>
                                     </div>
@@ -290,8 +290,8 @@
                                         <div class="partner-icon">
                                             <i class="bi bi-building"></i>
                                         </div>
-                                        <h4 class="partner-title">Investment Banking</h4>
-                                        <p class="partner-text">
+                                        <h4 class="partner-title" th:text="#{about.network.investment.title}">Investment Banking</h4>
+                                        <p class="partner-text" th:text="#{about.network.investment.text}">
                                             Collaborazioni con le maggiori società di investment banking
                                         </p>
                                     </div>
@@ -302,8 +302,8 @@
                                         <div class="partner-icon">
                                             <i class="bi bi-graph-up"></i>
                                         </div>
-                                        <h4 class="partner-title">Fondi di Investimento</h4>
-                                        <p class="partner-text">
+                                        <h4 class="partner-title" th:text="#{about.network.funds.title}">Fondi di Investimento</h4>
+                                        <p class="partner-text" th:text="#{about.network.funds.text}">
                                             Accesso ai principali fondi di private equity e debt
                                         </p>
                                     </div>
@@ -327,16 +327,16 @@
             <div class="container py-5">
                 <div class="row justify-content-center text-center">
                     <div class="col-lg-8">
-                        <h2 class="cta-title mb-4">Vuoi Conoscerci Meglio?</h2>
-                        <p class="cta-text mb-4">
+                        <h2 class="cta-title mb-4" th:text="#{about.cta.title}">Vuoi Conoscerci Meglio?</h2>
+                        <p class="cta-text mb-4" th:text="#{about.cta.text}">
                             Contattaci per una consulenza e scopri come possiamo supportare 
                             la tua azienda nel raggiungimento dei suoi obiettivi strategici.
                         </p>
                         <div class="cta-buttons">
                             <a href="/#contact" class="btn btn-finance-primary btn-lg">
-                                Contattaci <i class="bi bi-arrow-right ms-2"></i>
+                                <span th:text="#{about.cta.button.contact}">Contattaci</span> <i class="bi bi-arrow-right ms-2"></i>
                             </a>
-                            <a href="/servizi" class="btn btn-finance-outline btn-lg">
+                            <a href="/servizi" class="btn btn-finance-outline btn-lg" th:text="#{about.cta.button.services}">
                                 Scopri i Servizi
                             </a>
                         </div>
