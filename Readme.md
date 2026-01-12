@@ -29,10 +29,10 @@ Email: admin@example.com
 PWD: changeme
 
 # Creating Docker Image
-docker build -t corporatesite .
+docker build -t HicmanCorporatesitev1 .
 
 # Exporting Docker image
-docker save -o C:\Chiavepem\corporatesite.tar corporatesite
+docker save -o C:\DigitalOceanHicman\HicmanCorporatesite.tar hicmancorporatesitev1
 
 # Trasporting into server
 scp -i "chiavesrv.pem" srv:/home/ubuntu/

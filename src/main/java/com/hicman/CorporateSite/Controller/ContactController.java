@@ -35,7 +35,7 @@ public class ContactController {
         if (!model.containsAttribute("contact")) {
             model.addAttribute("contact", new Contact());
         }
-        model.addAttribute("pageTitle", "OSC Innovation - Contatti");
+        model.addAttribute("pageTitle", "Hicman - Contatti");
         return "contact";
     }
 
@@ -60,7 +60,7 @@ public class ContactController {
             model.addAttribute("contact", contact);
             model.addAttribute("errorMessage", 
                 messageSource.getMessage("contact.form.error", null, LocaleContextHolder.getLocale()));
-            model.addAttribute("pageTitle", "OSC Innovation - Contatti");
+            model.addAttribute("pageTitle", " Innovation - Contatti");
             
             // Aggiungi i risultati di validazione al model
             model.addAttribute("org.springframework.validation.BindingResult.contact", result);
@@ -80,7 +80,7 @@ public class ContactController {
             model.addAttribute("contact", contact);
             model.addAttribute("errorMessage", 
                 messageSource.getMessage("contact.form.error", null, LocaleContextHolder.getLocale()));
-            model.addAttribute("pageTitle", "OSC Innovation - Contatti");
+            model.addAttribute("pageTitle", "Hicman - Contatti");
             return "contact";
         }
     }

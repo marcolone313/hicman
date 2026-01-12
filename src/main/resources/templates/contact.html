@@ -7,10 +7,6 @@
 
 
 <body>
-    <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NBR825RZ" height="0" width="0"
-            style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
 
     <nav th:replace="~{fragments/navbar :: navbar('contact')}"></nav>
 
@@ -178,13 +174,13 @@
                                     <!-- Email -->
                                     <div class="contact-info-item">
                                         <div class="icon-box">
-                                            <a href="mailto:info@oscinnovation.com" class="social-link" aria-label="Email">
+                                            <a href="mailto:info@hicman.com" class="social-link" aria-label="Email">
                                                 <i class="bi bi-envelope fs-3"></i>
                                             </a>
                                         </div>
                                         <div class="contact-info-text">
                                             <h5 class="text-white" th:text="#{contact.info.email}">Email</h5>
-                                            <p class="card-text text-white contact-main-text">info@oscinnovation.com</p>
+                                            <p class="card-text text-white contact-main-text">info@hicman.com</p>
                                         </div>
                                     </div>
                     
@@ -215,19 +211,19 @@
                                     <div class="social-section">
                                         <h5 class="text-white mb-3" th:text="#{contact.info.social}">Seguici sui Social</h5>
                                         <div class="social-links">
-                                            <a href="https://www.linkedin.com/company/oscinnovation/" class="social-link" target="_blank"
+                                            <a href="https://www.linkedin.com/company/hicman/" class="social-link" target="_blank"
                                                 rel="noopener noreferrer" aria-label="LinkedIn">
                                                 <i class="bi bi-linkedin fs-4"></i>
                                             </a>
-                                            <a href="https://x.com/InnovationOsc?t=tBAVu89e-pK7ldNy2Y87_A&s=08" class="social-link"
+                                            <a href="" class="social-link"
                                                 target="_blank" rel="noopener noreferrer" aria-label="Twitter">
                                                 <i class="bi bi-twitter-x fs-4"></i>
                                             </a>
-                                            <a href="https://www.facebook.com/OSCInnovation" class="social-link" target="_blank"
+                                            <a href="https://www.facebook.com/hicman" class="social-link" target="_blank"
                                                 rel="noopener noreferrer" aria-label="Facebook">
                                                 <i class="bi bi-facebook fs-4"></i>
                                             </a>
-                                            <a href="https://www.instagram.com/oscinnovation?igsh=MWZ4NTV6dnJzdXZ5ZA==" class="social-link"
+                                            <a href="" class="social-link"
                                                 target="_blank" rel="noopener noreferrer" aria-label="Instagram">
                                                 <i class="bi bi-instagram fs-4"></i>
                                             </a>
@@ -266,33 +262,6 @@
         });
     </script>
 
-    <!-- Google tag (gtag.js)
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-3YGZB2BW4M"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-
-        gtag('config', 'G-3YGZB2BW4M');
-    </script>-->
-
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17084339872">
-    </script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-
-        gtag('config', 'AW-17084339872');
-    </script>
-    <script th:if="${successMessage}">
-        gtag('event', 'conversion', {
-            'send_to': 'AW-17084339872/ubcDCJ3FmMgaEKCtudI_',
-            'value': 1.0,
-            'currency': 'EUR'
-        });
-    </script>
 </body>
 
 </html>

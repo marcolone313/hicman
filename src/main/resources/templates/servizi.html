@@ -45,15 +45,15 @@
                     <div class="col-lg-6">
                         <div class="service-stats-box">
                             <div class="stat-item-large">
-                                <div class="stat-label" th:text="#{home.services.finanza-strutturata.context}">Contesto</div>
+                                <div class="stat-label" th:text="#{services.label.context}">Contesto</div>
                                 <div class="stat-value" th:text="#{services.strutturata.context}">Ordinario e Strategico</div>
                             </div>
                             <div class="stat-item-large">
-                                <div class="stat-label" th:text="#{home.services.finanza-strutturata.complexity}">Complessità</div>
+                                <div class="stat-label" th:text="#{services.label.complexity}">Complessità</div>
                                 <div class="stat-value" th:text="#{services.strutturata.complexity}">Elevata</div>
                             </div>
                             <div class="stat-item-large">
-                                <div class="stat-label" th:text="#{home.services.finanza-strutturata.goal}">Finalità</div>
+                                <div class="stat-label" th:text="#{services.label.goal}">Finalità</div>
                                 <div class="stat-value" th:text="#{services.strutturata.goal}">Crescita ed Espansione</div>
                             </div>
                         </div>
@@ -63,12 +63,12 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="service-content-box">
-                            <h3 class="service-subtitle">Obiettivo</h3>
+                            <h3 class="service-subtitle" th:text="#{services.label.objective}">Obiettivo</h3>
                             <p class="service-text" th:text="#{services.strutturata.objective}">
                                 Ottimizzare la struttura del capitale investito, isolando i relativi rischi.
                             </p>
 
-                            <h3 class="service-subtitle mt-4">Ambito di Intervento</h3>
+                            <h3 class="service-subtitle mt-4" th:text="#{services.label.scope}">Ambito di Intervento</h3>
                             <p class="service-text">
                                 <strong th:text="#{services.strutturata.scope}">Accesso a capitali privati e istituzionali</strong>
                             </p>
@@ -80,8 +80,8 @@
                                             <div class="feature-icon">
                                                 <i class="bi bi-graph-up"></i>
                                             </div>
-                                            <h4 class="feature-title">Crescita</h4>
-                                            <p class="feature-text">
+                                            <h4 class="feature-title" th:text="#{services.strutturata.feature.growth}">Crescita</h4>
+                                            <p class="feature-text" th:text="#{services.strutturata.feature.growth.text}">
                                                 Strutture finanziarie per progetti di espansione e sviluppo aziendale
                                             </p>
                                         </div>
@@ -91,8 +91,8 @@
                                             <div class="feature-icon">
                                                 <i class="bi bi-shield-check"></i>
                                             </div>
-                                            <h4 class="feature-title">Ottimizzazione</h4>
-                                            <p class="feature-text">
+                                            <h4 class="feature-title" th:text="#{services.strutturata.feature.optimization}">Ottimizzazione</h4>
+                                            <p class="feature-text" th:text="#{services.strutturata.feature.optimization.text}">
                                                 Gestione ottimale del capitale con isolamento dei rischi finanziari
                                             </p>
                                         </div>
@@ -102,8 +102,8 @@
                                             <div class="feature-icon">
                                                 <i class="bi bi-people"></i>
                                             </div>
-                                            <h4 class="feature-title">Partnership</h4>
-                                            <p class="feature-text">
+                                            <h4 class="feature-title" th:text="#{services.strutturata.feature.partnership}">Partnership</h4>
+                                            <p class="feature-text" th:text="#{services.strutturata.feature.partnership.text}">
                                                 Accesso a network di investitori privati e istituzionali qualificati
                                             </p>
                                         </div>
@@ -137,15 +137,15 @@
                     <div class="col-lg-6 order-lg-1">
                         <div class="service-stats-box">
                             <div class="stat-item-large">
-                                <div class="stat-label" th:text="#{home.services.finanza-speciale.context}">Contesto</div>
+                                <div class="stat-label" th:text="#{services.label.context}">Contesto</div>
                                 <div class="stat-value" th:text="#{services.speciale.context}">Straordinario e di Crisi</div>
                             </div>
                             <div class="stat-item-large">
-                                <div class="stat-label" th:text="#{home.services.finanza-speciale.complexity}">Complessità</div>
+                                <div class="stat-label" th:text="#{services.label.complexity}">Complessità</div>
                                 <div class="stat-value" th:text="#{services.speciale.complexity}">Elevata con Vincoli Temporali</div>
                             </div>
                             <div class="stat-item-large">
-                                <div class="stat-label" th:text="#{home.services.finanza-speciale.goal}">Finalità</div>
+                                <div class="stat-label" th:text="#{services.label.goal}">Finalità</div>
                                 <div class="stat-value" th:text="#{services.speciale.goal}">Risanamento e Rilancio</div>
                             </div>
                         </div>
@@ -155,19 +155,19 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="service-content-box">
-                            <h3 class="service-subtitle">Obiettivo</h3>
+                            <h3 class="service-subtitle" th:text="#{services.label.objective}">Obiettivo</h3>
                             <p class="service-text" th:text="#{services.speciale.objective}">
                                 Consentire l'accesso a nuova finanza in situazioni straordinarie e complesse, in tempi rapidi.
                             </p>
 
-                            <h3 class="service-subtitle mt-4">Ambito di Intervento</h3>
+                            <h3 class="service-subtitle mt-4" th:text="#{services.label.scope}">Ambito di Intervento</h3>
                             <p class="service-text">
                                 <strong th:text="#{services.speciale.scope}">Ristrutturazione del debito, aumenti di capitale, ricapitalizzazione</strong>
                             </p>
 
                             <div class="crisis-timeline mt-5">
-                                <h3 class="service-subtitle mb-4">Come Gestiamo lo Stato di Crisi</h3>
-                                <p class="service-text mb-4">
+                                <h3 class="service-subtitle mb-4" th:text="#{services.speciale.crisis.title}">Come Gestiamo lo Stato di Crisi</h3>
+                                <p class="service-text mb-4" th:text="#{services.speciale.crisis.intro}">
                                     Preferiamo, se possibile, gestire le criticità in anticipo ma siamo strutturati 
                                     per intervenire, in modo efficace, in qualsiasi fase e circostanza.
                                 </p>
@@ -179,29 +179,29 @@
                                     <div class="stage-item">
                                         <div class="stage-number">1</div>
                                         <div class="stage-content">
-                                            <h4 class="stage-title">Declino</h4>
-                                            <p class="stage-text">Identificazione precoce dei segnali di difficoltà</p>
+                                            <h4 class="stage-title" th:text="#{services.speciale.stage1.title}">Declino</h4>
+                                            <p class="stage-text" th:text="#{services.speciale.stage1.text}">Identificazione precoce dei segnali di difficoltà</p>
                                         </div>
                                     </div>
                                     <div class="stage-item">
                                         <div class="stage-number">2</div>
                                         <div class="stage-content">
-                                            <h4 class="stage-title">Crisi</h4>
-                                            <p class="stage-text">Interventi mirati per stabilizzare la situazione</p>
+                                            <h4 class="stage-title" th:text="#{services.speciale.stage2.title}">Crisi</h4>
+                                            <p class="stage-text" th:text="#{services.speciale.stage2.text}">Interventi mirati per stabilizzare la situazione</p>
                                         </div>
                                     </div>
                                     <div class="stage-item">
                                         <div class="stage-number">3</div>
                                         <div class="stage-content">
-                                            <h4 class="stage-title">Insolvenza</h4>
-                                            <p class="stage-text">Gestione strategica del processo di ristrutturazione</p>
+                                            <h4 class="stage-title" th:text="#{services.speciale.stage3.title}">Insolvenza</h4>
+                                            <p class="stage-text" th:text="#{services.speciale.stage3.text}">Gestione strategica del processo di ristrutturazione</p>
                                         </div>
                                     </div>
                                     <div class="stage-item">
                                         <div class="stage-number">4</div>
                                         <div class="stage-content">
-                                            <h4 class="stage-title">Dissesto</h4>
-                                            <p class="stage-text">Recupero e rilancio anche in situazioni estreme</p>
+                                            <h4 class="stage-title" th:text="#{services.speciale.stage4.title}">Dissesto</h4>
+                                            <p class="stage-text" th:text="#{services.speciale.stage4.text}">Recupero e rilancio anche in situazioni estreme</p>
                                         </div>
                                     </div>
                                 </div>
@@ -209,7 +209,7 @@
                                 <div class="highlight-box mt-4">
                                     <i class="bi bi-shield-fill-check me-3"></i>
                                     <p class="mb-0">
-                                        <strong>Salvaguardiamo l'integrità dell'azienda, i suoi asset strategici e il capitale umano.</strong>
+                                        <strong th:text="#{services.speciale.highlight}">Salvaguardiamo l'integrità dell'azienda, i suoi asset strategici e il capitale umano.</strong>
                                     </p>
                                 </div>
                             </div>
@@ -258,7 +258,7 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="service-content-box">
-                            <h3 class="service-subtitle">Ambito di Intervento</h3>
+                            <h3 class="service-subtitle" th:text="#{services.label.scope}">Ambito di Intervento</h3>
                             <p class="service-text">
                                 <strong th:text="#{services.alternativi.scope}">Origination, Investment Structuring & Execution, Club Deal</strong>
                             </p>
@@ -270,8 +270,8 @@
                                             <div class="feature-icon">
                                                 <i class="bi bi-building-add"></i>
                                             </div>
-                                            <h4 class="feature-title">Origination</h4>
-                                            <p class="feature-text">
+                                            <h4 class="feature-title" th:text="#{services.alternativi.feature.origination}">Origination</h4>
+                                            <p class="feature-text" th:text="#{services.alternativi.feature.origination.text}">
                                                 Identificazione e selezione di opportunità immobiliari ad alto potenziale
                                             </p>
                                         </div>
@@ -281,8 +281,8 @@
                                             <div class="feature-icon">
                                                 <i class="bi bi-diagram-3"></i>
                                             </div>
-                                            <h4 class="feature-title">Structuring</h4>
-                                            <p class="feature-text">
+                                            <h4 class="feature-title" th:text="#{services.alternativi.feature.structuring}">Structuring</h4>
+                                            <p class="feature-text" th:text="#{services.alternativi.feature.structuring.text}">
                                                 Strutturazione finanziaria ottimale per massimizzare il rendimento
                                             </p>
                                         </div>
@@ -292,8 +292,8 @@
                                             <div class="feature-icon">
                                                 <i class="bi bi-people-fill"></i>
                                             </div>
-                                            <h4 class="feature-title">Club Deal</h4>
-                                            <p class="feature-text">
+                                            <h4 class="feature-title" th:text="#{services.alternativi.feature.clubdeal}">Club Deal</h4>
+                                            <p class="feature-text" th:text="#{services.alternativi.feature.clubdeal.text}">
                                                 Co-investimento con partner selezionati per progetti di valore
                                             </p>
                                         </div>
@@ -302,20 +302,20 @@
                             </div>
                             
                             <div class="esg-section mt-5">
-                                <h3 class="service-subtitle">Sostenibilità e Impatto</h3>
+                                <h3 class="service-subtitle" th:text="#{services.alternativi.esg.title}">Sostenibilità e Impatto</h3>
                                 <div class="row g-5 mt-3">
                                     <div class="col-md-6">
                                         <div class="esg-card">
                                             <i class="bi bi-recycle esg-icon"></i>
-                                            <h4 class="esg-title">Recupero Urbano</h4>
-                                            <p class="esg-text">Rigenerazione di aree urbane con focus sulla sostenibilità ambientale</p>
+                                            <h4 class="esg-title" th:text="#{services.alternativi.esg.recovery}">Recupero Urbano</h4>
+                                            <p class="esg-text" th:text="#{services.alternativi.esg.recovery.text}">Rigenerazione di aree urbane con focus sulla sostenibilità ambientale</p>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="esg-card">
                                             <i class="bi bi-graph-up esg-icon"></i>
-                                            <h4 class="esg-title">Ritorno Economico</h4>
-                                            <p class="esg-text">Investimenti che coniugano impatto sociale e performance finanziaria</p>
+                                            <h4 class="esg-title" th:text="#{services.alternativi.esg.return}">Ritorno Economico</h4>
+                                            <p class="esg-text" th:text="#{services.alternativi.esg.return.text}">Investimenti che coniugano impatto sociale e performance finanziaria</p>
                                         </div>
                                     </div>
                                 </div>
