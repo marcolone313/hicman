@@ -39,83 +39,17 @@ public class MainController {
         return new Contact();
     }
 
+
+    /*WIP controlla file controller.txt */
+
     /**
      * Homepage
      */
     @GetMapping("/")
     public String index(Model model) {
-        model.addAttribute("pageTitle", "Hicman Capital Partner - Finanza Strutturata e Speciale");
-        return "index";
+        model.addAttribute("pageTitle", "Hicman Capital Partner - WIP");
+        return "wip";
     }
 
-    @GetMapping("/2")
-    public String index2(Model model) {
-        model.addAttribute("pageTitle", "Hicman Capital Partner - Finanza Strutturata e Speciale");
-        return "index2";
-    }
 
-    @GetMapping("/3")
-    public String index3(Model model) {
-        model.addAttribute("pageTitle", "Hicman Capital Partner - Finanza Strutturata e Speciale");
-        return "index3";
-    }
-
-    /**
-     * Gestione invio form contatti dalla homepage
-     */
-    @PostMapping("/")
-    public String processContactFromHome(@Valid @ModelAttribute("contact") Contact contact,
-            BindingResult result,
-            RedirectAttributes redirectAttributes,
-            Model model) {
-
-        // Verifica honeypot - se compilato, è probabilmente un bot
-        if (StringUtils.hasLength(contact.getWebsite())) {
-            logger.info("Rilevato tentativo di spam tramite honeypot dalla homepage");
-            redirectAttributes.addFlashAttribute("successMessage",
-                    messageSource.getMessage("contact.form.success", null, LocaleContextHolder.getLocale()));
-            return "redirect:/#contact";
-        }
-
-        if (result.hasErrors()) {
-            // In caso di errori, resta sulla stessa pagina senza redirect
-            model.addAttribute("errorMessage",
-                    messageSource.getMessage("contact.form.error", null, LocaleContextHolder.getLocale()));
-            model.addAttribute("pageTitle", "Hicman Capital Partner - Finanza Strutturata e Speciale");
-            return "index";
-        }
-
-        try {
-            contactService.processContact(contact);
-
-            redirectAttributes.addFlashAttribute("successMessage",
-                    messageSource.getMessage("contact.form.success", null, LocaleContextHolder.getLocale()));
-
-            return "redirect:/#contact";
-        } catch (Exception e) {
-            logger.error("Errore durante l'invio dell'email dalla homepage: ", e);
-
-            // Se c'è un errore, mostra la pagina con l'errore invece del redirect
-            model.addAttribute("errorMessage",
-                    messageSource.getMessage("contact.form.error", null, LocaleContextHolder.getLocale()));
-            model.addAttribute("pageTitle", "Hicman Capital Partner - Finanza Strutturata e Speciale");
-            return "index";
-        }
-    }
-
-    /**
-     * Privacy Policy - redirect esterno
-     */
-    @GetMapping("/privacy")
-    public String privacy() {
-        return "redirect:https://www.iubenda.com/privacy-policy/XXXXXX"; // Da configurare con ID reale
-    }
-
-    /**
-     * Termini e Condizioni - redirect esterno
-     */
-    @GetMapping("/terms")
-    public String terms() {
-        return "redirect:https://www.iubenda.com/termini-e-condizioni/XXXXXX"; // Da configurare con ID reale
-    }
 }
