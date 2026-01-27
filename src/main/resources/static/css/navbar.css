@@ -1,7 +1,3 @@
-/* ========================================
-   NAVBAR STYLES - HICMAN CAPITAL PARTNER
-   ======================================== */
-
 /* Navbar Base */
 .navbar-finance {
     background-color: var(--finance-primary);
@@ -19,40 +15,65 @@
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
 }
 
-/* Brand/Logo */
+/* ==== BRAND / LOGO ==== */
+
+/* Link brand esterno */
 .navbar-brand {
     display: flex;
-    flex-direction: column;
-    line-height: 1.2;
+    align-items: center;
     padding: 0;
     margin-right: 2rem;
     transition: all 0.3s ease;
+    text-decoration: none;
 }
 
+/* Contenitore interno: icona + testi */
+.navbar-brand-inner {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem; /* spazio tra icona e testo */
+}
+
+/* Icona SVG */
+.navbar-logo-icon svg {
+    margin-top: 0.22rem;
+    height: 2.2rem;   /* regola per matchare l'altezza del testo */
+    width: auto;
+    display: block;
+}
+
+/* Blocchetto dei testi (2 righe) */
+.navbar-logo-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.1;
+}
+
+/* HICMAN */
 .brand-text {
     font-family: var(--font-heading);
     font-size: 1.5rem;
     font-weight: 700;
     color: var(--finance-white);
     letter-spacing: 0.05em;
+    margin: 0;
 }
 
+/* CAPITAL PARTNER */
 .brand-subtitle {
-    font-size: 0.7rem;
+    font-size: 0.55rem;
     font-weight: 400;
     color: var(--finance-secondary);
     letter-spacing: 0.15em;
     text-transform: uppercase;
+    margin: 0;
 }
 
 .navbar-brand:hover {
     transform: translateY(-2px);
 }
 
-.navbar-brand:hover .brand-text {
-    color: var(--finance-white);
-}
-
+.navbar-brand:hover .brand-text,
 .navbar-brand:hover .brand-subtitle {
     color: var(--finance-white);
 }
@@ -109,8 +130,8 @@
 
 /* CTA Link (Contatti) */
 .nav-link-cta {
-    background-color: var(--finance-primary);  /* BLU di default */
-    color: var(--finance-white) !important;     /* Testo bianco */
+    background-color: var(--finance-primary);
+    color: var(--finance-white) !important;
     font-weight: 600;
     padding: 0.5rem 1.5rem !important;
     border-radius: 6px;
@@ -122,8 +143,8 @@
 }
 
 .nav-link-cta:hover {
-    background-color: var(--finance-white);     /* BIANCO on hover */
-    color: var(--finance-primary) !important;   /* Testo blu on hover */
+    background-color: var(--finance-white);
+    color: var(--finance-primary) !important;
     transform: translateY(-2px);
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
@@ -252,8 +273,7 @@
     }
 }
 
-/* === SCROLL BEHAVIOR === */
-/* JavaScript aggiungerà la classe .scrolled alla navbar */
+/* Scroll behavior */
 @media (min-width: 992px) {
     .navbar-finance.scrolled .brand-text {
         font-size: 1.3rem;

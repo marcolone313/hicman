@@ -26,8 +26,9 @@
     
     /* Typography */
     --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    --font-heading: 'Playfair Display', Georgia, serif;
-    
+    --font-heading: 'Cormorant Garamond';
+    --font-sub: 'ArgentumNovus';
+
     /* Shadows */
     --shadow-sm: 0 2px 8px rgba(40, 41, 66, 0.06);
     --shadow-md: 0 4px 16px rgba(40, 41, 66, 0.08);
@@ -37,6 +38,14 @@
     /* Transitions */
     --transition-base: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-slow: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@font-face {
+  font-family: "ArgentumNovus";
+  src: url("/fonts/ArgentumNovus-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
 }
 
 /* === RESET & BASE === */
@@ -231,23 +240,32 @@ p {
 .hero-brand-text {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: center;   /* centra il blocco nel contenitore */
     gap: 0.5rem;
 }
 
+/* Contenitore interno per allineare i testi fra loro */
+.hero-brand-text-inner {
+    display: inline-block;
+    text-align: left;      /* allinea HICMAN e CAPITAL PARTNER allo stesso margine sinistro */
+}
+
+/* Titolo */
 .hero-brand-name {
     font-family: var(--font-heading);
-    font-size: clamp(3rem, 8vw, 6rem);
+    font-size: clamp(3.4rem, 8.4vw, 6.4rem);
     font-weight: 700;
     color: #ffffff;
-    letter-spacing: 0.15em;
+    letter-spacing: 0.11em;
     margin: 0;
     line-height: 1;
     text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
 
+/* Sottotitolo */
 .hero-brand-subtitle {
-    font-size: clamp(0.9rem, 2vw, 1.3rem);
+    font-size: clamp(1.7rem, 2.9vw, 2.06rem);
+    font-family: var(--font-sub);
     font-weight: 400;
     color: rgba(255, 255, 255, 0.9);
     letter-spacing: 0.3em;

@@ -287,17 +287,22 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Stato Pubblicazione</label>
-                                            <div class="custom-switch">
-                                                <div class="switch-input">
-                                                    <input type="checkbox" 
-                                                           id="published" 
-                                                           th:field="*{published}">
-                                                    <span class="switch-slider"></span>
-                                                </div>
-                                                <label for="published">
+
+                                            <!-- hidden per false quando non spuntato -->
+                                            <input type="hidden" name="published" value="false"/>
+
+                                            <div class="form-check form-switch mt-2">
+                                                <input class="form-check-input"
+                                                       type="checkbox"
+                                                       id="published"
+                                                       name="published"
+                                                       value="true"
+                                                       th:checked="*{published}">
+                                                <label class="form-check-label" for="published">
                                                     Pubblica immediatamente
                                                 </label>
                                             </div>
+
                                             <div class="form-text">
                                                 <i class="bi bi-info-circle"></i>
                                                 L'articolo sarà visibile pubblicamente solo se pubblicato
@@ -314,7 +319,11 @@
                                     Salva Articolo
                                 </button>
                                 
-                                <button type="submit" name="action" value="save_and_publish" class="btn btn-success" th:if="${!isEdit || !post.published}">
+                                <button type="submit"
+                                        name="action"
+                                        value="save_and_publish"
+                                        class="btn btn-success"
+                                        th:if="${!isEdit || !post.published}">
                                     <i class="bi bi-check-circle"></i>
                                     Salva e Pubblica
                                 </button>

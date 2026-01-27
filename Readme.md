@@ -4,6 +4,14 @@ mvn spring-boot:run
 # Building Solution
 mvn clean package
 
+# per spegnere il server su porta 8083
+ps aux | grep "http.server 8083"
+kill <PID>
+(Opzionale) Rimuovi i file:
+
+sudo rm -rf /opt/hicman-maintenance
+sudo rm -f /var/log/hicman-maintenance.log
+
 # Installing Docker
 sudo apt-get update
 sudo apt-get install ca-certificates curl
@@ -29,7 +37,7 @@ Email: admin@example.com
 PWD: changeme
 
 # Creating Docker Image
-docker build -t HicmanCorporatesitev1 .
+docker build -t hicmancorporatesitev1 .
 
 # Exporting Docker image
 docker save -o C:\DigitalOceanHicman\HicmanCorporatesite.tar hicmancorporatesitev1

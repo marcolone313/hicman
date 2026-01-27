@@ -6,9 +6,31 @@
     <nav th:fragment="navbar(activePage)" class="navbar navbar-expand-lg navbar-finance fixed-top">
         <div class="container-fluid px-4">
             <!-- Logo/Brand -->
-            <a class="navbar-brand d-flex align-items-center" href="/">
-                <span class="brand-text">HICMAN</span>
-                <span class="brand-subtitle">CAPITAL PARTNER</span>
+            <a class="navbar-brand" href="/">
+                <div class="navbar-brand-inner">
+                    <div class="navbar-logo-icon">
+                        <svg viewBox="0 0 100 140" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <!-- Colonna sinistra -->
+                        <rect x="10" y="15" width="20" height="110" fill="#282942" stroke="white" stroke-width="6" />
+                        <!-- Colonna destra -->
+                        <rect x="70" y="15" width="20" height="110" fill="#282942" stroke="white" stroke-width="6" />
+            
+                        <!-- X SUPERIORE -->
+                        <line x1="10" y1="35" x2="50" y2="55" stroke="white" stroke-width="5" stroke-linecap="round" />
+                        <line x1="90" y1="35" x2="50" y2="55" stroke="white" stroke-width="5" stroke-linecap="round" />
+                        <line x1="50" y1="55" x2="90" y2="75" stroke="white" stroke-width="5" stroke-linecap="round" />
+                        <line x1="50" y1="55" x2="10" y2="75" stroke="white" stroke-width="5" stroke-linecap="round" />
+            
+                        <!-- X INFERIORE -->
+                        <line x1="30" y1="65" x2="68" y2="85" stroke="white" stroke-width="5" stroke-linecap="round" />
+                        <line x1="70" y1="65" x2="30" y2="85" stroke="white" stroke-width="5" stroke-linecap="round" />
+                    </svg>
+                    </div>
+                    <div class="navbar-logo-text">
+                        <span class="brand-text">HICMAN</span>
+                        <span class="brand-subtitle">CAPITAL PARTNER</span>
+                    </div>
+                </div>
             </a>
 
             <!-- Mobile Toggle Button -->

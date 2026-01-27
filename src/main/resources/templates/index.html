@@ -57,8 +57,10 @@
                                     </svg>
                                 </div>
                                 <div class="hero-brand-text">
-                                    <h1 class="hero-brand-name">HICMAN</h1>
-                                    <p class="hero-brand-subtitle">CAPITAL PARTNER</p>
+                                    <div class="hero-brand-text-inner">
+                                        <h1 class="hero-brand-name">HICMAN</h1>
+                                        <p class="hero-brand-subtitle">CAPITAL PARTNER</p>
+                                    </div>
                                 </div>
                             </div>
                             
@@ -464,22 +466,13 @@
                                     <p><a href="mailto:info@hicman.com">info@hicman.com</a></p>
                                 </div>
                             </div>
-
-                            <!-- Telefono -->
-                            <div class="contact-info-item">
-                                <i class="bi bi-telephone-fill"></i>
-                                <div>
-                                    <strong th:text="#{contact.info.phone}">Telefono</strong>
-                                    <p><a href="tel:+390612345678">+39 06 12345678</a></p>
-                                </div>
-                            </div>
-
+                            
                             <!-- Indirizzo -->
                             <div class="contact-info-item">
                                 <i class="bi bi-geo-alt-fill"></i>
                                 <div>
                                     <strong th:text="#{contact.info.address}">Sede</strong>
-                                    <p>Roma, Italia</p>
+                                    <p th:text="#{contact.info.luoghi}">Milano, Roma, Venezia</p>
                                 </div>
                             </div>
                         </div>
