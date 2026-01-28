@@ -49,7 +49,7 @@
     line-height: 1.1;
 }
 
-/* HICMAN */
+/* HICMAN - Dimensione fissa su tutte le risoluzioni */
 .brand-text {
     font-family: var(--font-heading);
     font-size: 1.5rem;
@@ -59,7 +59,7 @@
     margin: 0;
 }
 
-/* CAPITAL PARTNER */
+/* CAPITAL PARTNER - Dimensione fissa su tutte le risoluzioni */
 .brand-subtitle {
     font-size: 0.55rem;
     font-weight: 400;
@@ -200,6 +200,7 @@
 }
 
 /* === RESPONSIVE === */
+/* Tablet e dispositivi medi */
 @media (max-width: 991px) {
     .navbar-finance {
         padding: 0.75rem 0;
@@ -235,31 +236,27 @@
     .navbar-spacer {
         height: 70px;
     }
+
+    /* Brand mantiene le stesse dimensioni */
+    .navbar-brand {
+        margin-right: 1rem;
+    }
 }
 
+/* Smartphone medio */
 @media (max-width: 767px) {
-    .brand-text {
-        font-size: 1.3rem;
-    }
-
-    .brand-subtitle {
-        font-size: 0.65rem;
-    }
-
     .navbar-spacer {
-        height: 65px;
+        height: 70px;
+    }
+
+    /* Brand mantiene le stesse dimensioni del testo */
+    .navbar-brand-inner {
+        gap: 0.3rem;
     }
 }
 
+/* Smartphone piccolo */
 @media (max-width: 575px) {
-    .brand-text {
-        font-size: 1.2rem;
-    }
-
-    .brand-subtitle {
-        font-size: 0.6rem;
-    }
-
     .navbar-finance {
         padding: 0.5rem 0;
     }
@@ -269,17 +266,27 @@
     }
 
     .navbar-spacer {
-        height: 60px;
+        height: 70px;
+    }
+
+    /* Brand mantiene le stesse dimensioni del testo */
+    .navbar-brand {
+        margin-right: 0.5rem;
     }
 }
 
-/* Scroll behavior */
-@media (min-width: 992px) {
-    .navbar-finance.scrolled .brand-text {
-        font-size: 1.3rem;
+/* Dispositivi molto piccoli */
+@media (max-width: 360px) {
+    .navbar-finance {
+        padding: 0.4rem 0;
     }
 
-    .navbar-finance.scrolled .brand-subtitle {
-        font-size: 0.65rem;
+    .navbar-brand-inner {
+        gap: 0.25rem;
+    }
+
+    /* Anche qui il testo mantiene le dimensioni originali */
+    .navbar-logo-icon svg {
+        height: 2rem;
     }
 }
