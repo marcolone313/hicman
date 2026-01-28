@@ -4,8 +4,6 @@ mvn spring-boot:run
 # Building Solution
 mvn clean package
 
-# Mod lavorazione su server interno no da pc
-
 # per spegnere il server su porta 8083
 ps aux | grep "http.server 8083"
 kill <PID>
