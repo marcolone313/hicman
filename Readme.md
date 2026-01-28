@@ -74,8 +74,6 @@ Layout suggerito:
 20% superiore: area per il titolo integrato nell'immagine
 80% restante: area principale dell'immagine che sfuma verso il basso per l'overlay con i punti elenco
 
-
-
 ### Reference Documentation
 For further reference, please consider the following sections:
 
