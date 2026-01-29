@@ -18,7 +18,10 @@ import com.hicman.CorporateSite.Service.BlogService;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.Optional;
+
+import jakarta.servlet.http.HttpServletRequest;
 
 @Controller
 @RequestMapping("/admin/blog")
@@ -101,77 +104,74 @@ public class AdminBlogController {
             @Valid @ModelAttribute("post") BlogPost post,
             BindingResult result,
             @RequestParam(value = "imageFile", required = false) MultipartFile imageFile,
-            @RequestParam(value = "removeImage", required = false) String removeImage,
+            @RequestParam(value = "removeImage", required = false) boolean removeImage,
             @RequestParam(value = "action", defaultValue = "save") String action,
             RedirectAttributes redirectAttributes,
-            Model model) {
+            Model model,
+            HttpServletRequest request) {
 
-        // Validazione
         if (result.hasErrors()) {
             model.addAttribute("errorMessage", "Correggi gli errori nel form");
             model.addAttribute("pageTitle", post.getId() == null ? "Nuovo Articolo" : "Modifica Articolo");
             model.addAttribute("isEdit", post.getId() != null);
             return "admin/blog/form";
         }
-        System.out.println("DEBUG BLOG SAVE -> id=" + post.getId()
-        + " published=" + post.isPublished()
-        + " action=" + action
-        + " publishedDate=" + post.getPublishedDate());
-
 
         try {
-            // ===== GESTIONE RIMOZIONE IMMAGINE =====
-            if ("true".equals(removeImage) && post.getImageUrl() != null) {
+            // ===== GESTIONE PUBBLICAZIONE (MANUALE E DEFINITIVA) =====
+            // Leggiamo manualmente i parametri grezzi dalla request, bypassando il data binding fallato.
+            String[] publishedParams = request.getParameterValues("published");
+            boolean isPublishedByCheckbox = false;
+            if (publishedParams != null) {
+                // Se l'array contiene "true", significa che la checkbox è stata spuntata.
+                for (String param : publishedParams) {
+                    if ("true".equals(param)) {
+                        isPublishedByCheckbox = true;
+                        break;
+                    }
+                }
+            }
+
+            boolean isBeingPublished = isPublishedByCheckbox || "save_and_publish".equals(action);
+            post.setPublished(isBeingPublished);
+
+
+            // ===== GESTIONE IMMAGINE =====
+            if (removeImage && post.getImageUrl() != null) {
                 blogService.deleteImage(post.getImageUrl());
                 post.setImageUrl(null);
             }
 
-            // ===== GESTIONE UPLOAD NUOVA IMMAGINE =====
             if (imageFile != null && !imageFile.isEmpty()) {
                 if (!isValidImageFile(imageFile)) {
-                    model.addAttribute("errorMessage",
-                            "Formato immagine non valido. Sono accettati: JPG, PNG, WEBP (max 10MB)");
+                    model.addAttribute("errorMessage", "Formato immagine non valido. Sono accettati: JPG, PNG, WEBP (max 10MB)");
                     model.addAttribute("pageTitle", post.getId() == null ? "Nuovo Articolo" : "Modifica Articolo");
                     model.addAttribute("isEdit", post.getId() != null);
                     return "admin/blog/form";
                 }
-
-                // Se c'era già un'immagine, eliminala
                 if (post.getImageUrl() != null && !post.getImageUrl().isEmpty()) {
                     blogService.deleteImage(post.getImageUrl());
                 }
-
                 String imageUrl = blogService.saveImage(imageFile);
                 post.setImageUrl(imageUrl);
             }
 
-            // ===== GESTIONE PUBBLICAZIONE =====
-            boolean isNew = (post.getId() == null);
-
-            // Se premo "Salva e Pubblica", forzo la pubblicazione
-            if ("save_and_publish".equals(action)) {
-                post.setPublished(true);
-            }
-            // Altrimenti, con "Salva", il valore di post.isPublished()
-            // viene dal checkbox th:field="*{published}" nel form.
-
-            // Se è pubblicato e non ha data di pubblicazione, metto ora
+            // Imposta la data di pubblicazione se il post è pubblicato e non ne ha una
             if (post.isPublished() && post.getPublishedDate() == null) {
                 post.setPublishedDate(LocalDateTime.now());
+            } else if (!post.isPublished()) {
+                post.setPublishedDate(null); // Opzionale: rimuove la data se si sposta in bozza
             }
-
-            // (Opzionale) se non è pubblicato, puoi azzerare la data:
-            // if (!post.isPublished()) {
-            //     post.setPublishedDate(null);
-            // }
 
             // ===== SALVA IL POST =====
             BlogPost savedPost = blogService.savePost(post);
 
             // Messaggio di successo
-            String message = isNew ? "Articolo creato" : "Articolo aggiornato";
-            if (post.isPublished()) {
+            String message = (savedPost.getId() == null) ? "Articolo creato" : "Articolo aggiornato";
+            if (savedPost.isPublished()) {
                 message += " e pubblicato";
+            } else {
+                message += " e salvato come bozza";
             }
             message += " con successo!";
 
@@ -180,15 +180,13 @@ public class AdminBlogController {
             return "redirect:/admin/blog/edit/" + savedPost.getId();
 
         } catch (IOException e) {
-            model.addAttribute("errorMessage",
-                    "Errore durante il salvataggio dell'immagine: " + e.getMessage());
+            model.addAttribute("errorMessage", "Errore durante il salvataggio dell'immagine: " + e.getMessage());
             model.addAttribute("pageTitle", post.getId() == null ? "Nuovo Articolo" : "Modifica Articolo");
             model.addAttribute("isEdit", post.getId() != null);
             return "admin/blog/form";
 
         } catch (Exception e) {
-            model.addAttribute("errorMessage",
-                    "Errore durante il salvataggio: " + e.getMessage());
+            model.addAttribute("errorMessage", "Errore durante il salvataggio: " + e.getMessage());
             model.addAttribute("pageTitle", post.getId() == null ? "Nuovo Articolo" : "Modifica Articolo");
             model.addAttribute("isEdit", post.getId() != null);
             return "admin/blog/form";

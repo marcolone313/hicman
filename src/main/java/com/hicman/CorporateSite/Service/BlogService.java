@@ -110,11 +110,6 @@ public class BlogService {
         // Aggiorna sempre la data di modifica
         post.setUpdatedAt(LocalDateTime.now());
         
-        // Se il post viene pubblicato e non ha ancora una data di pubblicazione
-        if (post.isPublished() && post.getPublishedDate() == null) {
-            post.setPublishedDate(LocalDateTime.now());
-        }
-        
         return blogPostRepository.save(post);
     }
 

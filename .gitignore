@@ -34,3 +34,5 @@ build/
 src/main/resources/static/images/*
 src/main/resources/static/video/*
 src/main/resources/application.properties
+
+GEMINI.md
