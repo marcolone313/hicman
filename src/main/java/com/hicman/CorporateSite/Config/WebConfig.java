@@ -31,10 +31,9 @@ public class WebConfig implements WebMvcConfigurer {
      */
     @Bean
     public LocaleResolver localeResolver() {
-        CookieLocaleResolver resolver = new CookieLocaleResolver();
-        resolver.setDefaultLocale(Locale.ITALIAN); // Lingua di default: Italiano
-        resolver.setCookieName("lang"); // Nome del cookie
-        resolver.setCookieMaxAge(Duration.ofDays(365)); // Cookie valido 1 anno
+        CookieLocaleResolver resolver = new CookieLocaleResolver("lang");
+        resolver.setDefaultLocale(Locale.ITALIAN);
+        resolver.setCookieMaxAge(Duration.ofDays(365));
         return resolver;
     }
 
