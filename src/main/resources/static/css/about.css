@@ -505,6 +505,167 @@
 }
 
 /* ========================================
+   TEAM SECTION
+======================================== */
+
+.team-section {
+    background: linear-gradient(180deg, #ffffff 0%, #f5f6fb 100%);
+    padding: 100px 0;
+    position: relative;
+}
+
+.team-grid {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.team-grid > .team-card-col {
+    flex: 1 1 0;
+    min-width: 0;
+}
+
+@media (max-width: 767px) {
+    .team-grid {
+        flex-direction: column;
+    }
+}
+
+.team-card {
+    background: linear-gradient(135deg, #ffffff 0%, rgba(213, 218, 245, 0.05) 100%);
+    padding: 2.5rem;
+    border-radius: 20px;
+    border: 1px solid #d0d4e4;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Border top gradient on hover */
+.team-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, transparent, #282942, transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.team-card:hover::before {
+    opacity: 1;
+}
+
+.team-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 60px rgba(40, 41, 66, 0.18);
+    border-color: #282942;
+    background: linear-gradient(135deg, #ffffff 0%, rgba(213, 218, 245, 0.15) 100%);
+}
+
+.team-card-header {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 2px solid #d0d4e4;
+    position: relative;
+}
+
+.team-card-header::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 2px;
+    background: #282942;
+}
+
+.team-member-name {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #282942;
+    margin-bottom: 0;
+    letter-spacing: -0.02em;
+}
+
+.team-card-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.team-section-block {
+    background: rgba(213, 218, 245, 0.1);
+    padding: 1.5rem;
+    border-radius: 12px;
+    border-left: 3px solid #282942;
+}
+
+.team-section-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #282942;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.team-section-title i {
+    font-size: 1.3rem;
+    color: #282942;
+}
+
+.team-section-content {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: #2e2e2e;
+    margin: 0;
+}
+
+.team-section-content ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+.team-section-content ul li {
+    padding-left: 1.5rem;
+    position: relative;
+    margin-bottom: 0.5rem;
+}
+
+.team-section-content ul li:last-child {
+    margin-bottom: 0;
+}
+
+.team-section-content ul li::before {
+    content: '\2022';
+    color: #282942;
+    font-weight: bold;
+    font-size: 1.2rem;
+    position: absolute;
+    left: 0;
+    top: -2px;
+}
+
+.team-section-content p {
+    margin-bottom: 1rem;
+    text-align: justify;
+}
+
+.team-section-content p:last-child {
+    margin-bottom: 0;
+}
+
+/* ========================================
    CTA SECTION
 ======================================== */
 
@@ -630,21 +791,30 @@
         min-height: 40vh;
         padding-top: 60px;
     }
-    
+
     .about-hero-title {
         font-size: 2.5rem;
     }
-    
+
     .about-hero-subtitle {
         font-size: 1.1rem;
     }
-    
+
     .vision-section,
     .mission-section,
     .values-section,
     .advantage-section,
-    .network-section {
+    .network-section,
+    .team-section {
         padding: 60px 0;
+    }
+
+    .team-card {
+        margin-bottom: 2rem;
+    }
+
+    .team-member-name {
+        font-size: 1.6rem;
     }
     
     .about-section-title {
@@ -682,23 +852,45 @@
         min-height: 40vh;
         padding-top: 50px;
     }
-    
+
     .about-hero-title {
         font-size: 2rem;
         margin-bottom: 1rem;
     }
-    
+
     .about-hero-subtitle {
         font-size: 1rem;
         margin-bottom: 2rem;
     }
-    
+
     .vision-section,
     .mission-section,
     .values-section,
     .advantage-section,
-    .network-section {
+    .network-section,
+    .team-section {
         padding: 50px 0;
+    }
+
+    .team-card {
+        padding: 2rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .team-member-name {
+        font-size: 1.4rem;
+    }
+
+    .team-section-title {
+        font-size: 1.1rem;
+    }
+
+    .team-section-content {
+        font-size: 0.9rem;
+    }
+
+    .team-section-block {
+        padding: 1.25rem;
     }
     
     .section-icon {
@@ -820,25 +1012,59 @@
     .about-hero-title {
         font-size: 1.75rem;
     }
-    
+
     .about-hero-subtitle {
         font-size: 0.9rem;
     }
-    
+
     .about-section-title {
         font-size: 1.5rem;
     }
-    
+
     .about-lead-text {
         font-size: 1rem;
     }
-    
+
     .about-text {
         font-size: 0.95rem;
     }
-    
+
     .about-subtitle {
         font-size: 1rem;
+    }
+
+    .team-card {
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .team-card-header {
+        margin-bottom: 1.5rem;
+        padding-bottom: 1rem;
+    }
+
+    .team-member-name {
+        font-size: 1.3rem;
+    }
+
+    .team-card-body {
+        gap: 1.5rem;
+    }
+
+    .team-section-block {
+        padding: 1rem;
+    }
+
+    .team-section-title {
+        font-size: 1rem;
+    }
+
+    .team-section-content {
+        font-size: 0.85rem;
+    }
+
+    .team-section-content ul li {
+        padding-left: 1.2rem;
     }
     
     .section-icon {
@@ -967,10 +1193,11 @@
     .vision-section,
     .mission-section,
     .advantage-section,
-    .network-section {
+    .network-section,
+    .team-section {
         background: linear-gradient(180deg, #1a1a2e 0%, #16213e 100%);
     }
-    
+
     .values-section {
         background: linear-gradient(180deg, #16213e 0%, #1a1a2e 100%);
     }
@@ -1002,9 +1229,24 @@
     .value-card,
     .partner-category,
     .network-content-box,
-    .advantage-highlight-box {
+    .advantage-highlight-box,
+    .team-card,
+    .team-section-block {
         background: #0f0f1e;
         border-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .team-member-name,
+    .team-section-title {
+        color: #d5daf5;
+    }
+
+    .team-section-content {
+        color: rgba(255, 255, 255, 0.9);
+    }
+
+    .team-card-header {
+        border-bottom-color: rgba(255, 255, 255, 0.1);
     }
     
     .section-icon,

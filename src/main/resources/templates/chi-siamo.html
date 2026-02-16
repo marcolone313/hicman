@@ -315,10 +315,139 @@
             </div>
         </section>
 
-                
+
         <!-- Divider decorativo -->
         <div class="about-section-divider-wrapper">
             <div class="about-section-divider"></div>
+        </div>
+
+
+        <!-- Team Section -->
+        <section class="team-section py-5">
+            <div class="container py-5">
+                <div class="row justify-content-center mb-5">
+                    <div class="col-lg-10 text-center">
+                        <div class="section-icon mb-4">
+                            <i class="bi bi-people"></i>
+                        </div>
+                        <h2 class="about-section-title mb-3" th:text="#{about.team.title}">Il Nostro Team</h2>
+                        <p class="about-subtitle" th:text="#{about.team.subtitle}">
+                            I professionisti che guidano Hicman Capital Partner
+                        </p>
+                    </div>
+                </div>
+
+                <div class="team-grid">
+                    <!-- Paolo Rampello Card -->
+                    <div class="team-card-col">
+                        <div class="team-card">
+                            <div class="team-card-header">
+                                <h3 class="team-member-name" th:text="#{about.team.paolo.name}">Paolo Rampello</h3>
+                            </div>
+                            <div class="team-card-body">
+                                <!-- Formazione -->
+                                <div class="team-section-block">
+                                    <h4 class="team-section-title">
+                                        <i class="bi bi-mortarboard"></i>
+                                        <span th:text="#{about.team.paolo.education.title}">Formazione</span>
+                                    </h4>
+                                    <div class="team-section-content">
+                                        <ul>
+                                            <li th:text="#{about.team.paolo.education.degree}">Laurea in Economia e Commercio</li>
+                                            <li th:text="#{about.team.paolo.education.school}">Maturità: Liceo Classico</li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <!-- Esperienze Professionali -->
+                                <div class="team-section-block">
+                                    <h4 class="team-section-title">
+                                        <i class="bi bi-briefcase"></i>
+                                        <span th:text="#{about.team.paolo.experience.title}">Esperienze Professionali</span>
+                                    </h4>
+                                    <div class="team-section-content">
+                                        <p th:text="#{about.team.paolo.experience.text}">
+                                            Assunto appena laureato in Cassa di Risparmio di Venezia dove, dopo una breve esperienza in rete di vendita,
+                                            ha occupato ruoli di Responsabilità nel settore delle Risorse Umane e successivamente gli è stato dato
+                                            l'incarico di predisporre il sistema di Controllo di Gestione per la Banca. Dopo varie esperienze in primari
+                                            Istituti di Credito italiani con ruoli direttivi, nel 2016 è uscito dal Sistema Bancario e ha avviato la
+                                            libera professione concentrando la sua attività nella consulenza aziendale, nelle operazioni di ristrutturazione
+                                            societarie in particolare nella ristrutturazione dei debiti e nel settore degli NPL.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Roberto Premi Card -->
+                    <div class="team-card-col">
+                        <div class="team-card">
+                            <div class="team-card-header">
+                                <h3 class="team-member-name" th:text="#{about.team.roberto.name}">Roberto Premi</h3>
+                            </div>
+                            <div class="team-card-body">
+                                <!-- Formazione -->
+                                <div class="team-section-block">
+                                    <h4 class="team-section-title">
+                                        <i class="bi bi-mortarboard"></i>
+                                        <span th:text="#{about.team.roberto.education.title}">Formazione</span>
+                                    </h4>
+                                    <div class="team-section-content">
+                                        <ul>
+                                            <li th:text="#{about.team.roberto.education.degree}">Laurea in Giurisprudenza</li>
+                                            <li th:text="#{about.team.roberto.education.advanced}">
+                                                Dopo la laurea ha conseguito una formazione avanzata in diritto civile, commerciale e societario,
+                                                frequentando corsi di specializzazione giuridica di alto profilo, tra cui quello diretto dal
+                                                Presidente della Corte di Appello Prof. Guido Capozzi (Napoli) e l'Anselmo Anselmi (Roma).
+                                            </li>
+                                            <li th:text="#{about.team.roberto.education.school}">Maturità: Liceo Classico</li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <!-- Esperienze Professionali -->
+                                <div class="team-section-block">
+                                    <h4 class="team-section-title">
+                                        <i class="bi bi-briefcase"></i>
+                                        <span th:text="#{about.team.roberto.experience.title}">Esperienze Professionali</span>
+                                    </h4>
+                                    <div class="team-section-content">
+                                        <p th:text="#{about.team.roberto.experience.text1}">
+                                            Dopo la laurea si è trasferito a Milano, dove ha sviluppato una consolidata esperienza in operazioni
+                                            complesse di leasing immobiliare in Banca Italease.
+                                        </p>
+                                        <p th:text="#{about.team.roberto.experience.text2}">
+                                            Successivamente, in Pirelli Real Estate SpA, ha partecipato al primo grande spin-off italiano INA-Unim,
+                                            società quotata in Borsa, operazione finalizzata a creare la prima piattaforma immobiliare italiana
+                                            indipendente, focalizzata nella creazione di società veicolo e sulla valorizzazione di grandi portafogli
+                                            costituiti da asset core e core plus nelle principali città italiane.
+                                        </p>
+                                        <p th:text="#{about.team.roberto.experience.text3}">
+                                            Ha poi contribuito alla costituzione e allo sviluppo dei primi cinque fondi immobiliari ad apporto privato
+                                            in Italia gestiti da Pirelli RE SGR, strumenti finanziari che hanno permesso a investitori privati e
+                                            istituzionali di partecipare a grandi iniziative di rilevanza strategica gestite professionalmente,
+                                            con un approccio equilibrato rischio/rendimento.
+                                        </p>
+                                        <p th:text="#{about.team.roberto.experience.text4}">
+                                            Forte della solida esperienza maturata nell'analisi, nella strutturazione e nell'esecuzione di operazioni
+                                            straordinarie e di un consolidato network, dal 2008 ha concentrato la propria attività dedicandosi alla
+                                            finanza strutturata e speciale, affiancando imprese e gruppi industriali nella realizzazione di progetti
+                                            strategici ad alto impatto e valore aggiunto.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Divider decorativo -->
+        <div class="about-section-divider-wrapper2">
+            <div class="about-section-divider2"></div>
         </div>
 
 
