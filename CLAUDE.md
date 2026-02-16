@@ -25,6 +25,8 @@ docker run -d -p 8082:8082 hicmancorporatesitev1
 
 Maven wrapper (`./mvnw`) is available if Maven is not installed globally.
 
+**H2 lock caveat:** The H2 embedded database only allows one connection at a time. If the server fails to start with "Database may be already in use", find and kill the existing Java process (`lsof ./data/hicmandb.mv.db`).
+
 ## Architecture
 
 Standard Spring Boot MVC with layered architecture under `src/main/java/com/hicman/CorporateSite/`:
@@ -42,7 +44,7 @@ Standard Spring Boot MVC with layered architecture under `src/main/java/com/hicm
 - **Admin auth:** In-memory Spring Security (credentials in `application.properties`)
 - **Email:** Contact form sends data to AWS Lambda endpoint
 - **File uploads:** Stored in `uploads/` directory, max 10MB, allowed: jpg/jpeg/png/gif/webp
-- **i18n:** Italian (default) and English via `messages_it.properties` / `messages_en.properties`; cookie-based locale persistence, switchable with `?lang=it` or `?lang=en`
+- **i18n:** Italian (default) and English via `messages_it.properties` / `messages_en.properties` in `src/main/resources/`; cookie-based locale persistence, switchable with `?lang=it` or `?lang=en`. All user-facing text must use `th:text="#{key}"` with entries in both property files.
 - **Session timeout:** 30 minutes
 
 ## Routing
@@ -56,14 +58,21 @@ Standard Spring Boot MVC with layered architecture under `src/main/java/com/hicm
 Thymeleaf templates in `src/main/resources/templates/`:
 - Public pages at root level (`index.html`, `chi-siamo.html`, `servizi.html`, etc.)
 - Admin templates in `admin/` subdirectory
-- Shared fragments: `header.html`, `navbar.html`, `footer.html`
+- Shared fragments in `fragments/`: `header.html` (loads all CSS/JS globally), `navbar.html`, `footer.html`
 
-Static assets in `src/main/resources/static/`: CSS files organized by component/page, fonts, and images. No JavaScript build system — plain CSS and Thymeleaf templating.
+Static assets in `src/main/resources/static/`:
+- **CSS** organized per component/page: `about.css`, `finance.css`, `navbar.css`, `footer.css`, `services.css`, `press.css`, `testimonials.css`, etc. All loaded globally from `header.html`.
+- **Frontend stack:** Bootstrap 5.3.0 (CDN), Bootstrap Icons, Animate.css, Google Fonts (Inter, Playfair Display). No JavaScript build system — plain CSS and Thymeleaf templating.
 
 ## Image Dimensions (from design spec)
 
 - **Business case cards:** 1000x1000px (25% top for title, 75% for image with overlay)
 - **Business unit cards:** 800x1200px (20% top for title, 80% for image with overlay)
+
+## Git & Deployment
+
+- **Remote:** `https://github.com/marcolone313/hicman.git` (branch: main)
+- **Docker image:** `eclipse-temurin:17-jdk-alpine`, JAR at `target/HicmanCorporateSite-0.0.1-SNAPSHOT.jar`
 
 ## Working Language
 
