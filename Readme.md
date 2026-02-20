@@ -42,6 +42,8 @@ docker build -t hicmancorporatesitev1 .
 # Exporting Docker image
 docker save -o C:\DigitalOceanHicman\HicmanCorporatesite.tar hicmancorporatesitev1
 
+docker save -o /home/osc/Server/HicmanSite/exports/HicmanCorporatesitev.tar hicmancorporatesitev
+
 # Trasporting into server
 scp -i "chiavesrv.pem" srv:/home/ubuntu/
 
