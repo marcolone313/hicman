@@ -30,6 +30,7 @@ build/
 
 ### VS Code ###
 .vscode/
+exports/
 
 src/main/resources/static/images/*
 src/main/resources/static/video/*
