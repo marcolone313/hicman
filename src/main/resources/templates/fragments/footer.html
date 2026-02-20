@@ -100,16 +100,12 @@
                     <div class="col-md-6 text-center text-md-end">
                         <ul class="footer-legal">
                             <li>
-                                <a href="/privacy"
-                                   th:text="#{footer.privacyPolicy}">
-                                    Privacy Policy
-                                </a>
+                                <a th:href="#{footer.privacyPolicy.url}" target="_blank" rel="noopener"
+                                   th:text="#{footer.privacyPolicy}">Privacy Policy</a>
                             </li>
                             <li>
-                                <a href="/terms"
-                                   th:text="#{footer.terms}">
-                                    Termini e Condizioni
-                                </a>
+                                <a th:href="#{footer.cookiePolicy.url}" target="_blank" rel="noopener"
+                                   th:text="#{footer.cookiePolicy}">Cookie Policy</a>
                             </li>
                         </ul>
                     </div>

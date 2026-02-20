@@ -45,7 +45,7 @@ public class ContactService {
         logger.info("Iniziando elaborazione contatto per: {} {}", contact.getNome(), contact.getCognome());
 
         try {
-            String url = "https://api.mailgun.net/v3/" + mailgunDomain + "/messages";
+            String url = "https://api.eu.mailgun.net/v3/" + mailgunDomain + "/messages";
 
             // Basic Auth header (impostato manualmente per compatibilità con form-urlencoded)
             HttpHeaders headers = new HttpHeaders();
