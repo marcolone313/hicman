@@ -107,31 +107,65 @@
                 <div class="related-posts-section mt-5" th:if="${!#lists.isEmpty(relatedPosts)}">
                     <div class="row justify-content-center">
                         <div class="col-lg-10">
-                            <h3 class="related-title text-center mb-4">Articoli Correlati</h3>
-                            
+                            <div class="related-posts-header text-center mb-5">
+                                <div class="section-icon mb-3">
+                                    <i class="bi bi-grid-3x3-gap"></i>
+                                </div>
+                                <h3 class="related-title" th:text="#{press.related.title}">Articoli Correlati</h3>
+                                <p class="related-subtitle" th:text="#{press.related.subtitle}">Altri articoli che potrebbero interessarti</p>
+                            </div>
+
                             <div class="row g-4">
-                                <div class="col-md-4" th:each="related : ${relatedPosts}">
-                                    <article class="related-card">
+                                <div class="col-12 col-sm-6 col-md-4" th:each="related : ${relatedPosts}">
+                                    <article class="press-card h-100">
                                         <!-- Image -->
-                                        <div class="related-image" th:if="${related.hasImage()}">
+                                        <div class="press-card-image" th:if="${related.hasImage()}">
                                             <a th:href="@{/rassegna-stampa/{id}(id=${related.id})}">
-                                                <img th:src="@{${related.imageUrl}}" 
+                                                <img th:src="@{${related.imageUrl}}"
                                                      th:alt="${related.title}"
                                                      loading="lazy">
+                                                <div class="press-card-overlay"></div>
                                             </a>
                                         </div>
-                                        
-                                        <!-- Content -->
-                                        <div class="related-content">
-                                            <h4 class="related-card-title">
-                                                <a th:href="@{/rassegna-stampa/{id}(id=${related.id})}" 
-                                                   th:text="${related.title}">
-                                                    Titolo articolo correlato
-                                                </a>
+                                        <div class="press-card-image press-card-no-image" th:unless="${related.hasImage()}">
+                                            <i class="bi bi-newspaper"></i>
+                                        </div>
+
+                                        <!-- Body -->
+                                        <div class="press-card-body">
+                                            <div class="press-card-meta">
+                                                <span class="press-source" th:if="${related.sourceName}">
+                                                    <i class="bi bi-building"></i>
+                                                    <span th:text="${related.sourceName}">Fonte</span>
+                                                </span>
+                                                <span class="press-date">
+                                                    <i class="bi bi-calendar3"></i>
+                                                    <span th:text="${#temporals.format(related.publishedDate, 'dd MMM yyyy')}">Data</span>
+                                                </span>
+                                            </div>
+
+                                            <h4 class="press-card-title">
+                                                <a th:href="@{/rassegna-stampa/{id}(id=${related.id})}"
+                                                   th:text="${related.title}">Titolo articolo correlato</a>
                                             </h4>
-                                            <p class="related-excerpt" th:text="${related.getExcerpt(80)}">
-                                                Breve estratto...
-                                            </p>
+
+                                            <p class="press-card-excerpt" th:text="${related.getExcerpt(100)}">Breve estratto...</p>
+
+                                            <div class="press-card-footer">
+                                                <a th:href="@{/rassegna-stampa/{id}(id=${related.id})}"
+                                                   class="press-read-more">
+                                                    <span th:text="#{press.card.readmore}">Leggi di più</span>
+                                                    <i class="bi bi-arrow-right"></i>
+                                                </a>
+                                                <a th:if="${related.hasExternalLink()}"
+                                                   th:href="${related.externalLink}"
+                                                   target="_blank"
+                                                   rel="noopener noreferrer"
+                                                   class="press-external-link"
+                                                   title="Fonte originale">
+                                                    <i class="bi bi-box-arrow-up-right"></i>
+                                                </a>
+                                            </div>
                                         </div>
                                     </article>
                                 </div>

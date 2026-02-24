@@ -478,6 +478,21 @@
  display: block;
  margin: 0 auto;
  }
+
+ /* Related Posts — tablet */
+ .related-posts-section {
+ padding-top: 2.5rem;
+ }
+
+ .related-title {
+ font-size: 1.5rem;
+ }
+
+ .related-posts-header .section-icon {
+ width: 52px;
+ height: 52px;
+ font-size: 1.3rem;
+ }
 }
 
 @media (max-width: 768px) {
@@ -564,6 +579,30 @@
  .page-item .page-link {
  padding: 0.4rem 0.6rem;
  font-size: 0.85rem;
+ }
+
+ /* Related Posts — mobile */
+ .related-posts-section {
+ padding-top: 2rem;
+ margin-top: 2.5rem !important;
+ }
+
+ .related-title {
+ font-size: 1.35rem;
+ }
+
+ .related-subtitle {
+ font-size: 0.9rem;
+ }
+
+ .related-posts-header .section-icon {
+ width: 46px;
+ height: 46px;
+ font-size: 1.2rem;
+ }
+
+ .related-posts-header {
+ margin-bottom: 2rem !important;
  }
 }
 
@@ -673,6 +712,62 @@
  font-size: 0.8rem;
  margin: 0 0.15rem;
  }
+
+ /* Related Posts — small mobile */
+ .related-posts-section {
+ padding-top: 1.75rem;
+ }
+
+ .related-title {
+ font-size: 1.2rem;
+ }
+
+ .related-subtitle {
+ font-size: 0.85rem;
+ }
+
+ .related-posts-header .section-icon {
+ width: 40px;
+ height: 40px;
+ font-size: 1.1rem;
+ margin-bottom: 0.75rem !important;
+ }
+}
+
+/* ========================================
+   RELATED POSTS SECTION (press-detail page)
+======================================== */
+
+.related-posts-section {
+    padding-top: 3rem;
+    border-top: 2px solid #d0d4e4;
+}
+
+.related-posts-header .section-icon {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #d5daf5, #e8eaf6);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    font-size: 1.5rem;
+    color: #282942;
+}
+
+.related-title {
+    font-size: 1.75rem;
+    font-weight: 600;
+    color: #282942;
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.02em;
+}
+
+.related-subtitle {
+    font-size: 1rem;
+    color: #6b7280;
+    margin-bottom: 0;
 }
 
 /* ========================================
