@@ -51,7 +51,7 @@ Standard Spring Boot MVC with layered architecture under `src/main/java/com/hicm
 
 **Public:** `/`, `/about`, `/chi-siamo`, `/services`, `/servizi/**`, `/contact`, `/contatti`, `/rassegna-stampa/**`, `/dicono-di-noi/**`
 
-**Admin (authenticated):** `/admin`, `/admin/login`, `/admin/blog/**`, `/admin/testimonials/**`
+**Admin (authenticated):** `/admin`, `/admin/login`, `/admin/blog/**`, `/admin/testimonials/**`, `/admin/db-download`, `/admin/db-upload`
 
 ## Templates & Frontend
 
@@ -68,6 +68,23 @@ Static assets in `src/main/resources/static/`:
 
 - **Business case cards:** 1000x1000px (25% top for title, 75% for image with overlay)
 - **Business unit cards:** 800x1200px (20% top for title, 80% for image with overlay)
+
+## Admin — Strumenti DB (AdminDashboardController)
+
+Nella dashboard admin è presente una sezione "Strumenti" con due operazioni sul database, entrambe protette da doppia autenticazione (sessione Spring Security + verifica password admin):
+
+- **`POST /admin/db-download`** — Esegue `CHECKPOINT SYNC` su H2, poi invia il file `data/hicmandb.mv.db` come download con nome `hicmandb_backup_YYYYMMDD.mv.db`.
+- **`POST /admin/db-upload`** — Accetta un file `.mv.db`, lo salva come DB H2 temporaneo separato, esporta tramite il comando SQL nativo `SCRIPT TO`, poi applica sul DB corrente con `DROP ALL OBJECTS` + `RUNSCRIPT FROM`. File temporanei eliminati in un blocco `finally`.
+
+**Nota tecnica:** H2 ha scope `runtime` nel `pom.xml` quindi `org.h2.tools.*` non è disponibile a compile time. Usare sempre i comandi SQL nativi H2 (`SCRIPT TO`, `RUNSCRIPT FROM`, `CHECKPOINT SYNC`) via JDBC anziché le classi Java del package `org.h2.tools`.
+
+## Pagina Chi Siamo — Foto Team
+
+Le card dei membri del team in `chi-siamo.html` mostrano una foto circolare (140×140px) sopra il nome. Le immagini sono in `src/main/resources/static/images/` (es. `Paolo.jpg`, `Roberto.jpg`). Gli stili sono in `about.css` sotto `.team-member-photo-wrapper` e `.team-member-photo`.
+
+## Rassegna Stampa — Articoli Correlati
+
+In `press-detail.html` la sezione articoli correlati usa la stessa struttura `.press-card` della lista principale (`rassegna-stampa.html`). Gli stili della sezione (`.related-posts-section`, `.related-title`, `.related-subtitle`) sono in `press.css`. La griglia usa `col-12 col-sm-6 col-md-4` per avere 1 colonna su mobile, 2 su tablet, 3 su desktop.
 
 ## Git & Deployment
 

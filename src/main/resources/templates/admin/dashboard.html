@@ -87,6 +87,24 @@
                     <span th:text="${errorMessage}"></span>
                 </div>
 
+                <!-- DB Download Error -->
+                <div class="alert alert-danger" th:if="${dbErrorMessage}">
+                    <i class="bi bi-shield-lock-fill me-2"></i>
+                    <span th:text="${dbErrorMessage}"></span>
+                </div>
+
+                <!-- DB Upload Success -->
+                <div class="alert alert-success" th:if="${dbUploadSuccess}">
+                    <i class="bi bi-check-circle-fill me-2"></i>
+                    <span th:text="${dbUploadSuccess}"></span>
+                </div>
+
+                <!-- DB Upload Error -->
+                <div class="alert alert-danger" th:if="${dbUploadError}">
+                    <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                    <span th:text="${dbUploadError}"></span>
+                </div>
+
                 <!-- Stats Cards -->
                 <div class="stats-grid">
                     <!-- Total Articles -->
@@ -137,6 +155,38 @@
                             </div>
                             <div class="stat-card-icon info">
                                 <i class="bi bi-chat-quote"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Strumenti -->
+                <div class="row mt-2 mb-2">
+                    <div class="col-12">
+                        <div class="admin-card" style="border-left: 4px solid #6c757d;">
+                            <div class="admin-card-header">
+                                <h3>
+                                    <i class="bi bi-tools"></i>
+                                    Strumenti
+                                </h3>
+                            </div>
+                            <div class="admin-card-body d-flex align-items-center gap-3 flex-wrap">
+                                <button type="button"
+                                        class="btn btn-outline-secondary"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#dbDownloadModal">
+                                    <i class="bi bi-download me-2"></i>Scarica Database
+                                </button>
+                                <button type="button"
+                                        class="btn btn-outline-danger"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#dbUploadModal">
+                                    <i class="bi bi-upload me-2"></i>Ripristina Database
+                                </button>
+                                <small class="text-muted">
+                                    <i class="bi bi-info-circle me-1"></i>
+                                    Scarica il DB per backup, o ripristinalo da un file precedentemente scaricato.
+                                </small>
                             </div>
                         </div>
                     </div>
@@ -256,6 +306,113 @@
         </main>
     </div>
 
+    <!-- Modal: Scarica Database -->
+    <div class="modal fade" id="dbDownloadModal" tabindex="-1" aria-labelledby="dbDownloadModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="dbDownloadModalLabel">
+                        <i class="bi bi-shield-lock me-2"></i>Conferma Download Database
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Chiudi"></button>
+                </div>
+                <form th:action="@{/admin/db-download}" method="post" id="dbDownloadForm">
+                    <div class="modal-body">
+                        <p class="text-muted mb-3">
+                            Inserisci la password admin per scaricare il file del database.
+                        </p>
+                        <div class="mb-3">
+                            <label for="dbPassword" class="form-label fw-semibold">Password</label>
+                            <div class="input-group">
+                                <input type="password"
+                                       class="form-control"
+                                       id="dbPassword"
+                                       name="dbPassword"
+                                       placeholder="Password admin"
+                                       autocomplete="current-password"
+                                       required>
+                                <button class="btn btn-outline-secondary"
+                                        type="button"
+                                        id="toggleDbPwd"
+                                        title="Mostra/Nascondi">
+                                    <i class="bi bi-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="alert alert-warning py-2 mb-0">
+                            <i class="bi bi-exclamation-triangle me-2"></i>
+                            <small>Il file scaricato contiene tutti i dati del sito. Conservalo in modo sicuro.</small>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
+                        <button type="submit" class="btn btn-primary" id="dbDownloadBtn">
+                            <i class="bi bi-download me-2"></i>Scarica
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Ripristina Database -->
+    <div class="modal fade" id="dbUploadModal" tabindex="-1" aria-labelledby="dbUploadModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header border-danger">
+                    <h5 class="modal-title text-danger" id="dbUploadModalLabel">
+                        <i class="bi bi-exclamation-triangle-fill me-2"></i>Ripristina Database
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Chiudi"></button>
+                </div>
+                <form th:action="@{/admin/db-upload}" method="post" enctype="multipart/form-data" id="dbUploadForm">
+                    <div class="modal-body">
+                        <div class="alert alert-danger py-2 mb-3">
+                            <i class="bi bi-exclamation-octagon-fill me-2"></i>
+                            <strong>Attenzione:</strong> questa operazione sostituisce <u>tutti</u> i dati attuali con quelli del file selezionato. L'azione è irreversibile.
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="uploadDbPassword" class="form-label fw-semibold">Password</label>
+                            <div class="input-group">
+                                <input type="password"
+                                       class="form-control"
+                                       id="uploadDbPassword"
+                                       name="dbPassword"
+                                       placeholder="Password admin"
+                                       autocomplete="current-password"
+                                       required>
+                                <button class="btn btn-outline-secondary"
+                                        type="button"
+                                        id="toggleUploadPwd"
+                                        title="Mostra/Nascondi">
+                                    <i class="bi bi-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="dbFile" class="form-label fw-semibold">File database (.mv.db)</label>
+                            <input class="form-control"
+                                   type="file"
+                                   id="dbFile"
+                                   name="dbFile"
+                                   accept=".mv.db"
+                                   required>
+                            <div class="form-text">Seleziona un file <code>.mv.db</code> scaricato da questo sistema.</div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
+                        <button type="submit" class="btn btn-danger" id="dbUploadBtn">
+                            <i class="bi bi-upload me-2"></i>Ripristina
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     
@@ -282,13 +439,56 @@
         document.addEventListener('click', function(event) {
             const sidebar = document.getElementById('adminSidebar');
             const toggle = document.querySelector('.mobile-menu-toggle');
-            
-            if (window.innerWidth <= 768 && 
-                sidebar.classList.contains('show') && 
-                !sidebar.contains(event.target) && 
+
+            if (window.innerWidth <= 768 &&
+                sidebar.classList.contains('show') &&
+                !sidebar.contains(event.target) &&
                 !toggle.contains(event.target)) {
                 sidebar.classList.remove('show');
             }
+        });
+
+        // Toggle visibilità password nel modal download DB
+        document.getElementById('toggleDbPwd').addEventListener('click', function() {
+            const input = document.getElementById('dbPassword');
+            const icon = this.querySelector('i');
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.classList.replace('bi-eye', 'bi-eye-slash');
+            } else {
+                input.type = 'password';
+                icon.classList.replace('bi-eye-slash', 'bi-eye');
+            }
+        });
+
+        // Reset campo password quando il modal download viene chiuso
+        document.getElementById('dbDownloadModal').addEventListener('hidden.bs.modal', function() {
+            const input = document.getElementById('dbPassword');
+            input.type = 'password';
+            input.value = '';
+            document.getElementById('toggleDbPwd').querySelector('i').className = 'bi bi-eye';
+        });
+
+        // Toggle visibilità password nel modal upload DB
+        document.getElementById('toggleUploadPwd').addEventListener('click', function() {
+            const input = document.getElementById('uploadDbPassword');
+            const icon = this.querySelector('i');
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.classList.replace('bi-eye', 'bi-eye-slash');
+            } else {
+                input.type = 'password';
+                icon.classList.replace('bi-eye-slash', 'bi-eye');
+            }
+        });
+
+        // Reset modal upload quando viene chiuso
+        document.getElementById('dbUploadModal').addEventListener('hidden.bs.modal', function() {
+            const pwd = document.getElementById('uploadDbPassword');
+            pwd.type = 'password';
+            pwd.value = '';
+            document.getElementById('dbFile').value = '';
+            document.getElementById('toggleUploadPwd').querySelector('i').className = 'bi bi-eye';
         });
     </script>
 </body>
