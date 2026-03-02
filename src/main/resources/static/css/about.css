@@ -827,6 +827,7 @@
     .values-section,
     .advantage-section,
     .network-section,
+    .clients-section,
     .team-section {
         padding: 60px 0;
     }
@@ -890,6 +891,7 @@
     .values-section,
     .advantage-section,
     .network-section,
+    .clients-section,
     .team-section {
         padding: 50px 0;
     }
@@ -1201,84 +1203,29 @@
     .cta-title {
         font-size: 1.5rem;
     }
-    
+
     .cta-text {
         font-size: 0.95rem;
     }
-}
 
-/* ========================================
-   DARK MODE SUPPORT
-======================================== */
-
-@media (prefers-color-scheme: dark) {
-    .vision-section,
-    .mission-section,
-    .advantage-section,
-    .network-section,
-    .team-section {
-        background: linear-gradient(180deg, #1a1a2e 0%, #16213e 100%);
+    .client-card {
+        padding: 1.25rem;
+        gap: 1rem;
     }
 
-    .values-section {
-        background: linear-gradient(180deg, #16213e 0%, #1a1a2e 100%);
-    }
-    
-    .about-section-title,
-    .about-lead-text,
-    .advantage-title,
-    .advantage-number,
-    .value-title,
-    .partner-title,
-    .highlight-title,
-    .cta-title {
-        color: #d5daf5;
-    }
-    
-    .about-text,
-    .about-subtitle,
-    .advantage-text,
-    .value-text,
-    .partner-text,
-    .network-lead-text,
-    .highlight-text,
-    .highlight-description,
-    .cta-text {
-        color: rgba(255, 255, 255, 0.9);
-    }
-    
-    .highlight-item,
-    .value-card,
-    .partner-category,
-    .network-content-box,
-    .advantage-highlight-box,
-    .team-card,
-    .team-section-block {
-        background: #0f0f1e;
-        border-color: rgba(255, 255, 255, 0.1);
+    .client-icon {
+        width: 56px;
+        height: 56px;
+        font-size: 1.5rem;
+        border-radius: 10px;
     }
 
-    .team-member-name,
-    .team-section-title {
-        color: #d5daf5;
+    .client-title {
+        font-size: 1.05rem;
     }
 
-    .team-section-content {
-        color: rgba(255, 255, 255, 0.9);
-    }
-
-    .team-card-header {
-        border-bottom-color: rgba(255, 255, 255, 0.1);
-    }
-    
-    .section-icon,
-    .value-icon,
-    .partner-icon {
-        background: linear-gradient(135deg, rgba(213, 218, 245, 0.1), rgba(232, 234, 246, 0.1));
-    }
-    
-    .about-cta-section {
-        background: linear-gradient(180deg, #0f0f1e 0%, #1a1a2e 100%);
+    .client-text {
+        font-size: 0.88rem;
     }
 }
 
@@ -1323,6 +1270,92 @@
         box-shadow: none;
         border: 1px solid #ddd;
     }
+}
+
+/* ========================================
+   CLIENTS SECTION
+======================================== */
+
+.clients-section {
+    background: linear-gradient(180deg, #f5f6fb 0%, #ffffff 100%);
+    padding: 100px 0;
+    position: relative;
+}
+
+/* Client Cards — orizzontali con icona a sinistra */
+.client-card {
+    background: linear-gradient(135deg, #ffffff 0%, rgba(213, 218, 245, 0.05) 100%);
+    padding: 2rem;
+    border-radius: 16px;
+    border: 1px solid #d0d4e4;
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.client-card::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: linear-gradient(180deg, transparent, #282942, transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.client-card:hover::before {
+    opacity: 1;
+}
+
+.client-card:hover {
+    transform: translateX(8px);
+    box-shadow: 0 12px 36px rgba(40, 41, 66, 0.14);
+    border-color: #282942;
+    background: linear-gradient(135deg, #ffffff 0%, rgba(213, 218, 245, 0.12) 100%);
+}
+
+.client-icon {
+    width: 72px;
+    height: 72px;
+    background: linear-gradient(135deg, #d5daf5, #e8eaf6);
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 1.9rem;
+    color: #282942;
+    transition: all 0.3s ease;
+}
+
+.client-card:hover .client-icon {
+    background: linear-gradient(135deg, #282942, #4a4d7c);
+    color: #ffffff;
+    transform: scale(1.08) rotate(-5deg);
+}
+
+.client-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.client-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #282942;
+    margin-bottom: 0.6rem;
+}
+
+.client-text {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: #2e2e2e;
+    margin: 0;
 }
 
 /* === DIVIDER TRA SEZIONI CHI SIAMO === */

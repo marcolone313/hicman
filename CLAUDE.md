@@ -78,9 +78,17 @@ Nella dashboard admin è presente una sezione "Strumenti" con due operazioni sul
 
 **Nota tecnica:** H2 ha scope `runtime` nel `pom.xml` quindi `org.h2.tools.*` non è disponibile a compile time. Usare sempre i comandi SQL nativi H2 (`SCRIPT TO`, `RUNSCRIPT FROM`, `CHECKPOINT SYNC`) via JDBC anziché le classi Java del package `org.h2.tools`.
 
-## Pagina Chi Siamo — Foto Team
+## Pagina Chi Siamo — Sezioni
 
+### Foto Team
 Le card dei membri del team in `chi-siamo.html` mostrano una foto circolare (140×140px) sopra il nome. Le immagini sono in `src/main/resources/static/images/` (es. `Paolo.jpg`, `Roberto.jpg`). Gli stili sono in `about.css` sotto `.team-member-photo-wrapper` e `.team-member-photo`.
+
+### Clienti & Partner
+Sezione inserita in `chi-siamo.html` **prima** della sezione Team. Mostra 4 category card in griglia 2×2 (`col-lg-6 col-md-6`) usando la classe `.value-card` esistente. Le chiavi i18n sono `about.clients.*` in entrambi i file properties. Stile della sezione: `.clients-section` in `about.css`.
+
+## Dark Mode
+
+Il sito **non supporta** la dark mode automatica del sistema operativo. Tutti i blocchi `@media (prefers-color-scheme: dark)` sono stati rimossi dai CSS (`about.css`, `services.css`, `press.css`, `testimonials.css`, `homepage-fixes.css`). Non aggiungere mai media query per la dark mode.
 
 ## Rassegna Stampa — Articoli Correlati
 

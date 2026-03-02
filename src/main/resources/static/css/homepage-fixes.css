@@ -529,26 +529,6 @@
  }
 }
 
-/* === DARK MODE SUPPORT (opzionale) === */
-@media (prefers-color-scheme: dark) {
- .value-proposition-section,
- .contact-section-finance {
-  background: linear-gradient(180deg, #1a1a2e 0%, #16213e 100%);
- }
- 
- .stat-item,
- .contact-form-wrapper {
-  background: #0f0f1e;
-  border-color: rgba(255, 255, 255, 0.1);
- }
- 
- .value-text,
- .stat-text,
- .contact-form-wrapper .form-label {
-  color: rgba(255, 255, 255, 0.9) !important;
- }
-}
-
 /* === PARALLAX SECTION === */
 .parallax-section {
  height: 50vh;

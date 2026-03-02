@@ -956,56 +956,6 @@
 }
 
 /* ========================================
-   DARK MODE SUPPORT
-======================================== */
-
-@media (prefers-color-scheme: dark) {
-    .service-detail-section {
-        background: linear-gradient(180deg, #1a1a2e 0%, #16213e 100%);
-    }
-    
-    .service-detail-section:nth-child(even) {
-        background: linear-gradient(180deg, #16213e 0%, #1a1a2e 100%);
-    }
-    
-    .service-detail-title,
-    .service-subtitle,
-    .stat-label,
-    .feature-title,
-    .esg-title,
-    .stage-title,
-    .cta-title {
-        color: #d5daf5;
-    }
-    
-    .service-detail-lead,
-    .service-text,
-    .feature-text,
-    .esg-text,
-    .stage-text,
-    .cta-text {
-        color: rgba(255, 255, 255, 0.9);
-    }
-    
-    .stat-item-large,
-    .feature-card,
-    .esg-card,
-    .stage-item,
-    .service-content-box {
-        background: #0f0f1e;
-        border-color: rgba(255, 255, 255, 0.1);
-    }
-    
-    .service-icon-large {
-        background: linear-gradient(135deg, rgba(213, 218, 245, 0.1), rgba(232, 234, 246, 0.1));
-    }
-    
-    .services-cta-section {
-        background: linear-gradient(180deg, #0f0f1e 0%, #1a1a2e 100%);
-    }
-}
-
-/* ========================================
    ANIMATION UTILITIES
 ======================================== */
 
